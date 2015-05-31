@@ -1,0 +1,50 @@
+{
+  "name": "react-draggable-tab",
+  "version": "0.0.1",
+  "description": "Draggable chrome like tab react component ",
+  "main": "index.js",
+  "scripts": {
+    "build:example": "npm run browserify -d ./example/app.js -o ./example/bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/georgeosddev/react-draggable-tab"
+  },
+  "keywords": [
+    "react",
+    "tab",
+    "draggable"
+  ],
+  "author": "Takeharu.Oshida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/georgeosddev/react-draggable-tab/issues"
+  },
+  "homepage": "https://github.com/georgeosddev/react-draggable-tab",
+  "devDependencies": {
+    "browserify": "^10.2.1",
+    "watchify": "^3.2.1",
+    "babelify": "^6.1.2",
+    "browser-sync": "^2.7.6",
+    "babel-eslint": "^3.1.9",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0"
+  },
+  "dependencies": {
+    "immutable": "^3.7.3",
+    "react": "^0.13.3",
+    "react-draggable": "^0.8.0",
+    "react-style": "^0.5.5"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "compact": false
+        }
+      ]
+    ]
+  }
+}
