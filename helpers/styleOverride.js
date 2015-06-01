@@ -6,4 +6,4 @@ let merge = (original, override) => {
   return Immutable.Map(original).merge(override).toObject();
 };
 
-export default merge;
+export default {merge: merge};

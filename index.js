@@ -1,3 +1,4 @@
 module.exports = {
-  Tabs: require("./components/Tabs")
+  Tab: require('./components/Tab'),
+  Tabs: require('./components/Tabs')
 };

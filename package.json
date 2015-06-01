@@ -4,8 +4,10 @@
   "description": "Draggable chrome like tab react component ",
   "main": "index.js",
   "scripts": {
-    "build:example": "npm run browserify -d ./example/app.js -o ./example/bundle.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "browser": "browser-sync start --files example/* --server example",
+    "watch:example": "watchify example/app.js -dv -o example/bundle.js",
+    "start:example": "npm run watch:example & npm run browser",
+    "test": "karma start"
   },
   "repository": {
     "type": "git",
@@ -35,7 +37,8 @@
     "immutable": "^3.7.3",
     "react": "^0.13.3",
     "react-draggable": "^0.8.0",
-    "react-style": "^0.5.5"
+    "react-style": "^0.5.5",
+    "classnames": "^2.1.2"
   },
   "browserify": {
     "transform": [
