@@ -109,7 +109,11 @@ const TabStyles = StyleSheet.create({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    top: '5px'
+    top: '5px',
+    float: 'left',
+    textAlign: 'center',
+    postion: 'relative',
+    width: '70%'
   },
 
   tabTitleActive: {
