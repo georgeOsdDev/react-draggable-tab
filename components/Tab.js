@@ -13,4 +13,14 @@ class Tab extends React.Component {
   }
 }
 
+Tab.defaultProps = {
+  title: 'untitled',
+  disableClose: false
+};
+
+Tab.propTypes = {
+  title: React.PropTypes.string,
+  disableClose: React.PropTypes.bool
+};
+
 export default Tab;

@@ -13,8 +13,14 @@ const TabStyles = StyleSheet.create({
   },
 
   tabBar: {
-    'display': '-webkit-flex',
+    display: '-webkit-box',
+    display: '-webkit-flex',
+    display: '-ms-flexbox',
+    display: 'flex',
     WebkitUserSelect: 'none',
+    MozUserSelect: 'none',
+    msUserSelect: 'none',
+    userSelect: 'none',
     margin: 0,
     listStyle: 'none',
     outline: '0px'
@@ -29,14 +35,13 @@ const TabStyles = StyleSheet.create({
     right: '0',
     zIndex: 100,
     backgroundColor: '#222222',
-    // borderTop: '1px solid #484848',
     borderBottom: '1px solid #111111',
     pointerEvents: 'none'
   },
 
   tab: {
     fontFamily: "'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif",
-    backgroundImage: '-webkit-linear-gradient(top, #454545, #333333)',
+    backgroundImage: 'linear-gradient(#454545, #333333)',
     height: '26px',
     fontSize: '11px',
     position: 'relative',
@@ -44,7 +49,11 @@ const TabStyles = StyleSheet.create({
     paddingTop: '.5em',
     paddingLeft: '15px',
     paddingRight: '24px',
+    WebkutBoxFlex: 1,
     WebkitFlex: 1,
+    MozFlex: 1,
+    msFlex: 1,
+    flex: 1,
     maxWidth: '175px',
     minWidth: '40px'
   },
@@ -60,7 +69,10 @@ const TabStyles = StyleSheet.create({
     borderTopLeftRadius: '3px',
     boxShadow: 'inset 1px 1px 0 #484848, -4px 0px 4px rgba(0, 0, 0, 0.1)',
     WebkitTransform: 'skewX(-30deg)',
-    backgroundImage: '-webkit-linear-gradient(top, #454545, #333333)'
+    MozTransform: 'skewX(-30deg)',
+    msTransform: 'skewX(-30deg)',
+    transform: 'skewX(-30deg)',
+    backgroundImage: 'linear-gradient(#454545, #333333)'
   },
 
   tabAfter: {
@@ -74,15 +86,22 @@ const TabStyles = StyleSheet.create({
     borderTopRightRadius: '3px',
     boxShadow: 'inset -1px 1px 0 #484848, 4px 0px 4px rgba(0, 0, 0, 0.1)',
     WebkitTransform: 'skewX(30deg)',
-    backgroundImage: '-webkit-linear-gradient(top, #454545, #333333)'
+    MozTransform: 'skewX(30deg)',
+    msTransform: 'skewX(30deg)',
+    transform: 'skewX(30deg)',
+    backgroundImage: 'linear-gradient(#454545, #333333)'
   },
 
   tabActive: {
+    WebkutBoxFlex: 2,
     WebkitFlex: 2,
+    MozFlex: 2,
+    msFlex: 2,
+    flex: 2,
     zIndex: 1,
     color: '#ffffff',
-    backgroundImage: '-webkit-linear-gradient(top, #343434, #222222)',
-    fontSize: '12px'
+    paddingTop: '0em',
+    backgroundImage: 'linear-gradient(#343434, #222222)'
   },
 
   tabTitle: {
@@ -93,7 +112,8 @@ const TabStyles = StyleSheet.create({
   },
 
   tabTitleActive: {
-    paddingRight: '10px'
+    paddingRight: '10px',
+    lineHeight: '2.5em'
   },
 
   tabCloseIcon:{
