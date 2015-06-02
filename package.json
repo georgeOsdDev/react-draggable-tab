@@ -15,6 +15,7 @@
   },
   "keywords": [
     "react",
+    "react-component",
     "tab",
     "draggable"
   ],
@@ -25,13 +26,24 @@
   },
   "homepage": "https://github.com/georgeosddev/react-draggable-tab",
   "devDependencies": {
-    "browserify": "^10.2.1",
-    "watchify": "^3.2.1",
+    "babel-eslint": "^3.1.9",
     "babelify": "^6.1.2",
     "browser-sync": "^2.7.6",
-    "babel-eslint": "^3.1.9",
+    "browserify": "^10.2.1",
+    "chai": "^2.3.0",
     "eslint": "^0.21.2",
-    "eslint-plugin-react": "^2.3.0"
+    "eslint-plugin-react": "^2.3.0",
+    "karma": "^0.12.35",
+    "karma-browserify": "^4.2.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-cli": "0.0.4",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.1.10",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-spec-reporter": "0.0.19",
+    "mocha": "^2.2.5",
+    "watchify": "^3.2.1"
   },
   "dependencies": {
     "immutable": "^3.7.3",
