@@ -100,7 +100,8 @@ const TabStyles = StyleSheet.create({
     flex: 2,
     zIndex: 1,
     color: '#ffffff',
-    paddingTop: '0em',
+    paddingTop: '5px',
+    fontSize: '13px',
     backgroundImage: 'linear-gradient(#343434, #222222)'
   },
 
@@ -113,7 +114,7 @@ const TabStyles = StyleSheet.create({
 
   tabTitleActive: {
     paddingRight: '10px',
-    lineHeight: '2.5em'
+    lineHeight: '1.5em'
   },
 
   tabCloseIcon:{
