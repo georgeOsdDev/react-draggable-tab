@@ -41,19 +41,19 @@ class App extends React.Component {
   }
 
 
-  handleTabSelect(key, currentTabs) {
+  handleTabSelect(e, key, currentTabs) {
     console.log('tabSelected key:', key);
   }
 
-  handleTabClose(key, currentTabs) {
+  handleTabClose(e, key, currentTabs) {
     console.log('tabClosed key:', key);
   }
 
-  handleTabPositionChange(key, currentTabs) {
+  handleTabPositionChange(e, key, currentTabs) {
     console.log('tabPositionChanged key:', key);
   }
 
-  handleTabAddButtonClick(currentTabs) {
+  handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
     var key = 'newTab_' + Date.now();
     var newTab = (<Tab key={key} title='untitle'>
@@ -83,6 +83,7 @@ class App extends React.Component {
     )
   }
 };
+
 
 React.render(<App/>, document.getElementById('tabs'));
 ```

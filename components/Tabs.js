@@ -8,9 +8,8 @@ import Draggable from 'react-draggable';
 import TabStyles from './TabStyles';
 import CloseIcon from './CloseIcon';
 
-
 import StyleOverride from '../helpers/styleOverride';
-
+import Utils from '../helpers/utils';
 
 let tabInlineStyles = {
 };
@@ -22,28 +21,36 @@ class Tabs extends React.Component {
   constructor(props) {
     super(props);
 
+    let defaultState = this._tabStateFromProps(this.props);
+    defaultState.selectedTab = this.props.selectedTab ? this.props.selectedTab : this.props.tabs[0].key;
+    defaultState.closedTabs = [];
+    defaultState.dragging = false;
+    this.state = defaultState;
+
+    // Dom positons
+    // do not save in state
+    this.startPositions = [];
+  }
+
+  _tabStateFromProps(props) {
     // setDefaultSelected
-    let selectedTab = this.props.selectedTab ? this.props.selectedTab : this.props.tabs[0].key;
     let tabPositions = {};
     let tabs = [];
     let idx = 0;
-    React.Children.forEach(this.props.tabs, (tab) => {
+    React.Children.forEach(props.tabs, (tab) => {
       tabPositions[tab.key] = {x:0, y:0};
       tabs[idx] = tab;
       idx++;
     });
 
-    this.state = {
-      selectedTab: selectedTab,
-      closedTabs: [],
+    return {
       tabs: tabs,
-      tabPositions: tabPositions,
-      dragging: false
+      tabPositions: tabPositions
     };
+  }
 
-    // not save in state
-    this.startPositions = [];
-    this.nextOrder = [];
+  _isClosed(key) {
+    return this.state.closedTabs.indexOf(key) > -1;
   }
 
   _getIndexOfTabByKey(key) {
@@ -63,7 +70,7 @@ class Tabs extends React.Component {
     let current = this._getIndexOfTabByKey(key);
     if (current + 1 < this.state.tabs.length) {
       nextKey = this.state.tabs[current + 1].key;
-      if (this.state.closedTabs.indexOf(nextKey) > -1) {
+      if (this._isClosed(nextKey)) {
         nextKey = this._getNextTabKey(nextKey);
       }
     }
@@ -73,10 +80,9 @@ class Tabs extends React.Component {
   _getPrevTabKey(key) {
     let prevKey;
     let current = this._getIndexOfTabByKey(key);
-
     if (current > 0) {
       prevKey = this.state.tabs[current - 1].key;
-      if (this.state.closedTabs.indexOf(prevKey) > -1) {
+      if (this._isClosed(prevKey)) {
         prevKey = this._getPrevTabKey(prevKey);
       }
     }
@@ -84,53 +90,22 @@ class Tabs extends React.Component {
   }
 
   _getCurrentOpenTabs() {
-    let that = this;
-    return _.filter(this.state.tabs, (tab) => {
-      return that.state.closedTabs.indexOf[tab.key] !== -1;
+    return this._getOpenTabs(this.state.tabs);
+  }
+
+  _getOpenTabs(tabs) {
+    return _.filter(tabs, (tab) => {
+      return !this._isClosed(tab.key);
     });
   }
 
   _moveTabPosition(key1, key2) {
     let t1 = this._getIndexOfTabByKey(key1);
     let t2 = this._getIndexOfTabByKey(key2);
-    return this._slide(this.state.tabs, t1, t2);
-  }
-
-
-  _slide(array, a, b) {
-    let retArr;
-    let _array = array.slice(0);
-
-    if (a < b) {
-      retArr = _array.map((v, idx) => {
-        if (idx < a) {
-          return v;
-        } else if (a <= idx && idx < b) {
-          return array[idx + 1];
-        } else if (idx === b) {
-          return array[a];
-        } else {
-          return v;
-        }
-      });
-    } else {
-      retArr = _array.map((v, idx) => {
-        if (idx < b) {
-          return v;
-        } else if (b === idx) {
-          return array[a];
-        } else if (b < idx && idx <= a) {
-          return array[idx - 1];
-        } else {
-          return v;
-        }
-      });
-    }
-    return retArr;
+    return Utils.slideArray(this.state.tabs, t1, t2);
   }
 
   componentWillMount() {
-
   }
 
   componentDidMount() {
@@ -140,19 +115,7 @@ class Tabs extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let tabPositions = {};
-    let tabs = [];
-    let idx = 0;
-    React.Children.forEach(nextProps.tabs, (tab) => {
-      tabPositions[tab.key] = {x:0, y:0};
-      tabs[idx] = tab;
-      idx++;
-    });
-
-    let newState = {
-      tabs: tabs,
-      tabPositions: tabPositions
-    };
+    let newState = this._tabStateFromProps(nextProps);
     if (nextProps.selectedTab !== 'undefined') {
       newState.selectedTab = nextProps.selectedTab;
     }
@@ -197,6 +160,9 @@ class Tabs extends React.Component {
     let tabPositions = this.state.tabPositions;
     tabPositions[key] = {x:0, y:0};
     this.setState({tabPositons:tabPositions, dragging:false, tabs: nextTabs, selectedTab: key});
+    if(swapedTabs) {
+      this.props.onTabPositionChanged(e, key, this._getOpenTabs(nextTabs));
+    }
   }
 
   handleTabClick(key, e) {
@@ -206,7 +172,7 @@ class Tabs extends React.Component {
       e.stopPropagation();
     } else {
       this.setState({selectedTab: key});
-      this.props.onTabSelected(key, this._getCurrentOpenTabs());
+      this.props.onTabSelected(e, key, this._getCurrentOpenTabs());
     }
   }
 
@@ -225,11 +191,11 @@ class Tabs extends React.Component {
       closedTabs: this.state.closedTabs.concat([key]),
       selectedTab: nextSelected
       });
-    this.props.onTabClosed(key, this._getCurrentOpenTabs());
+    this.props.onTabClosed(e, key, this._getCurrentOpenTabs());
   }
 
-  handleAddButtonClick() {
-    this.props.onTabAddButtonClicked(this._getCurrentOpenTabs());
+  handleAddButtonClick(e) {
+    this.props.onTabAddButtonClicked(e, this._getCurrentOpenTabs());
   }
 
   getCloseButton(tab) {
