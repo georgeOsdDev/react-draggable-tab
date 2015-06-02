@@ -16,7 +16,8 @@ const TabStyles = StyleSheet.create({
     'display': '-webkit-flex',
     WebkitUserSelect: 'none',
     margin: 0,
-    listStyle: 'none'
+    listStyle: 'none',
+    outline: '0px'
   },
 
   tabBarAfter: {

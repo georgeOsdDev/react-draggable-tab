@@ -8,6 +8,7 @@ import Draggable from 'react-draggable';
 import TabStyles from './TabStyles';
 import CloseIcon from './CloseIcon';
 
+
 import StyleOverride from '../helpers/styleOverride';
 
 
@@ -20,13 +21,29 @@ let tabClassNames = {
 class Tabs extends React.Component {
   constructor(props) {
     super(props);
+
+    // setDefaultSelected
+    let selectedTab = this.props.selectedTab ? this.props.selectedTab : this.props.tabs[0].key;
+    let tabPositions = {};
+    let tabs = [];
+    let idx = 0;
+    React.Children.forEach(this.props.tabs, (tab) => {
+      tabPositions[tab.key] = {x:0, y:0};
+      tabs[idx] = tab;
+      idx++;
+    });
+
     this.state = {
-      selectedTab: '',
+      selectedTab: selectedTab,
       closedTabs: [],
-      tabs: [],
-      tabPositions: {},
+      tabs: tabs,
+      tabPositions: tabPositions,
       dragging: false
     };
+
+    // not save in state
+    this.startPositions = [];
+    this.nextOrder = [];
   }
 
   _getIndexOfTabByKey(key) {
@@ -73,20 +90,43 @@ class Tabs extends React.Component {
     });
   }
 
-  _swhichTabPosition(key1, key2) {
+  _moveTabPosition(key1, key2) {
     let t1 = this._getIndexOfTabByKey(key1);
     let t2 = this._getIndexOfTabByKey(key2);
-    this.setState({tabs: this._swap(this.state.tabs, t1, t2)});
+    return this._slide(this.state.tabs, t1, t2);
   }
 
 
-  _swap(array, a, b) {
+  _slide(array, a, b) {
+    let retArr;
     let _array = array.slice(0);
-    let aVal = array[a];
-    let bVal = array[b];
-    _array[a] = bVal;
-    _array[b] = aVal;
-    return _array;
+
+    if (a < b) {
+      retArr = _array.map((v, idx) => {
+        if (idx < a) {
+          return v;
+        } else if (a <= idx && idx < b) {
+          return array[idx + 1];
+        } else if (idx === b) {
+          return array[a];
+        } else {
+          return v;
+        }
+      });
+    } else {
+      retArr = _array.map((v, idx) => {
+        if (idx < b) {
+          return v;
+        } else if (b === idx) {
+          return array[a];
+        } else if (b < idx && idx <= a) {
+          return array[idx - 1];
+        } else {
+          return v;
+        }
+      });
+    }
+    return retArr;
   }
 
   componentWillMount() {
@@ -94,40 +134,6 @@ class Tabs extends React.Component {
   }
 
   componentDidMount() {
-
-    // override inline styles
-    tabInlineStyles.tabBar = StyleOverride.merge(TabStyles.tabBar, this.props.tabStyles.tabBar);
-    tabInlineStyles.tabBarAfter = StyleOverride.merge(TabStyles.tabBarAfter, this.props.tabStyles.tabBarAfter);
-    tabInlineStyles.tab = StyleOverride.merge(TabStyles.tab, this.props.tabStyles.tab);
-    tabInlineStyles.tabBefore = StyleOverride.merge(TabStyles.tabBefore, this.props.tabStyles.tabBefore);
-    tabInlineStyles.tabAfter = StyleOverride.merge(TabStyles.tabAfter, this.props.tabStyles.tabAfter);
-    tabInlineStyles.tabActive = StyleOverride.merge(TabStyles.tabActive, this.props.tabStyles.tabActive);
-    tabInlineStyles.tabTitle = StyleOverride.merge(TabStyles.tabTitle, this.props.tabStyles.tabTitle);
-    tabInlineStyles.tabTitleActive = StyleOverride.merge(TabStyles.tabTitleActive, this.props.tabStyles.tabTitleActive);
-    tabInlineStyles.tabCloseIcon = StyleOverride.merge(TabStyles.tabCloseIcon, this.props.tabStyles.tabCloseIcon);
-
-    // override classNames
-    tabClassNames.tabBar = classNames('rdTabBar', this.props.tabClassNames.tabBar);
-    tabClassNames.tabBarAfter = classNames('rdTabBarAfter', this.props.tabClassNames.tabBarAfter);
-    tabClassNames.tab = classNames('rdTab', this.props.tabClassNames.tab);
-    tabClassNames.tabBefore = classNames('rdTabBefore', this.props.tabClassNames.tabBefore);
-    tabClassNames.tabAfter = classNames('rdTabAfter', this.props.tabClassNames.tabAfter);
-    tabClassNames.tabActive = classNames('rdTabActive', this.props.tabClassNames.tabActive);
-    tabClassNames.tabTitle = classNames('rdTabTitle', this.props.tabClassNames.tabTitle);
-    tabClassNames.tabTitleActive = classNames('rdTabTitleActive', this.props.tabClassNames.tabTitleActive);
-    tabClassNames.tabCloseIcon = classNames('rdTabCloseIcon', this.props.tabClassNames.tabCloseIcon);
-
-    // setDefaultSelected
-    let selectedTab = this.props.selectedTab ? this.props.selectedTab : this.props.tabs[0].key;
-    let tabPositions = {};
-    let tabs = [];
-    let idx = 0;
-    React.Children.forEach(this.props.tabs, (tab) => {
-      tabPositions[tab.key] = {x:0, y:0};
-      tabs[idx] = tab;
-      idx++;
-    });
-    this.setState({selectedTab: selectedTab, tabs: tabs, tabPositions: tabPositions});
   }
 
   componentWillUnmount() {
@@ -156,6 +162,18 @@ class Tabs extends React.Component {
   componentWillUpdate() {
   }
 
+  componentDidUpdate() {
+    let positions = _.map(this.state.tabs, (tab) => {
+      let el = React.findDOMNode(this.refs[tab.key]);
+      let pos = el ? el.getBoundingClientRect() : {};
+      return {
+        key: tab.key,
+        pos: pos
+      };
+    });
+    this.startPositions = positions;
+  }
+
   handleMouseDown(key, e) {
     this.setState({dragging: key});
   }
@@ -167,9 +185,18 @@ class Tabs extends React.Component {
   }
 
   handleDragStop(key, e, ui) {
+    const deltaX = (e.pageX || e.clientX);
+    let swapedTabs;
+    _.each(this.startPositions, (pos) => {
+      let shoudBeSwap = key !== pos.key && pos.pos.left < deltaX && deltaX < pos.pos.right;
+      if (shoudBeSwap) {
+        swapedTabs = this._moveTabPosition(key, pos.key);
+      }
+    });
+    let nextTabs = swapedTabs || this.state.tabs;
     let tabPositions = this.state.tabPositions;
     tabPositions[key] = {x:0, y:0};
-    this.setState({tabPositons:tabPositions, dragging:false});
+    this.setState({tabPositons:tabPositions, dragging:false, tabs: nextTabs, selectedTab: key});
   }
 
   handleTabClick(key, e) {
@@ -205,10 +232,41 @@ class Tabs extends React.Component {
     this.props.onTabAddButtonClicked(this._getCurrentOpenTabs());
   }
 
+  getCloseButton(tab) {
+    if (tab.props.disableClose) {
+      return '';
+    } else {
+      return (<CloseIcon style={tabInlineStyles.tabCloseIcon} className={tabClassNames.tabCloseIcon} onClick={this.handleCloseButtonClick.bind(this, tab.key)}>&times;</CloseIcon>);
+    }
+  }
+
   render() {
 
+    // override inline styles
+    tabInlineStyles.tabBar = StyleOverride.merge(TabStyles.tabBar, this.props.tabStyles.tabBar);
+    tabInlineStyles.tabBarAfter = StyleOverride.merge(TabStyles.tabBarAfter, this.props.tabStyles.tabBarAfter);
+    tabInlineStyles.tab = StyleOverride.merge(TabStyles.tab, this.props.tabStyles.tab);
+    tabInlineStyles.tabBefore = StyleOverride.merge(TabStyles.tabBefore, this.props.tabStyles.tabBefore);
+    tabInlineStyles.tabAfter = StyleOverride.merge(TabStyles.tabAfter, this.props.tabStyles.tabAfter);
+    tabInlineStyles.tabActive = StyleOverride.merge(TabStyles.tabActive, this.props.tabStyles.tabActive);
+    tabInlineStyles.tabTitle = StyleOverride.merge(TabStyles.tabTitle, this.props.tabStyles.tabTitle);
+    tabInlineStyles.tabTitleActive = StyleOverride.merge(TabStyles.tabTitleActive, this.props.tabStyles.tabTitleActive);
+    tabInlineStyles.tabCloseIcon = StyleOverride.merge(TabStyles.tabCloseIcon, this.props.tabStyles.tabCloseIcon);
+
+    // override classNames
+    tabClassNames.tabBar = classNames('rdTabBar', this.props.tabClassNames.tabBar);
+    tabClassNames.tabBarAfter = classNames('rdTabBarAfter', this.props.tabClassNames.tabBarAfter);
+    tabClassNames.tab = classNames('rdTab', this.props.tabClassNames.tab);
+    tabClassNames.tabBefore = classNames('rdTabBefore', this.props.tabClassNames.tabBefore);
+    tabClassNames.tabAfter = classNames('rdTabAfter', this.props.tabClassNames.tabAfter);
+    tabClassNames.tabActive = classNames('rdTabActive', this.props.tabClassNames.tabActive);
+    tabClassNames.tabTitle = classNames('rdTabTitle', this.props.tabClassNames.tabTitle);
+    tabClassNames.tabTitleActive = classNames('rdTabTitleActive', this.props.tabClassNames.tabTitleActive);
+    tabClassNames.tabCloseIcon = classNames('rdTabCloseIcon', this.props.tabClassNames.tabCloseIcon);
+
+
     let content;
-    let tabs = React.Children.map(this.state.tabs, (tab) => {
+    let tabs = _.map(this.state.tabs, (tab) => {
 
       if (this.state.closedTabs.indexOf(tab.key) > -1) {
         return '';
@@ -234,9 +292,11 @@ class Tabs extends React.Component {
 
       let tabPositon = this.state.tabPositions[tab.key];
 
+      let closeButton = this.getCloseButton(tab);
+
       return (
         <Draggable
-          key={'draggable_tabs_' + tab.props.key }
+          key={'draggable_tabs_' + tab.key }
           axis='x'
           cancel='.rdTabCloseIcon'
           start={tabPositon}
@@ -247,9 +307,10 @@ class Tabs extends React.Component {
           onStop={this.handleDragStop.bind(this, tab.key)}>
           <li styles={tabStyles} className={tabClassNames.tab}
               onClick={this.handleTabClick.bind(this, tab.key)}
-              onMouseDown={this.handleMouseDown.bind(this, tab.key)}>
+              onMouseDown={this.handleMouseDown.bind(this, tab.key)}
+              ref={tab.key}>
             <span styles={tabTiteleStyle} className={tabClassNames.tabTitle}>{tabTitle}</span>
-            <CloseIcon style={tabInlineStyles.tabCloseIcon} className={tabClassNames.tabCloseIcon} onClick={this.handleCloseButtonClick.bind(this, tab.key)}>&times;</CloseIcon>
+            {closeButton}
             <span styles={tabBeforeStyles} className={tabClassNames.tabBefore}></span>
             <span styles={tabAfterStyles} className={tabClassNames.tabAfter}></span>
           </li>

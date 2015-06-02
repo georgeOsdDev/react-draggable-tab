@@ -1,5 +1,6 @@
 # wip
 
+[![Gyazo](http://i.gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533.gif)](http://gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533)
 
 ---
 
@@ -16,7 +17,7 @@ class App extends React.Component {
       tabs:[
         (<Tab key='tab0' title={'fixedTab'} disableClose={true} >
           <div>
-            <h1>This tab cannot close fixed</h1>
+            <h1>This tab cannot close</h1>
           </div>
         </Tab>),
         (<Tab key='tab1' title={'1stTab'} >
