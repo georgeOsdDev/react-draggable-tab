@@ -1,13 +1,50 @@
 # wip
 
-[![Gyazo](http://i.gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533.gif)](http://gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533)
+Not yet released.
+
 
 ---
 
-# React-draggable-tab
+# React-draggable-tab [![Build Status](https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-draggable-tab)
 
-Chrome/Atom like draggable tab react component.
 
+[![Gyazo](http://i.gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533.gif)](http://gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533)
+
+
+Atom like draggable tab react component.
+
+## Demo
+
+[View Demo](http://georgeosddev.github.io/react-draggable-tab/example/)
+
+## Installation
+
+**Not yet released!!**
+
+```bash
+npm install --save react-draggable-tab
+```
+
+## API
+
+### `Tab`
+
+`Tab` is just a case class to check props.
+`props.children` will rendered into content area.
+
+  * `key`: *unique* key in `TabList`.
+    `React.PropTypes.string.isRequired`
+
+  * `title`: string to show in tab.
+    `React.PropTypes.string.isRequired`
+
+  * `disableClose`: If `true`, closeButton will not be appeared in tab.
+    `React.PropTypes.bool` (Default `false`)
+
+### `Tabs`
+
+
+## Usage example
 
 ```javascript
 class App extends React.Component {
@@ -84,6 +121,22 @@ class App extends React.Component {
   }
 };
 
-
 React.render(<App/>, document.getElementById('tabs'));
 ```
+
+See also [example](https://github.com/georgeOsdDev/react-draggable-tab/tree/develop/example)
+
+
+```bash
+npm install
+npm run start:example
+```
+
+## Tests
+
+```bash
+npm test
+```
+
+## Known Issue
+
