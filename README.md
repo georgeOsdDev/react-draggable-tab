@@ -1,10 +1,3 @@
-# wip
-
-Not yet released.
-
-
----
-
 # React-draggable-tab [![Build Status](https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-draggable-tab)
 
 
@@ -18,8 +11,6 @@ Atom like draggable tab react component.
 [View Demo](http://georgeosddev.github.io/react-draggable-tab/example/)
 
 ## Installation
-
-**Not yet released!!**
 
 ```bash
 npm install --save react-draggable-tab
