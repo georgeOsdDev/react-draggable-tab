@@ -96,7 +96,7 @@ class App extends React.Component {
   handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
     const key = 'newTab_' + Date.now();
-    let newTab = (<Tab key={key} title='untitle'>
+    let newTab = (<Tab key={key} title='untitled'>
                     <div>
                       <h1>New Empty Tab</h1>
                     </div>

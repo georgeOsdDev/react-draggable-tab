@@ -115,7 +115,8 @@ const TabStyles = StyleSheet.create({
     float: 'left',
     textAlign: 'center',
     postion: 'relative',
-    width: '70%'
+    width: '70%',
+    color: 'rgb(170, 170, 170)'
   },
 
   tabBeforeActive: {
@@ -128,7 +129,8 @@ const TabStyles = StyleSheet.create({
 
   tabTitleActive: {
     paddingRight: '10px',
-    lineHeight: '1.5em'
+    lineHeight: '1.5em',
+    color: 'rgb(255, 255, 255)'
   },
 
   tabCloseIcon:{

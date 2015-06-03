@@ -1,8 +1,7 @@
 # React-draggable-tab [![Build Status](https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-draggable-tab) [![npm version](https://badge.fury.io/js/react-draggable-tab.svg)](http://badge.fury.io/js/react-draggable-tab)
 
 
-[![Gyazo](http://i.gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533.gif)](http://gyazo.com/1ca47462f2b7a8657dcfea9fa8fc5533)
-
+[![Gyazo](http://i.gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6.gif)](http://gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6)
 
 Atom like draggable tab react component.
 
