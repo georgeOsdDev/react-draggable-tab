@@ -13,9 +13,11 @@ const TabStyles = StyleSheet.create({
   },
 
   tabBar: {
-    display: '-webkit-box',
-    display: '-webkit-flex',
-    display: '-ms-flexbox',
+    // @TODO safari needs prefix. Style should be define in CSS.
+    // Can't use duprecated key's for inline-style.
+    // See https://github.com/facebook/react/issues/2020
+    // display: '-webkit-flex',
+    // display: '-ms-flexbox',
     display: 'flex',
     WebkitUserSelect: 'none',
     MozUserSelect: 'none',

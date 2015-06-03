@@ -140,3 +140,12 @@ npm test
 
 ## Known Issue
 
+* `flex` style should be define in CSS for safari.
+See https://github.com/facebook/react/issues/2020
+
+In application, class `rdTabBar` or your custom class of `TabBar` needs `display: -webkit-flex` in CSS like below.
+```css
+.myTabBar {
+  display: -webkit-flex;
+}
+
