@@ -20,7 +20,6 @@ Tab.defaultProps = {
 };
 
 Tab.propTypes = {
-  key: React.PropTypes.string.isRequired,
   title: React.PropTypes.string.isRequired,
   disableClose: React.PropTypes.bool
 };

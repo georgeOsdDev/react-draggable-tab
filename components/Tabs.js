@@ -2,6 +2,7 @@
 
 import _ from 'lodash';
 import React from 'react/addons';
+import invariant from 'react/lib/invariant';
 import classNames from 'classnames';
 import Draggable from 'react-draggable';
 
@@ -38,6 +39,12 @@ class Tabs extends React.Component {
     let tabs = [];
     let idx = 0;
     React.Children.forEach(props.tabs, (tab) => {
+
+      invariant(
+        tab.key,
+        'There should be unique key in each Tab'
+      );
+
       tabPositions[tab.key] = {x:0, y:0};
       tabs[idx] = tab;
       idx++;
@@ -251,13 +258,17 @@ class Tabs extends React.Component {
         content = tab;
       }
 
+      // title will be shorten with inline style
+      //  {
+      //    overflow: 'hidden',
+      //    whiteSpace: 'nowrap',
+      //    textOverflow: 'ellipsis'
+      //  }
       let tabTitle = tab.props.title;
-      if (tabTitle.length > 15) {
-        tabTitle = tabTitle.substring(0, 15) + '...';
-      }
-
+      // if (tabTitle.length > 15) {
+      //   tabTitle = tabTitle.substring(0, 15) + '...';
+      // }
       let tabPositon = this.state.tabPositions[tab.key];
-
       let closeButton = this.getCloseButton(tab);
 
       return (
