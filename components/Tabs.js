@@ -348,7 +348,7 @@ Tabs.propTypes = {
   tabStyles: React.PropTypes.shape({
     tabBar: React.PropTypes.object,
     tab: React.PropTypes.object,
-    tabActive: React.PropTypes.string,
+    tabActive: React.PropTypes.object,
     tabBefor: React.PropTypes.object,
     tabAfter: React.PropTypes.object,
     tabTitle: React.PropTypes.object,
