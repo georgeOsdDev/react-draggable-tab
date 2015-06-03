@@ -64,7 +64,6 @@ class App extends React.Component {
   }
 
   _handleTextChange(e) {
-    console.log('handleTextChange', e);
     this.setState({textValue: e.target.value});
   }
 
@@ -79,15 +78,17 @@ class App extends React.Component {
   }
 
   handleTabSelect(e, key, currentTabs) {
-    this.setState({selectedTab: key, tabs: this._replaceDynamicTab(currentTabs)});
+    this.setState({selectedTab: key, tabs: currentTabs});
   }
 
   handleTabClose(e, key, currentTabs) {
     console.log('tabClosed key:', key);
+    this.setState({tabs: currentTabs});
   }
 
   handleTabPositionChange(e, key, currentTabs) {
     console.log('tabPositionChanged key:', key);
+    this.setState({tabs: currentTabs});
   }
 
   handleTabAddButtonClick(e, currentTabs) {
@@ -107,6 +108,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    let tabs = this._replaceDynamicTab(this.state.tabs)
+
     return (
       <Tabs
         tabClassNames={tabClassNames}
@@ -116,7 +120,7 @@ class App extends React.Component {
         onTabClosed={this.handleTabClose.bind(this)}
         onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
         onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-        tabs={this.state.tabs}>
+        tabs={tabs}>
       </Tabs>
     )
   }

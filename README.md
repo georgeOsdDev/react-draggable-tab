@@ -108,17 +108,17 @@ class App extends React.Component {
     super(props);
     this.state = {
       tabs:[
-        (<Tab key='tab0' title={'fixedTab'} disableClose={true} >
+        (<Tab key={'tab0'} title={'fixedTab'} disableClose={true} >
           <div>
             <h1>This tab cannot close</h1>
           </div>
         </Tab>),
-        (<Tab key='tab1' title={'1stTab'} >
+        (<Tab key={'tab1'} title={'1stTab'} >
           <div>
             <h1>This is tab1</h1>
           </div>
         </Tab>),
-        (<Tab key='tab2' title={'2ndTab Too long Toooooooooooooooooo long'} >
+        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} >
           <div>
             <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             </pre>
@@ -130,9 +130,6 @@ class App extends React.Component {
     };
   }
 
-  // Trick
-  // `Tabs` do not care change in content
-  // Dynamically changing tab content should be managed at app side.
   _getDynamicTab() {
     return (
     <Tab key='tab3' title={'3rdTab'} >
@@ -147,7 +144,6 @@ class App extends React.Component {
     this.setState({textValue: e.target.value});
   }
 
-  // Update current contents
   _replaceDynamicTab(tabs) {
     return _.map(tabs, (tab) => {
       if(tab.key === 'tab3') {
@@ -159,22 +155,23 @@ class App extends React.Component {
   }
 
   handleTabSelect(e, key, currentTabs) {
-    console.log('tabSelected key:', key);
-    this.setState({selectedTab: key, tabs: this._replaceDynamicTab(currentTabs)});
+    this.setState({selectedTab: key, tabs: currentTabs});
   }
 
   handleTabClose(e, key, currentTabs) {
     console.log('tabClosed key:', key);
+    this.setState({tabs: currentTabs});
   }
 
   handleTabPositionChange(e, key, currentTabs) {
     console.log('tabPositionChanged key:', key);
+    this.setState({tabs: currentTabs});
   }
 
   handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
     const key = 'newTab_' + Date.now();
-    let newTab = (<Tab key={key} title='untitled'>
+    let newTab = (<Tab key={key} title='untitle'>
                     <div>
                       <h1>New Empty Tab</h1>
                     </div>
@@ -188,6 +185,9 @@ class App extends React.Component {
   }
 
   render() {
+
+    let tabs = this._replaceDynamicTab(this.state.tabs)
+
     return (
       <Tabs
         tabClassNames={tabClassNames}
@@ -197,14 +197,11 @@ class App extends React.Component {
         onTabClosed={this.handleTabClose.bind(this)}
         onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
         onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-        tabs={this.state.tabs}>
+        tabs={tabs}>
       </Tabs>
     )
   }
 };
-
-
-React.render(<App/>, document.getElementById('tabs'));
 ```
 
 See also [example](https://github.com/georgeOsdDev/react-draggable-tab/tree/develop/example)
