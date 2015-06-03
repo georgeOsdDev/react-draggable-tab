@@ -10,10 +10,11 @@ window.React = React;
 
 const tabClassNames = {
   tabBar: 'myTabBar',
+  tabBarAfter: 'myTabBarAfter',
   tab:      'myTab',
   tabTitle: 'myTabTitle',
   tabCloseIcon: 'tabCloseIcon',
-  tabBefor: 'myTabBefor',
+  tabBefore: 'myTabBefore',
   tabAfter: 'myTabAfter'
 }
 
@@ -22,7 +23,7 @@ const tabStyles = {
   tab:{},
   tabTitle: {},
   tabCloseIcon: {},
-  tabBefor: {},
+  tabBefore: {},
   tabAfter: {}
 }
 
@@ -78,6 +79,7 @@ class App extends React.Component {
   }
 
   handleTabSelect(e, key, currentTabs) {
+    console.log('tabSelected key:', key);
     this.setState({selectedTab: key, tabs: currentTabs});
   }
 
@@ -125,6 +127,5 @@ class App extends React.Component {
     )
   }
 };
-
 
 React.render(<App/>, document.getElementById('tabs'));

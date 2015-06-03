@@ -118,6 +118,14 @@ const TabStyles = StyleSheet.create({
     width: '70%'
   },
 
+  tabBeforeActive: {
+    backgroundImage: 'linear-gradient(#343434, #222222)'
+  },
+
+  tabAfterActive: {
+    backgroundImage: 'linear-gradient(#343434, #222222)'
+  },
+
   tabTitleActive: {
     paddingRight: '10px',
     lineHeight: '1.5em'

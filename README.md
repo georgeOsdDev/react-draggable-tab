@@ -62,24 +62,25 @@ npm install --save react-draggable-tab
    * `tabBar`: base `ul` element of tab bar (defult: `rdTabBar`)
    * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector (defult: `rdTabBarAfter`)
    * `tab`: base `li` element of tab (defult: `rdTab`)
-   * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
-   * `tabBefor`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
+   * `tabBefore`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
    * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
    * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
-   * `tabTitleActive`: selected tab's title (defult: `rdTabTitleActive`)
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
-
+   * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
   * `tabStyles`: Inline styles which will be **overwritten** default inline styles.
    * `tabBar`: base `ul` element of tab bar
    * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector
    * `tab`: base `li` element of tab
-   * `tabActove`: selected tab's `li`, before, after
-   * `tabBefor`: before element of `li` which emulate `:Before` selector.
+   * `tabBefore`: before element of `li` which emulate `:Before` selector.
    * `tabAfter`: after element of `li` which emulate `:After` selector.
    * `tabTitle`: `span` element of tab title
+   * `tabActove`: selected tab's `li`
+   * `tabBeforeActove`: selected tab's `li` before
+   * `tabAfterActove`: selected tab's `li` after
    * `tabTitleActive`: selected tab's title
    * `tabCloseIcon`: base `span` element of close icon
+   * `tabCloseIconHover`: base `span` element of close icon when hover
 
 ##### Events
 
@@ -87,7 +88,7 @@ npm install --save react-draggable-tab
     `currentTabs` is array of tabs elements sorted with current order.
 
   * `onTabClosed(e, key, currentTabs)`: Called when tab of key was closed.
-    `currentTabs` is array of tabs elements sorted with current order.
+    `currentTabs` is array of tabs elements sorted with current order(including closed).
 
   * `onTabPositionChanged(e, key, currentTabs)`: Called when tab of key was moved.
     `currentTabs` is array of tabs elements sorted with current order.
