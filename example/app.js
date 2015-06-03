@@ -1,12 +1,12 @@
 'use strict';
 
+import _     from 'lodash';
 import React from 'react/addons';
-import Tabs  from '../components/Tabs'
-import Tab   from '../components/Tab'
+import Tabs  from '../components/Tabs';
+import Tab   from '../components/Tab';
 
 //allow react dev tools work
 window.React = React;
-
 
 const tabClassNames = {
   tabBar: 'myTabBar',
@@ -25,7 +25,6 @@ const tabStyles = {
   tabBefor: {},
   tabAfter: {}
 }
-
 
 class App extends React.Component {
   constructor(props) {
@@ -48,18 +47,39 @@ class App extends React.Component {
             </pre>
           </div>
         </Tab>),
-        (<Tab key='tab3' title={'3rdTab'} >
-          <div>
-            <h1>TAB3!!!</h1>
-          </div>
-        </Tab>)
-      ]
+        this._getDynamicTab()
+      ],
+      textvalue: ''
     };
   }
 
+  _getDynamicTab() {
+    return (
+    <Tab key='tab3' title={'3rdTab'} >
+      <div>
+        <h1>TAB3!!! This tab dynamically change</h1>
+        <textarea value={this.state ? this.state.textValue: ''} onChange={this._handleTextChange.bind(this)}></textarea>
+      </div>
+    </Tab>);
+  }
+
+  _handleTextChange(e) {
+    console.log('handleTextChange', e);
+    this.setState({textValue: e.target.value});
+  }
+
+  _replaceDynamicTab(tabs) {
+    return _.map(tabs, (tab) => {
+      if(tab.key === 'tab3') {
+        return this._getDynamicTab();
+      } else {
+        return tab;
+      }
+    });
+  }
 
   handleTabSelect(e, key, currentTabs) {
-    console.log('tabSelected key:', key);
+    this.setState({selectedTab: key, tabs: this._replaceDynamicTab(currentTabs)});
   }
 
   handleTabClose(e, key, currentTabs) {
@@ -79,8 +99,9 @@ class App extends React.Component {
                     </div>
                   </Tab>);
     var newTabs = currentTabs.concat([newTab]);
+
     this.setState({
-      tabs: newTabs,
+      tabs: this._replaceDynamicTab(newTabs),
       selectedTab: key
     });
   }
