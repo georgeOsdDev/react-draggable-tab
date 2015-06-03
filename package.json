@@ -1,0 +1,66 @@
+{
+  "name": "react-draggable-tab",
+  "version": "0.1.0",
+  "description": "Draggable chrome like tab react component ",
+  "main": "index.js",
+  "scripts": {
+    "browser": "browser-sync start --files example/* --server example",
+    "watch:example": "watchify example/app.js -dv -o example/bundle.js",
+    "start:example": "npm run watch:example & npm run browser",
+    "test": "karma start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/georgeosddev/react-draggable-tab"
+  },
+  "keywords": [
+    "react",
+    "react-component",
+    "tab",
+    "draggable"
+  ],
+  "author": "Takeharu.Oshida",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/georgeosddev/react-draggable-tab/issues"
+  },
+  "homepage": "https://github.com/georgeosddev/react-draggable-tab",
+  "devDependencies": {
+    "babel-eslint": "^3.1.9",
+    "babelify": "^6.1.2",
+    "browser-sync": "^2.7.6",
+    "browserify": "^10.2.1",
+    "chai": "^2.3.0",
+    "eslint": "^0.21.2",
+    "eslint-plugin-react": "^2.3.0",
+    "karma": "^0.12.35",
+    "karma-browserify": "^4.2.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.12",
+    "karma-cli": "0.0.4",
+    "karma-firefox-launcher": "^0.1.6",
+    "karma-mocha": "^0.1.10",
+    "karma-safari-launcher": "^0.1.1",
+    "karma-spec-reporter": "0.0.19",
+    "mocha": "^2.2.5",
+    "watchify": "^3.2.1"
+  },
+  "dependencies": {
+    "immutable": "^3.7.3",
+    "react": "^0.13.3",
+    "react-draggable": "^0.8.0",
+    "react-style": "^0.5.5",
+    "classnames": "^2.1.2",
+    "lodash": "^3.9.3"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "compact": false
+        }
+      ]
+    ]
+  }
+}
