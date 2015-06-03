@@ -43,6 +43,62 @@ npm install --save react-draggable-tab
 
 ### `Tabs`
 
+`Tabs` is container for tab. it will render tabBar and content of selected element.
+
+#### Props
+
+  * `tabs`: Array of `Tab` elements.
+    `React.PropTypes.arrayOf(React.PropTypes.element)`
+
+  * `selectedTab`: key for selectedTab.
+    `React.PropTypes.string` default to first tab.
+
+  * `tabAddButton`: element for add button.
+    `React.PropTypes.element`
+
+###### Style
+
+  * `tabClassNames`: classNames which will be **added** to rendered elements.
+   * `tabBar`: base `ul` element of tab bar (defult: `rdTabBar`)
+   * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector (defult: `rdTabBarAfter`)
+   * `tab`: base `li` element of tab (defult: `rdTab`)
+   * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
+   * `tabBefor`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
+   * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
+   * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
+   * `tabTitleActive`: selected tab's title (defult: `rdTabTitleActive`)
+   * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
+
+
+  * `tabStyles`: Inline styles which will be **overwritten** default inline styles.
+   * `tabBar`: base `ul` element of tab bar
+   * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector
+   * `tab`: base `li` element of tab
+   * `tabActove`: selected tab's `li`, before, after
+   * `tabBefor`: before element of `li` which emulate `:Before` selector.
+   * `tabAfter`: after element of `li` which emulate `:After` selector.
+   * `tabTitle`: `span` element of tab title
+   * `tabTitleActive`: selected tab's title
+   * `tabCloseIcon`: base `span` element of close icon
+
+##### Events
+
+  * `onTabSelected(e, key, currentTabs)`: Called when tab of key was selected.
+    `currentTabs` is array of tabs elements sorted with current order.
+
+  * `onTabClosed(e, key, currentTabs)`: Called when tab of key was closed.
+    `currentTabs` is array of tabs elements sorted with current order.
+
+  * `onTabPositionChanged(e, key, currentTabs)`: Called when tab of key was moved.
+    `currentTabs` is array of tabs elements sorted with current order.
+
+  * `onTabAddButtonClicked(e, currentTabs)`: Called when `tab add button` was clicked.
+    `currentTabs` is array of tabs elements sorted with current order.
+    Basically you will concat `currentTabs` with new empty tab.
+
+    ```javascript
+    let newTabs = currentTabs.concat([newTab]);
+    ```
 
 ## Usage example
 
@@ -117,13 +173,13 @@ class App extends React.Component {
 
   handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
-    var key = 'newTab_' + Date.now();
-    var newTab = (<Tab key={key} title='untitle'>
+    const key = 'newTab_' + Date.now();
+    let newTab = (<Tab key={key} title='untitled'>
                     <div>
                       <h1>New Empty Tab</h1>
                     </div>
                   </Tab>);
-    var newTabs = currentTabs.concat([newTab]);
+    let newTabs = currentTabs.concat([newTab]);
 
     this.setState({
       tabs: this._replaceDynamicTab(newTabs),
