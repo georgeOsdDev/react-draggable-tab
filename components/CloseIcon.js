@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react/addons';
+import classNames from 'classnames';
 import TabStyles from './TabStyles';
 
 class CloseIcon extends React.Component {
@@ -25,14 +26,16 @@ class CloseIcon extends React.Component {
 
   render() {
     let iconStyle = [this.props.style];
+    let className = this.props.className;
     if (this.state.hover) {
-      iconStyle.push(TabStyles.tabCloseIconOnHover);
+      iconStyle.push(TabStyles.tabCloseIconOnHover, this.props.hoverStyle);
+      className = classNames(this.props.className, 'hover');
     }
 
     return (
       <span
         styles={[iconStyle]}
-        className={this.props.className}
+        className={className}
         onMouseOver={this.handleMouseOver.bind(this)}
         onMouseOut={this.handleMouseOut.bind(this)}
         onClick={this.handleClick.bind(this)}>
@@ -43,10 +46,14 @@ class CloseIcon extends React.Component {
 }
 
 CloseIcon.defaultProps = {
+  style: {},
+  hoverStyle: {},
   onClick: () => {}
 };
 
 CloseIcon.propTypes = {
+  style: React.PropTypes.object,
+  hoverStyle: React.PropTypes.object,
   onClick: React.PropTypes.func
 };
 
