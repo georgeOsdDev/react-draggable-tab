@@ -219,7 +219,7 @@ class Tabs extends React.Component {
     tabInlineStyles.tabTitleActive = StyleOverride.merge(TabStyles.tabTitleActive, this.props.tabStyles.tabTitleActive);
     tabInlineStyles.tabCloseIcon = StyleOverride.merge(TabStyles.tabCloseIcon, this.props.tabStyles.tabCloseIcon);
 
-    // override classNames
+    // append classNames
     tabClassNames.tabBar = classNames('rdTabBar', this.props.tabClassNames.tabBar);
     tabClassNames.tabBarAfter = classNames('rdTabBarAfter', this.props.tabClassNames.tabBarAfter);
     tabClassNames.tab = classNames('rdTab', this.props.tabClassNames.tab);
@@ -326,8 +326,8 @@ Tabs.propTypes = {
   selectedTab: React.PropTypes.string,
   tabClassNames: React.PropTypes.shape({
     tabBar: React.PropTypes.string,
-    tab:      React.PropTypes.string,
-    tabActive:      React.PropTypes.string,
+    tab: React.PropTypes.string,
+    tabActive: React.PropTypes.string,
     tabBefor: React.PropTypes.string,
     tabAfter: React.PropTypes.string,
     tabTitle: React.PropTypes.string,
@@ -336,7 +336,7 @@ Tabs.propTypes = {
   }),
   tabStyles: React.PropTypes.shape({
     tabBar: React.PropTypes.object,
-    tab:      React.PropTypes.object,
+    tab: React.PropTypes.object,
     tabActive: React.PropTypes.string,
     tabBefor: React.PropTypes.object,
     tabAfter: React.PropTypes.object,

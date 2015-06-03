@@ -8,6 +8,7 @@ class Tab extends React.Component {
     this.state = {
     };
   }
+
   render() {
     return this.props.children;
   }
