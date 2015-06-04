@@ -78,7 +78,7 @@ npm install --save react-draggable-tab
     `currentTabs` is array of tabs elements sorted with current order.
 
   * `onTabClosed(e, key, currentTabs)`: Called when tab of key was closed.
-    `currentTabs` is array of tabs elements sorted with current order(including closed).
+    `currentTabs` is array of tabs elements sorted with current order.
 
   * `onTabPositionChanged(e, key, currentTabs)`: Called when tab of key was moved.
     `currentTabs` is array of tabs elements sorted with current order.

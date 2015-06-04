@@ -174,10 +174,11 @@ class Tabs extends React.Component {
     let nextTabs = swapedTabs || this.state.tabs;
     let tabPositions = this.state.tabPositions;
     tabPositions[key] = {x:0, y:0};
-    this.setState({tabPositons:tabPositions, dragging:false, tabs: nextTabs, selectedTab: key});
-    if(swapedTabs) {
-      this.props.onTabPositionChanged(e, key, this._getOpenTabs(nextTabs));
-    }
+    this.setState({tabPositons:tabPositions, dragging:false, tabs: nextTabs, selectedTab: key}, () => {
+      if(swapedTabs) {
+        this.props.onTabPositionChanged(e, key, this._getOpenTabs(nextTabs));
+      }
+    });
   }
 
   handleTabClick(key, e) {
@@ -186,8 +187,9 @@ class Tabs extends React.Component {
       e.preventDefault();
       e.stopPropagation();
     } else {
-      this.setState({selectedTab: key});
-      this.props.onTabSelected(e, key, this._getCurrentOpenTabs());
+      this.setState({selectedTab: key}, () => {
+        this.props.onTabSelected(e, key, this._getCurrentOpenTabs());
+      });
     }
   }
 
@@ -208,13 +210,13 @@ class Tabs extends React.Component {
     this.setState({
       closedTabs: this.state.closedTabs.concat([key]),
       selectedTab: nextSelected
+    }, ()=>{
+      let currentOpenTabs = this._getCurrentOpenTabs();
+      this.props.onTabClosed(e, key, currentOpenTabs);
+      if (shoudBeNotifyTabChange) {
+        this.props.onTabSelected(e, nextSelected, currentOpenTabs);
+      }
     });
-
-    let currentOpenTabs = this._getCurrentOpenTabs();
-    this.props.onTabClosed(e, key, currentOpenTabs);
-    if (shoudBeNotifyTabChange) {
-      this.props.onTabSelected(e, nextSelected, currentOpenTabs);
-    }
   }
 
   handleAddButtonClick(e) {

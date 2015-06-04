@@ -355,7 +355,7 @@ describe('Test of Tabs', () => {
     it('should pass key and currentTabs to onTabClosed', () => {
       expect(key1).to.be.eql('tab2');
 
-      expect(currentTabs1).to.be.length(3);
+      expect(currentTabs1).to.be.length(2);
       expect(currentTabs1[0].key).to.be.equal('tab1');
     });
     it('should selected tab will not change', () => {
@@ -412,14 +412,14 @@ describe('Test of Tabs', () => {
     it('should pass key and currentTabs to onTabClosed', () => {
       expect(key1).to.be.eql('tab2');
 
-      expect(currentTabs1).to.be.length(3);
+      expect(currentTabs1).to.be.length(2);
       expect(currentTabs1[0].key).to.be.equal('tab1');
     });
     it('should next tab will be active', () => {
       expect(called2).to.be.equal(true);
       expect(key2).to.be.eql('tab3');
 
-      expect(currentTabs2).to.be.length(3);
+      expect(currentTabs2).to.be.length(2);
       expect(currentTabs2[0].key).to.be.equal('tab1');
     });
   });
@@ -470,14 +470,14 @@ describe('Test of Tabs', () => {
     it('should pass key and currentTabs to onTabClosed', () => {
       expect(key1).to.be.eql('tab3');
 
-      expect(currentTabs1).to.be.length(3);
+      expect(currentTabs1).to.be.length(2);
       expect(currentTabs1[0].key).to.be.equal('tab1');
     });
     it('should prev tab will be active', () => {
       expect(called2).to.be.equal(true);
       expect(key2).to.be.eql('tab2');
 
-      expect(currentTabs2).to.be.length(3);
+      expect(currentTabs2).to.be.length(2);
       expect(currentTabs2[0].key).to.be.equal('tab1');
     });
   });
