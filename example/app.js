@@ -111,7 +111,7 @@ class App extends React.Component {
 
   render() {
 
-    let tabs = this._replaceDynamicTab(this.state.tabs)
+    let tabs = this._replaceDynamicTab(this.state.tabs);
 
     return (
       <Tabs
