@@ -8,7 +8,7 @@ import Tab   from '../components/Tab';
 //allow react dev tools work
 window.React = React;
 
-const tabClassNames = {
+const tabsClassNames = {
   tabBar: 'myTabBar',
   tabBarAfter: 'myTabBarAfter',
   tab:      'myTab',
@@ -18,7 +18,7 @@ const tabClassNames = {
   tabAfter: 'myTabAfter'
 }
 
-const tabStyles = {
+const tabsStyles = {
   tabBar: {},
   tab:{},
   tabTitle: {},
@@ -111,12 +111,12 @@ class App extends React.Component {
 
   render() {
 
-    let tabs = this._replaceDynamicTab(this.state.tabs)
+    let tabs = this._replaceDynamicTab(this.state.tabs);
 
     return (
       <Tabs
-        tabClassNames={tabClassNames}
-        tabStyles={tabStyles}
+        tabsClassNames={tabsClassNames}
+        tabsStyles={tabsStyles}
         selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
         onTabSelected={this.handleTabSelect.bind(this)}
         onTabClosed={this.handleTabClose.bind(this)}
