@@ -16,12 +16,41 @@ class Tab extends React.Component {
 
 Tab.defaultProps = {
   title: 'untitled',
-  disableClose: false
+  disableClose: false,
+  tabClassNames: {
+    tab: '',
+    tabBefore: '',
+    tabAfter: '',
+    tabTitle: '',
+    tabCloseIcon: '',
+    tabActive: ''
+  },
+  tabStyles: {}
 };
 
 Tab.propTypes = {
   title: React.PropTypes.string.isRequired,
-  disableClose: React.PropTypes.bool
+  disableClose: React.PropTypes.bool,
+  tabClassNames: React.PropTypes.shape({
+    tab: React.PropTypes.string,
+    tabBefore: React.PropTypes.string,
+    tabAfter: React.PropTypes.string,
+    tabTitle: React.PropTypes.string,
+    tabCloseIcon: React.PropTypes.string,
+    tabActive: React.PropTypes.string
+  }),
+  tabStyles: React.PropTypes.shape({
+    tab: React.PropTypes.object,
+    tabBefore: React.PropTypes.object,
+    tabAfter: React.PropTypes.object,
+    tabTitle: React.PropTypes.object,
+    tabActive: React.PropTypes.object,
+    tabTitleActive: React.PropTypes.object,
+    tabBeforeActive: React.PropTypes.object,
+    tabAfterActive: React.PropTypes.object,
+    tabCloseIcon: React.PropTypes.object,
+    tabCloseIconHover: React.PropTypes.object
+  })
 };
 
 export default Tab;

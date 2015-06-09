@@ -1,13 +1,14 @@
 {
   "name": "react-draggable-tab",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Draggable chrome like tab react component ",
   "main": "index.js",
   "scripts": {
     "browser": "browser-sync start --files example/* --server example",
     "watch:example": "watchify example/app.js -dv -o example/bundle.js",
     "start:example": "npm run watch:example & npm run browser",
-    "test": "karma start"
+    "test:local": "karma start",
+    "test": "./node_modules/.bin/karma start --browsers Firefox --single-run"
   },
   "repository": {
     "type": "git",

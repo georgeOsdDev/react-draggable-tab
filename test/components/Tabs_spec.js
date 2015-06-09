@@ -18,17 +18,17 @@ describe('Test of Tabs', () => {
   it('should have default properties', function () {
     component = TestUtils.renderIntoDocument(<Tabs/>);
 
-    expect(component.props.tabClassNames).to.be.an('object');
-    expect(component.props.tabClassNames.tabBar).to.be.equal('');
-    expect(component.props.tabClassNames.tabBarAfter).to.be.equal('');
-    expect(component.props.tabClassNames.tab).to.be.equal('');
-    expect(component.props.tabClassNames.tabBefore).to.be.equal('');
-    expect(component.props.tabClassNames.tabAfter).to.be.equal('');
-    expect(component.props.tabClassNames.tabTitle).to.be.equal('');
-    expect(component.props.tabClassNames.tabCloseIcon).to.be.equal('');
-    expect(component.props.tabClassNames.tabActive).to.be.equal('');
+    expect(component.props.tabsClassNames).to.be.an('object');
+    expect(component.props.tabsClassNames.tabBar).to.be.equal('');
+    expect(component.props.tabsClassNames.tabBarAfter).to.be.equal('');
+    expect(component.props.tabsClassNames.tab).to.be.equal('');
+    expect(component.props.tabsClassNames.tabBefore).to.be.equal('');
+    expect(component.props.tabsClassNames.tabAfter).to.be.equal('');
+    expect(component.props.tabsClassNames.tabTitle).to.be.equal('');
+    expect(component.props.tabsClassNames.tabCloseIcon).to.be.equal('');
+    expect(component.props.tabsClassNames.tabActive).to.be.equal('');
 
-    expect(component.props.tabStyles).to.be.empty;
+    expect(component.props.tabsStyles).to.be.empty;
 
     expect(component.props.tabAddButton.type).to.be.equal('span');
 
@@ -93,9 +93,9 @@ describe('Test of Tabs', () => {
     });
   });
 
-  describe('add custom className to each element ', function(){
+  describe('add custom className to all tabs ', function(){
 
-    const tabClassNames = {
+    const tabsClassNames = {
       tabBar: 'myTabBar',
       tabBarAfter: 'myTabBarAfter',
       tab:      'myTab',
@@ -118,7 +118,7 @@ describe('Test of Tabs', () => {
     beforeEach(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          tabClassNames={tabClassNames}
+          tabsClassNames={tabsClassNames}
           selectedTab="tab1"
           tabs={tabs} />);
     });
@@ -153,9 +153,9 @@ describe('Test of Tabs', () => {
   });
 
 
-  describe('overwite inline style ', function(){
+  describe('overwite inline style to all tabs', function(){
 
-    const tabStyles = {
+    const tabsStyles = {
       tabBar: {fontSize: '101px'},
       tabBarAfter: {fontSize: '102px'},
       tab: {fontSize: '103px'},
@@ -165,7 +165,8 @@ describe('Test of Tabs', () => {
       tabActive: {fontSize: '107px'},
       tabTitleActive: {fontSize: '108px'},
       tabBeforeActive: {fontSize: '109px'},
-      tabAfterActive: {fontSize: '110px'}
+      tabAfterActive: {fontSize: '110px'},
+      tabCloseIcon: {fontSize: '111px'}
     };
 
     const tabs = [
@@ -184,7 +185,7 @@ describe('Test of Tabs', () => {
     beforeEach(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          tabStyles={tabStyles}
+          tabsStyles={tabsStyles}
           selectedTab="tab2"
           tabs={tabs} />);
     });
@@ -222,6 +223,195 @@ describe('Test of Tabs', () => {
       let rdTabAfterActive = TestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabAfter');
       expect(React.findDOMNode(rdTabAfterActive).style.fontSize).to.be.eql('110px');
 
+      let rdTabCloseIcon = TestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabCloseIcon');
+      expect(React.findDOMNode(rdTabCloseIcon).style.fontSize).to.be.eql('111px');
+
+    });
+
+  });
+
+  describe('add custom className to specifyed tab ', function(){
+
+    const tabsClassNames = {
+      tabBar: 'myTabBar',
+      tabBarAfter: 'myTabBarAfter',
+      tab:      'myTab',
+      tabTitle: 'myTabTitle',
+      tabCloseIcon: 'myTabCloseIcon',
+      tabBefore: 'myTabBefore',
+      tabAfter: 'myTabAfter',
+      tabActive: 'myTabActive'
+    };
+
+    const tabClassNames = {
+      tab:      'mySpecialTab',
+      tabTitle: 'mySpecialTabTitle',
+      tabCloseIcon: 'mySpecialTabCloseIcon',
+      tabBefore: 'mySpecialTabBefore',
+      tabAfter: 'mySpecialTabAfter',
+      tabActive: 'mySpecialTabActive'
+    };
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} tabClassNames={tabClassNames}>
+        <div>
+          <h1>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1>tab2Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    beforeEach(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          tabsClassNames={tabsClassNames}
+          selectedTab="tab1"
+          tabs={tabs} />);
+    });
+
+    it('render elements with custome class', function(){
+      let rdTabBar = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
+      expect(React.findDOMNode(rdTabBar).className).contain('myTabBar');
+
+      let rdTabBarAfter = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBarAfter');
+      expect(React.findDOMNode(rdTabBarAfter).className).contain('myTabBarAfter');
+
+      let rdTab = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      expect(React.findDOMNode(rdTab[0]).className).contain('mySpecialTab');
+      expect(React.findDOMNode(rdTab[1]).className).not.contain('mySpecialTab');
+
+      let rdTabBefore = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
+      expect(React.findDOMNode(rdTabBefore[0]).className).contain('mySpecialTabBefore');
+      expect(React.findDOMNode(rdTabBefore[1]).className).not.contain('mySpecialTabBefore');
+
+      let rdTabAfter = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
+      expect(React.findDOMNode(rdTabAfter[0]).className).contain('mySpecialTabAfter');
+      expect(React.findDOMNode(rdTabAfter[1]).className).not.contain('mySpecialTabAfter');
+
+      let rdTabTitle = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(React.findDOMNode(rdTabTitle[0]).className).contain('mySpecialTabTitle');
+      expect(React.findDOMNode(rdTabTitle[1]).className).not.contain('mySpecialTabTitle');
+
+      let rdTabActive = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
+      expect(React.findDOMNode(rdTabActive).className).contain('mySpecialTabActive');
+
+      let rdTabCloseIcon = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabCloseIcon');
+      expect(React.findDOMNode(rdTabCloseIcon[0]).className).contain('mySpecialTabCloseIcon');
+      expect(React.findDOMNode(rdTabCloseIcon[1]).className).not.contain('mySpecialTabCloseIcon');
+
+    });
+
+  });
+
+
+  describe('overwite inline style to specifyed tab', function(){
+
+    const tabsStyles = {
+      tabBar: {fontSize: '101px'},
+      tabBarAfter: {fontSize: '102px'},
+      tab: {fontSize: '103px'},
+      tabBefore: {fontSize: '104px'},
+      tabAfter: {fontSize: '105px'},
+      tabTitle: {fontSize: '106px'},
+      tabActive: {fontSize: '107px'},
+      tabTitleActive: {fontSize: '108px'},
+      tabBeforeActive: {fontSize: '109px'},
+      tabAfterActive: {fontSize: '110px'},
+      tabCloseIcon: {fontSize: '111px'}
+    };
+
+    const tabStyles2 = {
+      tab: {fontSize: '201px'},
+      tabBefore: {fontSize: '202px'},
+      tabAfter: {fontSize: '203px'},
+      tabTitle: {fontSize: '204px'},
+      tabActive: {fontSize: '205px'},
+      tabTitleActive: {fontSize: '206px'},
+      tabBeforeActive: {fontSize: '207px'},
+      tabAfterActive: {fontSize: '208px'},
+      tabCloseIcon: {fontSize: '209px'}
+    };
+
+    const tabStyles3 = {
+      tab: {fontSize: '301px'},
+      tabBefore: {fontSize: '302px'},
+      tabAfter: {fontSize: '303px'},
+      tabTitle: {fontSize: '304px'},
+      tabCloseIcon: {fontSize: '305px'}
+    };
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} tabStyles={tabStyles2}>
+        <div>
+          <h1>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} tabStyles={tabStyles3}>
+        <div>
+          <h1>tab2Content</h1>
+        </div>
+      </Tab>)
+
+    ];
+
+    beforeEach(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          tabsStyles={tabsStyles}
+          selectedTab="tab2"
+          tabs={tabs} />);
+    });
+
+    it('render elements with custome inline-style', function(){
+      let rdTabBar = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
+      expect(React.findDOMNode(rdTabBar).style.fontSize).to.be.eql('101px');
+
+      let rdTabBarAfter = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBarAfter');
+      expect(React.findDOMNode(rdTabBarAfter).style.fontSize).to.be.eql('102px');
+
+      let rdTab = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      expect(React.findDOMNode(rdTab[0]).style.fontSize).to.be.eql('103px');
+      expect(React.findDOMNode(rdTab[2]).style.fontSize).to.be.eql('301px');
+
+      let rdTabBefore = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
+      expect(React.findDOMNode(rdTabBefore[0]).style.fontSize).to.be.eql('104px');
+      expect(React.findDOMNode(rdTabBefore[2]).style.fontSize).to.be.eql('302px');
+
+      let rdTabAfter = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
+      expect(React.findDOMNode(rdTabAfter[0]).style.fontSize).to.be.eql('105px');
+      expect(React.findDOMNode(rdTabAfter[2]).style.fontSize).to.be.eql('303px');
+
+      let rdTabTitle = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(React.findDOMNode(rdTabTitle[0]).style.fontSize).to.be.eql('106px');
+      expect(React.findDOMNode(rdTabTitle[2]).style.fontSize).to.be.eql('304px');
+
+      let activeTab = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
+
+      let rdTabActive = TestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTab');
+      expect(React.findDOMNode(rdTabActive).style.fontSize).to.be.eql('205px');
+
+      let rdTabTitleActive = TestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabTitle');
+      expect(React.findDOMNode(rdTabTitleActive).style.fontSize).to.be.eql('206px');
+
+      let rdTabBeforeActive = TestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabBefore');
+      expect(React.findDOMNode(rdTabBeforeActive).style.fontSize).to.be.eql('207px');
+
+      let rdTabAfterActive = TestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabAfter');
+      expect(React.findDOMNode(rdTabAfterActive).style.fontSize).to.be.eql('208px');
+
+      let rdTabCloseIcon = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabCloseIcon');
+      expect(React.findDOMNode(rdTabCloseIcon[0]).style.fontSize).to.be.eql('111px');
+      expect(React.findDOMNode(rdTabCloseIcon[1]).style.fontSize).to.be.eql('209px');
+      expect(React.findDOMNode(rdTabCloseIcon[2]).style.fontSize).to.be.eql('305px');
     });
 
   });
@@ -338,7 +528,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          tabClassNames={{tabCloseIcon: 'myCloseButton'}}
+          tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
           onTabClosed={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
           onTabSelected={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
           selectedTab="tab3"
@@ -355,7 +545,7 @@ describe('Test of Tabs', () => {
     it('should pass key and currentTabs to onTabClosed', () => {
       expect(key1).to.be.eql('tab2');
 
-      expect(currentTabs1).to.be.length(3);
+      expect(currentTabs1).to.be.length(2);
       expect(currentTabs1[0].key).to.be.equal('tab1');
     });
     it('should selected tab will not change', () => {
@@ -395,7 +585,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          tabClassNames={{tabCloseIcon: 'myCloseButton'}}
+          tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
           onTabClosed={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
           onTabSelected={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
           selectedTab="tab2"
@@ -412,14 +602,14 @@ describe('Test of Tabs', () => {
     it('should pass key and currentTabs to onTabClosed', () => {
       expect(key1).to.be.eql('tab2');
 
-      expect(currentTabs1).to.be.length(3);
+      expect(currentTabs1).to.be.length(2);
       expect(currentTabs1[0].key).to.be.equal('tab1');
     });
     it('should next tab will be active', () => {
       expect(called2).to.be.equal(true);
       expect(key2).to.be.eql('tab3');
 
-      expect(currentTabs2).to.be.length(3);
+      expect(currentTabs2).to.be.length(2);
       expect(currentTabs2[0].key).to.be.equal('tab1');
     });
   });
@@ -453,7 +643,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          tabClassNames={{tabCloseIcon: 'myCloseButton'}}
+          tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
           onTabClosed={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
           onTabSelected={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
           selectedTab="tab3"
@@ -470,14 +660,14 @@ describe('Test of Tabs', () => {
     it('should pass key and currentTabs to onTabClosed', () => {
       expect(key1).to.be.eql('tab3');
 
-      expect(currentTabs1).to.be.length(3);
+      expect(currentTabs1).to.be.length(2);
       expect(currentTabs1[0].key).to.be.equal('tab1');
     });
     it('should prev tab will be active', () => {
       expect(called2).to.be.equal(true);
       expect(key2).to.be.eql('tab2');
 
-      expect(currentTabs2).to.be.length(3);
+      expect(currentTabs2).to.be.length(2);
       expect(currentTabs2[0].key).to.be.equal('tab1');
     });
   });
@@ -517,7 +707,7 @@ describe('Test of Tabs', () => {
     beforeEach(() => {
       React.render(
         <Tabs
-          tabClassNames={{tabCloseIcon: 'myCloseButton'}}
+          tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
           onTabPositionChanged={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
           selectedTab="tab1"
           tabs={tabs} />, document.body);
