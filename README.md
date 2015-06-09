@@ -22,6 +22,8 @@ npm install --save react-draggable-tab
 `Tab` is just a case class to check props.
 `props.children` will rendered into content area.
 
+#### Props
+
   * `key`: *unique* key in `TabList`.
     `React.PropTypes.string.isRequired`
 
@@ -30,6 +32,33 @@ npm install --save react-draggable-tab
 
   * `disableClose`: If `true`, closeButton will not be appeared in tab.
     `React.PropTypes.bool` (Default `false`)
+
+###### Style (for each tab)
+
+  * `tabClassNames`: classNames which will be **added** to rendered elements.
+   * `tabBar`: base `ul` element of tab bar (defult: `rdTabBar`)
+   * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector (defult: `rdTabBarAfter`)
+   * `tab`: base `li` element of tab (defult: `rdTab`)
+   * `tabBefore`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
+   * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
+   * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
+   * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
+   * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
+
+  * `tabStyles`: Inline styles which will be **overwritten** default and common-tabs inline styles.
+   * `tabBar`: base `ul` element of tab bar
+   * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector
+   * `tab`: base `li` element of tab
+   * `tabBefore`: before element of `li` which emulate `:Before` selector.
+   * `tabAfter`: after element of `li` which emulate `:After` selector.
+   * `tabTitle`: `span` element of tab title
+   * `tabActove`: selected tab's `li`
+   * `tabBeforeActove`: selected tab's `li` before
+   * `tabAfterActove`: selected tab's `li` after
+   * `tabTitleActive`: selected tab's title
+   * `tabCloseIcon`: base `span` element of close icon
+   * `tabCloseIconOnHover`: base `span` element of close icon when hover
+
 
 ### `Tabs`
 
@@ -46,9 +75,9 @@ npm install --save react-draggable-tab
   * `tabAddButton`: element for add button.
     `React.PropTypes.element`
 
-###### Style
+###### Style (All tabs will be apply these styles)
 
-  * `tabClassNames`: classNames which will be **added** to rendered elements.
+  * `tabsClassNames`: classNames which will be **added** to rendered elements.
    * `tabBar`: base `ul` element of tab bar (defult: `rdTabBar`)
    * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector (defult: `rdTabBarAfter`)
    * `tab`: base `li` element of tab (defult: `rdTab`)
@@ -58,7 +87,7 @@ npm install --save react-draggable-tab
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
    * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
-  * `tabStyles`: Inline styles which will be **overwritten** default inline styles.
+  * `tabsStyles`: Inline styles which will be **overwritten** default inline styles.
    * `tabBar`: base `ul` element of tab bar
    * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector
    * `tab`: base `li` element of tab
@@ -70,7 +99,7 @@ npm install --save react-draggable-tab
    * `tabAfterActove`: selected tab's `li` after
    * `tabTitleActive`: selected tab's title
    * `tabCloseIcon`: base `span` element of close icon
-   * `tabCloseIconHover`: base `span` element of close icon when hover
+   * `tabCloseIconOnHover`: base `span` element of close icon when hover
 
 ##### Events
 
