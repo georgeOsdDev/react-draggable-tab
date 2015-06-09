@@ -65,6 +65,34 @@
 <code>React.PropTypes.bool</code> (Default <code>false</code>)</p></li>
 </ul>
 
+<h6 id="style-for-each-tab-">Style (For each tab)</h6>
+<ul>
+<li><p><code>tabClassNames</code>: classNames which will be <strong>added</strong> to rendered elements.</p>
+<ul>
+<li><code>tab</code>: base <code>li</code> element of tab (defult: <code>rdTab</code>)</li>
+<li><code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector (defult: <code>rdTabBefore</code>)</li>
+<li><code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector (defult: <code>rdTabAfter</code>)</li>
+<li><code>tabTitle</code>: <code>span</code> element of tab title (defult: <code>rdTabTitle</code>)</li>
+<li><code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
+<li><code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
+</ul>
+</li>
+<li><p><code>tabStyles</code>: Inline styles which will be <strong>overwritten</strong> default and common-tabs inline styles.</p>
+<ul>
+<li><code>tab</code>: base <code>li</code> element of tab</li>
+<li><code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector.</li>
+<li><code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector.</li>
+<li><code>tabTitle</code>: <code>span</code> element of tab title</li>
+<li><code>tabActive</code>: selected tab's <code>li</code></li>
+<li><code>tabBeforeActive</code>: selected tab's <code>li</code> before</li>
+<li><code>tabAfterActive</code>: selected tab's <code>li</code> after</li>
+<li><code>tabTitleActive</code>: selected tab's title</li>
+<li><code>tabCloseIcon</code>: base <code>span</code> element of close icon</li>
+<li><code>tabCloseIconOnHover</code>: base <code>span</code> element of close icon when hover</li>
+</ul>
+</li>
+</ul>
+
 <h3>
 <a id="tabs" class="anchor" href="#tabs" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Tabs</code>
 </h3>
@@ -84,11 +112,11 @@
 </ul>
 
 <h6>
-<a id="style" class="anchor" href="#style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style</h6>
+<a id="style" class="anchor" href="#style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style (All tabs will be apply these styles)</h6>
 
 <ul>
 <li>
-<p><code>tabClassNames</code>: classNames which will be <strong>added</strong> to rendered elements.</p>
+<p><code>tabsClassNames</code>: classNames which will be <strong>added</strong> to rendered tabs.</p>
 
 <ul>
 <li>
@@ -106,11 +134,11 @@
 <li>
 <code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
 <li>
-<code>tabActove</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
+<code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
 </ul>
 </li>
 <li>
-<p><code>tabStyles</code>: Inline styles which will be <strong>overwritten</strong> default inline styles.</p>
+<p><code>tabsStyles</code>: Inline styles which will be <strong>overwritten</strong> default inline styles.</p>
 
 <ul>
 <li>
@@ -126,12 +154,12 @@
 <li>
 <code>tabTitle</code>: <code>span</code> element of tab title</li>
 <li>
-<code>tabActove</code>: selected tab's <code>li</code>
+<code>tabActive</code>: selected tab's <code>li</code>
 </li>
 <li>
-<code>tabBeforeActove</code>: selected tab's <code>li</code> before</li>
+<code>tabBeforeActive</code>: selected tab's <code>li</code> before</li>
 <li>
-<code>tabAfterActove</code>: selected tab's <code>li</code> after</li>
+<code>tabAfterActive</code>: selected tab's <code>li</code> after</li>
 <li>
 <code>tabTitleActive</code>: selected tab's title</li>
 <li>
