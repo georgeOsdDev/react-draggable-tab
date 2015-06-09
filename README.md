@@ -206,8 +206,8 @@ class App extends React.Component {
 
     return (
       <Tabs
-        tabClassNames={tabClassNames}
-        tabStyles={tabStyles}
+        tabsClassNames={tabsClassNames}
+        tabsStyles={tabsStyles}
         selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
         onTabSelected={this.handleTabSelect.bind(this)}
         onTabClosed={this.handleTabClose.bind(this)}
