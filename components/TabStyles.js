@@ -9,6 +9,12 @@ let StyleSheet = require('react-style');
 const TabStyles = StyleSheet.create({
 
   wrapper: {
+    height: '100%',
+    width: '100%',
+    position: 'relative'
+  },
+
+  relative: {
     position: 'relative'
   },
 
