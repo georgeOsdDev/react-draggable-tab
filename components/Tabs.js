@@ -329,8 +329,8 @@ class Tabs extends React.Component {
     });
 
     return (
-      <div>
-        <div style={TabStyles.wrapper}>
+      <div style={TabStyles.wrapper}>
+        <div style={TabStyles.relative}>
           <ul tabIndex='-1' style={tabInlineStyles.tabBar} className={tabClassNames.tabBar}>
             {tabs}
             <li className='rdTabAddButton' style={TabStyles.tabAddButton} onClick={this.handleAddButtonClick.bind(this)}>

@@ -1,6 +1,7 @@
 ## Change Log
 
 ### Ver 0.2.1(Next release, Not released)
+  * #6 [Add style on parent div](https://github.com/georgeOsdDev/react-draggable-tab/issues/6)
 
 ### Ver 0.2.0
 
