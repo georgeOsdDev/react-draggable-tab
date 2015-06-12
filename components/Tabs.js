@@ -7,6 +7,7 @@ import classNames from 'classnames';
 import Draggable from 'react-draggable';
 
 import TabStyles from './TabStyles';
+import TabTemplate from './TabTemplate';
 import CloseIcon from './CloseIcon';
 
 import StyleOverride from '../helpers/styleOverride';
@@ -264,7 +265,7 @@ class Tabs extends React.Component {
     tabClassNames.tabActive = classNames('rdTabActive', this.props.tabsClassNames.tabActive);
 
 
-    let content;
+    let content = [];
     let tabs = _.map(this.state.tabs, (tab) => {
 
       if (this.state.closedTabs.indexOf(tab.key) > -1) {
@@ -290,7 +291,9 @@ class Tabs extends React.Component {
         tabAfterStyle = StyleOverride.merge(StyleOverride.merge(tabInlineStyles.tabAfter, tabInlineStyles.tabAfterActive), tab.props.tabStyles.tabAfterActive);
         tabTiteleStyle = StyleOverride.merge(StyleOverride.merge(tabInlineStyles.tabTitle, tabInlineStyles.tabTitleActive), tab.props.tabStyles.tabTitleActive);
         tabClasses = classNames(tabClassNames.tab, 'rdTabActive', this.props.tabsClassNames.tabActive, tab.props.tabClassNames.tabActive);
-        content = tab;
+        content.push(<TabTemplate key={'tabTemplate#' + tab.key} selected={true}>{tab}</TabTemplate>);
+      } else {
+        content.push(<TabTemplate key={'tabTemplate#' + tab.key} selected={false}>{tab}</TabTemplate>);
       }
 
       // title will be shorten with inline style
