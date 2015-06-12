@@ -140,6 +140,8 @@ class Tabs extends React.Component {
     if (nextProps.selectedTab !== 'undefined') {
       newState.selectedTab = nextProps.selectedTab;
     }
+    // reset closedTabs, respect props from application
+    newState.closedTabs = [];
     this.setState(newState);
   }
 
