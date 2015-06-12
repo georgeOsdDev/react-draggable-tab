@@ -2,6 +2,9 @@
 
 ### Ver 0.2.1(Next release, Not released)
 
+  * #8 [Show closed tab when it supplied again with same key](https://github.com/georgeOsdDev/react-draggable-tab/issues/8)
+  * #9 [Keep all tab content inside Tabs](https://github.com/georgeOsdDev/react-draggable-tab/issues/9)
+
 ### Ver 0.2.0
 
   * #1 [Improve tab title color](https://github.com/georgeOsdDev/react-draggable-tab/issues/1)
