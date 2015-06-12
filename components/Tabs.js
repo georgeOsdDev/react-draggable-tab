@@ -26,7 +26,6 @@ class Tabs extends React.Component {
     defaultState.selectedTab = this.props.selectedTab ? this.props.selectedTab :
                                                         this.props.tabs ? this.props.tabs[0].key : '';
     defaultState.closedTabs = [];
-    defaultState.dragging = false;
     this.state = defaultState;
 
     // Dom positons
@@ -152,7 +151,6 @@ class Tabs extends React.Component {
   }
 
   handleMouseDown(key, e, ui) {
-    this.setState({dragging: key});
   }
 
   handleDragStart(key, e, ui) {
@@ -174,7 +172,7 @@ class Tabs extends React.Component {
     let nextTabs = swapedTabs || this.state.tabs;
     let tabPositions = this.state.tabPositions;
     tabPositions[key] = {x:0, y:0};
-    this.setState({tabPositons:tabPositions, dragging:false, tabs: nextTabs, selectedTab: key}, () => {
+    this.setState({tabPositons:tabPositions, tabs: nextTabs, selectedTab: key}, () => {
       if(swapedTabs) {
         this.props.onTabPositionChanged(e, key, this._getOpenTabs(nextTabs));
       }
