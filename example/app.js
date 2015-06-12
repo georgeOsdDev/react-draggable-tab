@@ -5,6 +5,8 @@ import React from 'react/addons';
 import Tabs  from '../components/Tabs';
 import Tab   from '../components/Tab';
 
+import DynamicTabContent from './DynamicTabContent'
+
 //allow react dev tools work
 window.React = React;
 
@@ -32,7 +34,7 @@ class App extends React.Component {
     super(props);
     this.state = {
       tabs:[
-        (<Tab key={'tab0'} title={'fixedTab'} disableClose={true} >
+        (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} >
           <div>
             <h1>This tab cannot close</h1>
           </div>
@@ -48,38 +50,15 @@ class App extends React.Component {
             </pre>
           </div>
         </Tab>),
-        this._getDynamicTab()
-      ],
-      textvalue: ''
+        (<Tab key={'tab3'} title={'Dynamic tab'} >
+          <DynamicTabContent/>
+        </Tab>)
+      ]
     };
   }
 
-  _getDynamicTab() {
-    return (
-    <Tab key='tab3' title={'3rdTab'} >
-      <div>
-        <h1>TAB3!!! This tab dynamically change</h1>
-        <textarea value={this.state ? this.state.textValue: ''} onChange={this._handleTextChange.bind(this)}></textarea>
-      </div>
-    </Tab>);
-  }
-
-  _handleTextChange(e) {
-    this.setState({textValue: e.target.value});
-  }
-
-  _replaceDynamicTab(tabs) {
-    return _.map(tabs, (tab) => {
-      if(tab.key === 'tab3') {
-        return this._getDynamicTab();
-      } else {
-        return tab;
-      }
-    });
-  }
-
   handleTabSelect(e, key, currentTabs) {
-    console.log('tabSelected key:', key);
+    console.log('handleTabSelect key:', key);
     this.setState({selectedTab: key, tabs: currentTabs});
   }
 
@@ -104,14 +83,12 @@ class App extends React.Component {
     let newTabs = currentTabs.concat([newTab]);
 
     this.setState({
-      tabs: this._replaceDynamicTab(newTabs),
+      tabs: newTabs,
       selectedTab: key
     });
   }
 
   render() {
-
-    let tabs = this._replaceDynamicTab(this.state.tabs);
 
     return (
       <Tabs
@@ -122,8 +99,8 @@ class App extends React.Component {
         onTabClosed={this.handleTabClose.bind(this)}
         onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
         onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-        tabs={tabs}>
-      </Tabs>
+        tabs={this.state.tabs}
+      />
     )
   }
 };
