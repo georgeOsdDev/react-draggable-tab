@@ -20,8 +20,8 @@ class CloseIcon extends React.Component {
     this.setState({'hover': false});
   }
 
-  handleClick() {
-    this.props.onClick();
+  handleClick(e) {
+    this.props.onClick(e);
   }
 
   render() {

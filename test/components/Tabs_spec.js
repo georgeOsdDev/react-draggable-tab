@@ -36,6 +36,7 @@ describe('Test of Tabs', () => {
     expect(typeof component.props.onTabClosed).to.be.equal('function');
     expect(typeof component.props.onTabAddButtonClicked).to.be.equal('function');
     expect(typeof component.props.onTabPositionChanged).to.be.equal('function');
+
   });
 
 
@@ -43,19 +44,13 @@ describe('Test of Tabs', () => {
 
     const tabs = [
       (<Tab key={'tab1'} title={'tab1'} >
-        <div>
-          <h1>tab1Content</h1>
-        </div>
+        <h1>tab1Content</h1>
       </Tab>),
       (<Tab key={'tab2'} title={'tab2'} >
-        <div>
-          <h1>tab2Content</h1>
-        </div>
+        <h1>tab2Content</h1>
       </Tab>),
       (<Tab key={'tab3'} title={'tab3'} >
-        <div>
-          <h1>tab3Content</h1>
-        </div>
+        <h1>tab3Content</h1>
       </Tab>)
     ];
 
@@ -88,8 +83,13 @@ describe('Test of Tabs', () => {
 
     it('render first tab\'s content', function(){
       let content = TestUtils.scryRenderedDOMComponentsWithTag(component, 'h1');
-      expect(content).to.be.length(1);
+      expect(content).to.be.length(3);
       expect(React.findDOMNode(content[0]).textContent).to.be.equal('tab1Content');
+      expect(React.findDOMNode(content[0]).parentNode.style.height).to.be.not.equal('0px');
+      expect(React.findDOMNode(content[1]).textContent).to.be.equal('tab2Content');
+      expect(React.findDOMNode(content[1]).parentNode.style.height).to.be.equal('0px');
+      expect(React.findDOMNode(content[2]).textContent).to.be.equal('tab3Content');
+      expect(React.findDOMNode(content[2]).parentNode.style.height).to.be.equal('0px');
     });
   });
 
@@ -436,7 +436,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          onTabAddButtonClicked={function(e, _currentTabs){called = true; currentTabs = _currentTabs; }}
+          onTabAddButtonClicked={function(e, _currentTabs){called = true; currentTabs = _currentTabs;}}
           selectedTab="tab1"
           tabs={tabs} />);
 
@@ -451,6 +451,7 @@ describe('Test of Tabs', () => {
       expect(currentTabs).to.be.length(2);
       expect(currentTabs[0].key).to.be.equal('tab1');
     });
+
   });
 
 
