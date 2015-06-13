@@ -21,6 +21,8 @@ describe('Test of Tab', () => {
     expect(component.props.tabClassNames.tabBefore).to.be.equal('');
     expect(component.props.tabClassNames.tabAfter).to.be.equal('');
     expect(component.props.tabClassNames.tabTitle).to.be.equal('');
+    expect(component.props.tabClassNames.tabBeforeTitle).to.be.equal('');
+    expect(component.props.tabClassNames.tabAfterTitle).to.be.equal('');
     expect(component.props.tabClassNames.tabCloseIcon).to.be.equal('');
     expect(component.props.tabClassNames.tabActive).to.be.equal('');
 

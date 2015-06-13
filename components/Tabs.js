@@ -356,7 +356,9 @@ Tabs.defaultProps = {
     tab: '',
     tabBefore: '',
     tabAfter: '',
+    tabBeforeTitle: '',
     tabTitle: '',
+    tabAfterTitle: '',
     tabCloseIcon: '',
     tabActive: ''
   },
@@ -378,7 +380,9 @@ Tabs.propTypes = {
     tab: React.PropTypes.string,
     tabBefore: React.PropTypes.string,
     tabAfter: React.PropTypes.string,
+    tabBeforeTitle: React.PropTypes.string,
     tabTitle: React.PropTypes.string,
+    tabAfterTitle: React.PropTypes.string,
     tabCloseIcon: React.PropTypes.string,
     tabActive: React.PropTypes.string
   }),
