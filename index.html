@@ -14,324 +14,343 @@
   </head>
   <body>
     <div class="wrapper">
-      <header>
-        <h1>React-draggable-tab</h1>
-        <p></p>
+          <header>
+            <h1>React-draggable-tab</h1>
+            <p></p>
 
-        <p class="view"><a href="https://github.com/georgeOsdDev/react-draggable-tab">View the Project on GitHub <small>georgeOsdDev/react-draggable-tab</small></a></p>
+            <p class="view"><a href="https://github.com/georgeOsdDev/react-draggable-tab">View the Project on GitHub <small>georgeOsdDev/react-draggable-tab</small></a></p>
 
 
-        <ul>
-          <li><a href="https://github.com/georgeOsdDev/react-draggable-tab/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/georgeOsdDev/react-draggable-tab/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/georgeOsdDev/react-draggable-tab">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-<h1>
-<a id="react-draggable-tab-" class="anchor" href="#react-draggable-tab-" aria-hidden="true"><span class="octicon octicon-link"></span></a>React-draggable-tab <a href="https://travis-ci.org/georgeOsdDev/react-draggable-tab"><img src="https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop" alt="Build Status"></a><a href="http://badge.fury.io/js/react-draggable-tab"><img src="https://badge.fury.io/js/react-draggable-tab.svg" alt="npm version" height="18"></a>
-</h1>
+            <ul>
+              <li><a href="https://github.com/georgeOsdDev/react-draggable-tab/zipball/master">Download <strong>ZIP File</strong></a></li>
+              <li><a href="https://github.com/georgeOsdDev/react-draggable-tab/tarball/master">Download <strong>TAR Ball</strong></a></li>
+              <li><a href="https://github.com/georgeOsdDev/react-draggable-tab">View On <strong>GitHub</strong></a></li>
+            </ul>
+          </header>
+          <section>
+            <h1>
+    <a id="react-draggable-tab--" class="anchor" href="#react-draggable-tab--" aria-hidden="true"><span class="octicon octicon-link"></span></a>React-draggable-tab <a href="https://travis-ci.org/georgeOsdDev/react-draggable-tab"><img src="https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop" alt="Build Status"></a> <a href="http://badge.fury.io/js/react-draggable-tab"><img src="https://badge.fury.io/js/react-draggable-tab.svg" alt="npm version"></a>
+    </h1>
 
-<p><a href="http://gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6"><img src="http://i.gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6.gif" /></a></p>
+    <p><a href="http://gyazo.com/42d408d288292f62fbb8d650897acbc4"><img src="http://i.gyazo.com/42d408d288292f62fbb8d650897acbc4.gif" alt="Gyazo"></a></p>
 
-<p>Atom like draggable tab react component.</p>
+    <p>Atom like draggable tab react component.</p>
 
-<h2>
-<a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
+    <h2>
+    <a id="demo" class="anchor" href="#demo" aria-hidden="true"><span class="octicon octicon-link"></span></a>Demo</h2>
 
-<p><a href="http://georgeosddev.github.io/react-draggable-tab/example/">View Demo</a></p>
+    <p><a href="http://georgeosddev.github.io/react-draggable-tab/example/">View Demo</a></p>
 
-<h2>
-<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
+    <h2>
+    <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<div class="highlight highlight-bash"><pre>npm install --save react-draggable-tab</pre></div>
+    <div class="highlight highlight-bash"><pre>npm install --save react-draggable-tab</pre></div>
 
-<h2>
-<a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
+    <h2>
+    <a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
 
-<h3>
-<a id="tab" class="anchor" href="#tab" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Tab</code>
-</h3>
+    <h3>
+    <a id="tab" class="anchor" href="#tab" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Tab</code>
+    </h3>
 
-<p><code>Tab</code> is just a case class to check props.
-<code>props.children</code> will rendered into content area.</p>
+    <p><code>Tab</code> is just a case class to check props.
+    <code>props.children</code> will rendered into content area.</p>
 
-<ul>
-<li><p><code>key</code>: <em>unique</em> key in <code>TabList</code>.
-<code>React.PropTypes.string.isRequired</code></p></li>
-<li><p><code>title</code>: string to show in tab.
-<code>React.PropTypes.string.isRequired</code></p></li>
-<li><p><code>disableClose</code>: If <code>true</code>, closeButton will not be appeared in tab.
-<code>React.PropTypes.bool</code> (Default <code>false</code>)</p></li>
-</ul>
+    <h4>
+    <a id="props" class="anchor" href="#props" aria-hidden="true"><span class="octicon octicon-link"></span></a>Props</h4>
 
-<h6 id="style-for-each-tab-">Style (For each tab)</h6>
-<ul>
-<li><p><code>tabClassNames</code>: classNames which will be <strong>added</strong> to rendered elements.</p>
-<ul>
-<li><code>tab</code>: base <code>li</code> element of tab (defult: <code>rdTab</code>)</li>
-<li><code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector (defult: <code>rdTabBefore</code>)</li>
-<li><code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector (defult: <code>rdTabAfter</code>)</li>
-<li><code>tabTitle</code>: <code>span</code> element of tab title (defult: <code>rdTabTitle</code>)</li>
-<li><code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
-<li><code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
-</ul>
-</li>
-<li><p><code>tabStyles</code>: Inline styles which will be <strong>overwritten</strong> default and common-tabs inline styles.</p>
-<ul>
-<li><code>tab</code>: base <code>li</code> element of tab</li>
-<li><code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector.</li>
-<li><code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector.</li>
-<li><code>tabTitle</code>: <code>span</code> element of tab title</li>
-<li><code>tabActive</code>: selected tab's <code>li</code></li>
-<li><code>tabBeforeActive</code>: selected tab's <code>li</code> before</li>
-<li><code>tabAfterActive</code>: selected tab's <code>li</code> after</li>
-<li><code>tabTitleActive</code>: selected tab's title</li>
-<li><code>tabCloseIcon</code>: base <code>span</code> element of close icon</li>
-<li><code>tabCloseIconOnHover</code>: base <code>span</code> element of close icon when hover</li>
-</ul>
-</li>
-</ul>
+    <ul>
+    <li><p><code>key</code>: <em>unique</em> key in <code>TabList</code>.
+    <code>React.PropTypes.string.isRequired</code></p></li>
+    <li><p><code>beforeTitle</code>: element to show in tab. eg icon.
+    <code>React.PropTypes.element</code></p></li>
+    <li><p><code>title</code>: string to show in tab.
+    <code>React.PropTypes.string.isRequired</code></p></li>
+    <li><p><code>afterTitle</code>: element to show in tab. eg: notification badge
+    <code>React.PropTypes.element</code></p></li>
+    <li><p><code>disableClose</code>: If <code>true</code>, closeButton will not be appeared in tab.
+    <code>React.PropTypes.bool</code> (Default <code>false</code>)</p></li>
+    <li><p><code>beforeTitle</code>:</p></li>
+    </ul>
 
-<h3>
-<a id="tabs" class="anchor" href="#tabs" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Tabs</code>
-</h3>
+    <h6>
+    <a id="style-for-each-tab" class="anchor" href="#style-for-each-tab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style (for each tab)</h6>
 
-<p><code>Tabs</code> is container for tab. it will render tabBar and content of selected element.</p>
+    <ul>
+    <li>
+    <p><code>tabClassNames</code>: classNames which will be <strong>added</strong> to rendered elements.</p>
 
-<h4>
-<a id="props" class="anchor" href="#props" aria-hidden="true"><span class="octicon octicon-link"></span></a>Props</h4>
+    <ul>
+    <li>
+    <code>tab</code>: base <code>li</code> element of tab (defult: <code>rdTab</code>)</li>
+    <li>
+    <code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector (defult: <code>rdTabBefore</code>)</li>
+    <li>
+    <code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector (defult: <code>rdTabAfter</code>)</li>
+    <li>
+    <code>tabTitle</code>: <code>span</code> element of tab title (defult: <code>rdTabTitle</code>)</li>
+    <li>
+    <code>tabBeforeTitle</code>: <code>span</code> element of tab before title (defult: <code>tabBeforeTitle</code>)</li>
+    <li>
+    <code>tabAfterTitle</code>: <code>span</code> element of tab after title (defult: <code>tabAfterTitle</code>)</li>
+    <li>
+    <code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
+    <li>
+    <code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
+    </ul>
+    </li>
+    <li>
+    <p><code>tabStyles</code>: Inline styles which will be <strong>overwritten</strong> default and common-tabs inline styles.</p>
 
-<ul>
-<li><p><code>tabs</code>: Array of <code>Tab</code> elements.
-<code>React.PropTypes.arrayOf(React.PropTypes.element)</code></p></li>
-<li><p><code>selectedTab</code>: key for selectedTab.
-<code>React.PropTypes.string</code> default to first tab.</p></li>
-<li><p><code>tabAddButton</code>: element for add button.
-<code>React.PropTypes.element</code></p></li>
-</ul>
+    <ul>
+    <li>
+    <code>tab</code>: base <code>li</code> element of tab</li>
+    <li>
+    <code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector.</li>
+    <li>
+    <code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector.</li>
+    <li>
+    <code>tabTitle</code>: <code>span</code> element of tab title</li>
+    <li>
+    <code>tabActive</code>: selected tab's <code>li</code>
+    </li>
+    <li>
+    <code>tabBeforeActive</code>: selected tab's <code>li</code> before</li>
+    <li>
+    <code>tabAfterActive</code>: selected tab's <code>li</code> after</li>
+    <li>
+    <code>tabTitleActive</code>: selected tab's title</li>
+    <li>
+    <code>tabCloseIcon</code>: base <code>span</code> element of close icon</li>
+    <li>
+    <code>tabCloseIconOnHover</code>: base <code>span</code> element of close icon when hover</li>
+    </ul>
+    </li>
+    </ul>
 
-<h6>
-<a id="style" class="anchor" href="#style" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style (All tabs will be apply these styles)</h6>
+    <h3>
+    <a id="tabs" class="anchor" href="#tabs" aria-hidden="true"><span class="octicon octicon-link"></span></a><code>Tabs</code>
+    </h3>
 
-<ul>
-<li>
-<p><code>tabsClassNames</code>: classNames which will be <strong>added</strong> to rendered tabs.</p>
+    <p><code>Tabs</code> is container for tab. it will render tabBar and content of selected element.</p>
 
-<ul>
-<li>
-<code>tabBar</code>: base <code>ul</code> element of tab bar (defult: <code>rdTabBar</code>)</li>
-<li>
-<code>tabBarAfter</code>: after <code>span</code> element of tab bar which emulate <code>:After</code> selector (defult: <code>rdTabBarAfter</code>)</li>
-<li>
-<code>tab</code>: base <code>li</code> element of tab (defult: <code>rdTab</code>)</li>
-<li>
-<code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector (defult: <code>rdTabBefore</code>)</li>
-<li>
-<code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector (defult: <code>rdTabAfter</code>)</li>
-<li>
-<code>tabTitle</code>: <code>span</code> element of tab title (defult: <code>rdTabTitle</code>)</li>
-<li>
-<code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
-<li>
-<code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
-</ul>
-</li>
-<li>
-<p><code>tabsStyles</code>: Inline styles which will be <strong>overwritten</strong> default inline styles.</p>
+    <h4>
+    <a id="props-1" class="anchor" href="#props-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Props</h4>
 
-<ul>
-<li>
-<code>tabBar</code>: base <code>ul</code> element of tab bar</li>
-<li>
-<code>tabBarAfter</code>: after <code>span</code> element of tab bar which emulate <code>:After</code> selector</li>
-<li>
-<code>tab</code>: base <code>li</code> element of tab</li>
-<li>
-<code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector.</li>
-<li>
-<code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector.</li>
-<li>
-<code>tabTitle</code>: <code>span</code> element of tab title</li>
-<li>
-<code>tabActive</code>: selected tab's <code>li</code>
-</li>
-<li>
-<code>tabBeforeActive</code>: selected tab's <code>li</code> before</li>
-<li>
-<code>tabAfterActive</code>: selected tab's <code>li</code> after</li>
-<li>
-<code>tabTitleActive</code>: selected tab's title</li>
-<li>
-<code>tabCloseIcon</code>: base <code>span</code> element of close icon</li>
-<li>
-<code>tabCloseIconHover</code>: base <code>span</code> element of close icon when hover</li>
-</ul>
-</li>
-</ul>
+    <ul>
+    <li><p><code>tabs</code>: Array of <code>Tab</code> elements.
+    <code>React.PropTypes.arrayOf(React.PropTypes.element)</code></p></li>
+    <li><p><code>selectedTab</code>: key for selectedTab.
+    <code>React.PropTypes.string</code> default to first tab.</p></li>
+    <li><p><code>tabAddButton</code>: element for add button.
+    <code>React.PropTypes.element</code></p></li>
+    </ul>
 
-<h5>
-<a id="events" class="anchor" href="#events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Events</h5>
+    <h6>
+    <a id="style-all-tabs-will-be-apply-these-styles" class="anchor" href="#style-all-tabs-will-be-apply-these-styles" aria-hidden="true"><span class="octicon octicon-link"></span></a>Style (All tabs will be apply these styles)</h6>
 
-<ul>
-<li><p><code>onTabSelected(e, key, currentTabs)</code>: Called when tab of key was selected.
-<code>currentTabs</code> is array of tabs elements sorted with current order.</p></li>
-<li><p><code>onTabClosed(e, key, currentTabs)</code>: Called when tab of key was closed.
-<code>currentTabs</code> is array of tabs elements sorted with current order(including closed).</p></li>
-<li><p><code>onTabPositionChanged(e, key, currentTabs)</code>: Called when tab of key was moved.
-<code>currentTabs</code> is array of tabs elements sorted with current order.</p></li>
-<li>
-<p><code>onTabAddButtonClicked(e, currentTabs)</code>: Called when <code>tab add button</code> was clicked.
-<code>currentTabs</code> is array of tabs elements sorted with current order.
-Basically you will concat <code>currentTabs</code> with new empty tab.</p>
+    <ul>
+    <li>
+    <p><code>tabsClassNames</code>: classNames which will be <strong>added</strong> to rendered elements.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">let</span> newTabs <span class="pl-k">=</span> currentTabs.<span class="pl-c1">concat</span>([newTab]);</pre></div>
-</li>
-</ul>
+    <ul>
+    <li>
+    <code>tabBar</code>: base <code>ul</code> element of tab bar (defult: <code>rdTabBar</code>)</li>
+    <li>
+    <code>tabBarAfter</code>: after <code>span</code> element of tab bar which emulate <code>:After</code> selector (defult: <code>rdTabBarAfter</code>)</li>
+    <li>
+    <code>tab</code>: base <code>li</code> element of tab (defult: <code>rdTab</code>)</li>
+    <li>
+    <code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector (defult: <code>rdTabBefore</code>)</li>
+    <li>
+    <code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector (defult: <code>rdTabAfter</code>)</li>
+    <li>
+    <code>tabTitle</code>: <code>span</code> element of tab title (defult: <code>rdTabTitle</code>)</li>
+    <li>
+    <code>tabBeforeTitle</code>: <code>span</code> element of tab before title (defult: <code>rdTabBeforeTitle</code>)</li>
+    <li>
+    <code>tabBeforeTitle</code>: <code>span</code> element of tab after title (defult: <code>rdTabAfterTitle</code>)</li>
+    <li>
+    <code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
+    <li>
+    <code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
+    </ul>
+    </li>
+    <li>
+    <p><code>tabsStyles</code>: Inline styles which will be <strong>overwritten</strong> default inline styles.</p>
 
-<h2>
-<a id="usage-example" class="anchor" href="#usage-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage example</h2>
+    <ul>
+    <li>
+    <code>tabBar</code>: base <code>ul</code> element of tab bar</li>
+    <li>
+    <code>tabBarAfter</code>: after <code>span</code> element of tab bar which emulate <code>:After</code> selector</li>
+    <li>
+    <code>tab</code>: base <code>li</code> element of tab</li>
+    <li>
+    <code>tabBefore</code>: before element of <code>li</code> which emulate <code>:Before</code> selector.</li>
+    <li>
+    <code>tabAfter</code>: after element of <code>li</code> which emulate <code>:After</code> selector.</li>
+    <li>
+    <code>tabTitle</code>: <code>span</code> element of tab title</li>
+    <li>
+    <code>tabActive</code>: selected tab's <code>li</code>
+    </li>
+    <li>
+    <code>tabBeforeActive</code>: selected tab's <code>li</code> before</li>
+    <li>
+    <code>tabAfterActive</code>: selected tab's <code>li</code> after</li>
+    <li>
+    <code>tabTitleActive</code>: selected tab's title</li>
+    <li>
+    <code>tabCloseIcon</code>: base <code>span</code> element of close icon</li>
+    <li>
+    <code>tabCloseIconOnHover</code>: base <code>span</code> element of close icon when hover</li>
+    </ul>
+    </li>
+    </ul>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">class</span> <span class="pl-en">App</span> <span class="pl-k">extends</span> <span class="pl-en">React.Component</span> {
-  <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>) {
-    <span class="pl-v">super</span>(props);
-    <span class="pl-v">this</span>.state <span class="pl-k">=</span> {
-      tabs<span class="pl-k">:</span>[
-        (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab0<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>fixedTab<span class="pl-pds">'</span></span>} disableClose<span class="pl-k">=</span>{<span class="pl-c1">true</span>} <span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This tab cannot close<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
-        (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab1<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>1stTab<span class="pl-pds">'</span></span>} <span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This is tab1<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
-        (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab2<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>2ndTab Too long Toooooooooooooooooo long<span class="pl-pds">'</span></span>} <span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>pre<span class="pl-k">&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            <span class="pl-k">&lt;</span>/pre<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
-        <span class="pl-v">this</span>._getDynamicTab()
-      ],
-      textvalue<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>
-    };
-  }
+    <h5>
+    <a id="events" class="anchor" href="#events" aria-hidden="true"><span class="octicon octicon-link"></span></a>Events</h5>
 
-  <span class="pl-en">_getDynamicTab</span>() {
-    <span class="pl-k">return</span> (
-    <span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>tab3<span class="pl-pds">'</span></span> title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>3rdTab<span class="pl-pds">'</span></span>} <span class="pl-k">&gt;</span>
-      <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span><span class="pl-c1">TAB3</span><span class="pl-k">!!!</span> This tab dynamically change<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>textarea value<span class="pl-k">=</span>{<span class="pl-v">this</span>.state <span class="pl-k">?</span> <span class="pl-v">this</span>.state.textValue<span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">'</span><span class="pl-pds">'</span></span>} <span class="pl-c1">onChange</span><span class="pl-k">=</span>{<span class="pl-v">this</span>._handleTextChange.bind(<span class="pl-v">this</span>)}<span class="pl-k">&gt;&lt;</span>/textarea<span class="pl-k">&gt;</span>
-      <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-    <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>);
-  }
+    <ul>
+    <li><p><code>onTabSelected(e, key, currentTabs)</code>: Called when tab of key was selected.
+    <code>currentTabs</code> is array of tabs elements sorted with current order.</p></li>
+    <li><p><code>onTabClosed(e, key, currentTabs)</code>: Called when tab of key was closed.
+    <code>currentTabs</code> is array of tabs elements sorted with current order.</p></li>
+    <li><p><code>onTabPositionChanged(e, key, currentTabs)</code>: Called when tab of key was moved.
+    <code>currentTabs</code> is array of tabs elements sorted with current order.</p></li>
+    <li>
+    <p><code>onTabAddButtonClicked(e, currentTabs)</code>: Called when <code>tab add button</code> was clicked.
+    <code>currentTabs</code> is array of tabs elements sorted with current order.
+    Basically you will concat <code>currentTabs</code> with new empty tab.</p>
 
-  <span class="pl-en">_handleTextChange</span>(<span class="pl-smi">e</span>) {
-    <span class="pl-v">this</span>.setState({textValue<span class="pl-k">:</span> e.<span class="pl-c1">target</span>.<span class="pl-c1">value</span>});
-  }
+    <div class="highlight highlight-javascript"><pre><span class="pl-k">let</span> newTabs <span class="pl-k">=</span> currentTabs.<span class="pl-c1">concat</span>([newTab]);</pre></div>
+    </li>
+    </ul>
 
-  <span class="pl-en">_replaceDynamicTab</span>(<span class="pl-smi">tabs</span>) {
-    <span class="pl-k">return</span> _.map(tabs, (<span class="pl-smi">tab</span>)<span class="pl-k"> =&gt;</span> {
-      <span class="pl-k">if</span>(tab.key <span class="pl-k">===</span> <span class="pl-s"><span class="pl-pds">'</span>tab3<span class="pl-pds">'</span></span>) {
-        <span class="pl-k">return</span> <span class="pl-v">this</span>._getDynamicTab();
-      } <span class="pl-k">else</span> {
-        <span class="pl-k">return</span> tab;
+    <h2>
+    <a id="usage-example" class="anchor" href="#usage-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage example</h2>
+
+    <div class="highlight highlight-javascript"><pre><span class="pl-k">class</span> <span class="pl-en">App</span> <span class="pl-k">extends</span> <span class="pl-en">React.Component</span> {
+      <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>) {
+        <span class="pl-v">super</span>(props);
+        <span class="pl-k">let</span> icon <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>image src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>icon.png<span class="pl-pds">'</span></span> style<span class="pl-k">=</span>{{height<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>13px<span class="pl-pds">'</span></span>}}/<span class="pl-k">&gt;</span>);
+        <span class="pl-k">let</span> fonticon <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>icon className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>icon-html5<span class="pl-pds">'</span></span>/<span class="pl-k">&gt;</span>);
+        <span class="pl-k">let</span> badge <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>DynamicTabBadge /<span class="pl-k">&gt;</span>);
+
+        <span class="pl-v">this</span>.state <span class="pl-k">=</span> {
+          tabs<span class="pl-k">:</span>[
+            (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab0<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>unclosable tab<span class="pl-pds">'</span></span>} disableClose<span class="pl-k">=</span>{<span class="pl-c1">true</span>} <span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This tab cannot close<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
+            (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab1<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>1stTab<span class="pl-pds">'</span></span>} beforeTitle<span class="pl-k">=</span>{icon} <span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This is tab1<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
+            (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab2<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>2ndTab Too long Toooooooooooooooooo long<span class="pl-pds">'</span></span>} beforeTitle<span class="pl-k">=</span>{fonticon} <span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+                <span class="pl-k">&lt;</span>pre<span class="pl-k">&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+                <span class="pl-k">&lt;</span>/pre<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
+            (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab3<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>Dynamic tab<span class="pl-pds">'</span></span>} afterTitle<span class="pl-k">=</span>{badge}<span class="pl-k">&gt;</span>
+              <span class="pl-k">&lt;</span>DynamicTabContent/<span class="pl-k">&gt;</span>
+            <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>)
+          ],
+          badgeCount<span class="pl-k">:</span> <span class="pl-c1">0</span>
+        };
       }
-    });
-  }
 
-  <span class="pl-en">handleTabSelect</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-v">this</span>.setState({selectedTab<span class="pl-k">:</span> key, tabs<span class="pl-k">:</span> currentTabs});
-  }
+      <span class="pl-en">handleTabSelect</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>handleTabSelect key:<span class="pl-pds">'</span></span>, key);
+        <span class="pl-v">this</span>.setState({selectedTab<span class="pl-k">:</span> key, tabs<span class="pl-k">:</span> currentTabs});
+      }
 
-  <span class="pl-en">handleTabClose</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabClosed key:<span class="pl-pds">'</span></span>, key);
-    <span class="pl-v">this</span>.setState({tabs<span class="pl-k">:</span> currentTabs});
-  }
+      <span class="pl-en">handleTabClose</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabClosed key:<span class="pl-pds">'</span></span>, key);
+        <span class="pl-v">this</span>.setState({tabs<span class="pl-k">:</span> currentTabs});
+      }
 
-  <span class="pl-en">handleTabPositionChange</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabPositionChanged key:<span class="pl-pds">'</span></span>, key);
-    <span class="pl-v">this</span>.setState({tabs<span class="pl-k">:</span> currentTabs});
-  }
+      <span class="pl-en">handleTabPositionChange</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
+        <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabPositionChanged key:<span class="pl-pds">'</span></span>, key);
+        <span class="pl-v">this</span>.setState({tabs<span class="pl-k">:</span> currentTabs});
+      }
 
-  <span class="pl-en">handleTabAddButtonClick</span>(<span class="pl-smi">e</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-c">// key must be unique</span>
-    <span class="pl-k">const</span> <span class="pl-c1">key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>newTab_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">Date</span>.now();
-    <span class="pl-k">let</span> newTab <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{key} title<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>untitle<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span>
-                    <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-                      <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>New Empty Tab<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-                    <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-                  <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>);
-    <span class="pl-k">let</span> newTabs <span class="pl-k">=</span> currentTabs.<span class="pl-c1">concat</span>([newTab]);
+      <span class="pl-en">handleTabAddButtonClick</span>(<span class="pl-smi">e</span>, <span class="pl-smi">currentTabs</span>) {
+        <span class="pl-c">// key must be unique</span>
+        <span class="pl-k">const</span> <span class="pl-c1">key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>newTab_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">Date</span>.now();
+        <span class="pl-k">let</span> newTab <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{key} title<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>untitled<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
+                          <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>New Empty Tab<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
+                        <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
+                      <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>);
+        <span class="pl-k">let</span> newTabs <span class="pl-k">=</span> currentTabs.<span class="pl-c1">concat</span>([newTab]);
 
-    <span class="pl-v">this</span>.setState({
-      tabs<span class="pl-k">:</span> <span class="pl-v">this</span>._replaceDynamicTab(newTabs),
-      selectedTab<span class="pl-k">:</span> key
-    });
-  }
+        <span class="pl-v">this</span>.setState({
+          tabs<span class="pl-k">:</span> newTabs,
+          selectedTab<span class="pl-k">:</span> key
+        });
+      }
 
-  <span class="pl-en">render</span>() {
+      <span class="pl-en">render</span>() {
 
-    <span class="pl-k">let</span> tabs <span class="pl-k">=</span> <span class="pl-v">this</span>._replaceDynamicTab(<span class="pl-v">this</span>.state.tabs)
+        <span class="pl-k">return</span> (
+          <span class="pl-k">&lt;</span>Tabs
+            tabsClassNames<span class="pl-k">=</span>{tabsClassNames}
+            tabsStyles<span class="pl-k">=</span>{tabsStyles}
+            selectedTab<span class="pl-k">=</span>{<span class="pl-v">this</span>.state.selectedTab <span class="pl-k">?</span> <span class="pl-v">this</span>.state.selectedTab <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>tab2<span class="pl-pds">"</span></span>}
+            onTabSelected<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabSelect.bind(<span class="pl-v">this</span>)}
+            onTabClosed<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabClose.bind(<span class="pl-v">this</span>)}
+            onTabAddButtonClicked<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabAddButtonClick.bind(<span class="pl-v">this</span>)}
+            onTabPositionChanged<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabPositionChange.bind(<span class="pl-v">this</span>)}
+            tabs<span class="pl-k">=</span>{<span class="pl-v">this</span>.state.tabs}
+          /<span class="pl-k">&gt;</span>
+        )
+      }
+    };</pre></div>
 
-    <span class="pl-k">return</span> (
-      <span class="pl-k">&lt;</span>Tabs
-        tabClassNames<span class="pl-k">=</span>{tabClassNames}
-        tabStyles<span class="pl-k">=</span>{tabStyles}
-        selectedTab<span class="pl-k">=</span>{<span class="pl-v">this</span>.state.selectedTab <span class="pl-k">?</span> <span class="pl-v">this</span>.state.selectedTab <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>tab2<span class="pl-pds">"</span></span>}
-        onTabSelected<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabSelect.bind(<span class="pl-v">this</span>)}
-        onTabClosed<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabClose.bind(<span class="pl-v">this</span>)}
-        onTabAddButtonClicked<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabAddButtonClick.bind(<span class="pl-v">this</span>)}
-        onTabPositionChanged<span class="pl-k">=</span>{<span class="pl-v">this</span>.handleTabPositionChange.bind(<span class="pl-v">this</span>)}
-        tabs<span class="pl-k">=</span>{tabs}<span class="pl-k">&gt;</span>
-      <span class="pl-k">&lt;</span>/Tabs<span class="pl-k">&gt;</span>
-    )
-  }
-};</pre></div>
+    <p>See also <a href="https://github.com/georgeOsdDev/react-draggable-tab/tree/develop/example">example</a></p>
 
-<p>See also <a href="https://github.com/georgeOsdDev/react-draggable-tab/tree/develop/example">example</a></p>
+    <div class="highlight highlight-bash"><pre>npm install
+    npm run start:example</pre></div>
 
-<div class="highlight highlight-bash"><pre>npm install
-npm run start:example</pre></div>
+    <h2>
+    <a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
 
-<h2>
-<a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
+    <div class="highlight highlight-bash"><pre>npm <span class="pl-c1">test</span></pre></div>
 
-<div class="highlight highlight-bash"><pre>npm <span class="pl-c1">test</span></pre></div>
+    <h2>
+    <a id="known-issue" class="anchor" href="#known-issue" aria-hidden="true"><span class="octicon octicon-link"></span></a>Known Issue</h2>
 
-<h2>
-<a id="known-issue" class="anchor" href="#known-issue" aria-hidden="true"><span class="octicon octicon-link"></span></a>Known Issue</h2>
+    <ul>
+    <li>Dynamic tab content.</li>
+    </ul>
 
-<ul>
-<li>Dynamic tab content.</li>
-</ul>
+    <p><code>Tabs</code> do not care any change in <code>Tab</code> content.
+    content needs update by your application side.
+    See <code>3rdTab</code> in example.</p>
 
-<p><code>Tabs</code> do not care any change in <code>Tab</code> content.
-<code>tabs</code> needs update by your application side.
-See <code>3rdTab</code> in example.</p>
+    <ul>
+    <li>
+    <code>flex</code> style should be define in CSS for safari.
+    See <a href="https://github.com/facebook/react/issues/2020">https://github.com/facebook/react/issues/2020</a>
+    </li>
+    </ul>
 
-<ul>
-<li>
-<code>flex</code> style should be define in CSS for safari.
-See <a href="https://github.com/facebook/react/issues/2020">https://github.com/facebook/react/issues/2020</a>
-</li>
-</ul>
+    <p>In application, class <code>rdTabBar</code> or your custom class of <code>TabBar</code> needs <code>display: -webkit-flex</code> in CSS like below.</p>
 
-<p>In application, class <code>rdTabBar</code> or your custom class of <code>TabBar</code> needs <code>display: -webkit-flex</code> in CSS like below.</p>
-
-<div class="highlight highlight-css"><pre><span class="pl-e">.myTabBar</span> {
-  <span class="pl-c1"><span class="pl-c1">display</span></span>: -webkit-flex;
-}
-</pre></div>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/georgeOsdDev">georgeOsdDev</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
-    </div>
+    <div class="highlight highlight-css"><pre><span class="pl-e">.myTabBar</span> {
+      <span class="pl-c1"><span class="pl-c1">display</span></span>: -webkit-flex;
+}</pre></div>
+          </section>
+          <footer>
+            <p>This project is maintained by <a href="https://github.com/georgeOsdDev">georgeOsdDev</a></p>
+            <p><small>Hosted on GitHub Pages — Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+          </footer>
+        </div>
     <script src="javascripts/scale.fix.js"></script>
 
   </body>
