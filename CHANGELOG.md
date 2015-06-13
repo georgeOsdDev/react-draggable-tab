@@ -1,8 +1,9 @@
 ## Change Log
 
 ### Ver 0.2.1(Next release, Not released)
-  * #6 [Add style on parent div](https://github.com/georgeOsdDev/react-draggable-tab/issues/6)
 
+  * #5 [Enable to add badge / favicon like chrome](https://github.com/georgeOsdDev/react-draggable-tab/issues/5)
+  * #6 [Add style on parent div](https://github.com/georgeOsdDev/react-draggable-tab/issues/6)
   * #8 [Show closed tab when it supplied again with same key](https://github.com/georgeOsdDev/react-draggable-tab/issues/8)
   * #9 [Keep all tab content inside Tabs](https://github.com/georgeOsdDev/react-draggable-tab/issues/9)
 

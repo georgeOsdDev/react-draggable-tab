@@ -44,6 +44,7 @@
     "karma-safari-launcher": "^0.1.1",
     "karma-spec-reporter": "0.0.19",
     "mocha": "^2.2.5",
+    "react-notification-badge": "^0.1.0",
     "watchify": "^3.2.1"
   },
   "dependencies": {

@@ -6,6 +6,7 @@ import Tabs  from '../components/Tabs';
 import Tab   from '../components/Tab';
 
 import DynamicTabContent from './DynamicTabContent'
+import DynamicTabBadge from './DynamicTabBadge'
 
 //allow react dev tools work
 window.React = React;
@@ -32,6 +33,11 @@ const tabsStyles = {
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    let icon = (<image src='icon.png' style={{height:'13px'}}/>);
+    let fonticon = (<icon className='icon-html5'/>);
+    let badge = (<DynamicTabBadge />);
+
     this.state = {
       tabs:[
         (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} >
@@ -39,21 +45,22 @@ class App extends React.Component {
             <h1>This tab cannot close</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab1'} title={'1stTab'} >
+        (<Tab key={'tab1'} title={'1stTab'} beforeTitle={icon} >
           <div>
             <h1>This is tab1</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} >
+        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} beforeTitle={fonticon} >
           <div>
             <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             </pre>
           </div>
         </Tab>),
-        (<Tab key={'tab3'} title={'Dynamic tab'} >
+        (<Tab key={'tab3'} title={'Dynamic tab'} afterTitle={badge}>
           <DynamicTabContent/>
         </Tab>)
-      ]
+      ],
+      badgeCount: 0
     };
   }
 
@@ -75,7 +82,7 @@ class App extends React.Component {
   handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
     const key = 'newTab_' + Date.now();
-    let newTab = (<Tab key={key} title='untitled'>
+    let newTab = (<Tab key={key} title='untitled' >
                     <div>
                       <h1>New Empty Tab</h1>
                     </div>
@@ -86,6 +93,14 @@ class App extends React.Component {
       tabs: newTabs,
       selectedTab: key
     });
+  }
+
+  _handleBadgeInc() {
+    this.setState({badgeCount: this.state.badgeCount + 1});
+  }
+
+  _handleBadgeDec() {
+    this.setState({badgeCount: this.state.badgeCount + 1});
   }
 
   render() {

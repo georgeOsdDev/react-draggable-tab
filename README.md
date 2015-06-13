@@ -1,7 +1,7 @@
 # React-draggable-tab [![Build Status](https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-draggable-tab) [![npm version](https://badge.fury.io/js/react-draggable-tab.svg)](http://badge.fury.io/js/react-draggable-tab)
 
 
-[![Gyazo](http://i.gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6.gif)](http://gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6)
+[![Gyazo](http://i.gyazo.com/42d408d288292f62fbb8d650897acbc4.gif)](http://gyazo.com/42d408d288292f62fbb8d650897acbc4)
 
 Atom like draggable tab react component.
 
@@ -27,11 +27,19 @@ npm install --save react-draggable-tab
   * `key`: *unique* key in `TabList`.
     `React.PropTypes.string.isRequired`
 
+  * `beforeTitle`: element to show in tab. eg icon.
+    `React.PropTypes.element`
+
   * `title`: string to show in tab.
     `React.PropTypes.string.isRequired`
 
+  * `afterTitle`: element to show in tab. eg: notification badge
+    `React.PropTypes.element`
+
   * `disableClose`: If `true`, closeButton will not be appeared in tab.
     `React.PropTypes.bool` (Default `false`)
+
+  * `beforeTitle`:
 
 ###### Style (for each tab)
 
@@ -40,6 +48,8 @@ npm install --save react-draggable-tab
    * `tabBefore`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
    * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
    * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
+   * `tabBeforeTitle`: `span` element of tab before title (defult: `tabBeforeTitle`)
+   * `tabAfterTitle`: `span` element of tab after title (defult: `tabAfterTitle`)
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
    * `tabActive`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
@@ -80,6 +90,8 @@ npm install --save react-draggable-tab
    * `tabBefore`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
    * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
    * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
+   * `tabBeforeTitle`: `span` element of tab before title (defult: `rdTabBeforeTitle`)
+   * `tabBeforeTitle`: `span` element of tab after title (defult: `rdTabAfterTitle`)
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
    * `tabActive`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
@@ -122,6 +134,10 @@ npm install --save react-draggable-tab
 class App extends React.Component {
   constructor(props) {
     super(props);
+    let icon = (<image src='icon.png' style={{height:'13px'}}/>);
+    let fonticon = (<icon className='icon-html5'/>);
+    let badge = (<DynamicTabBadge />);
+
     this.state = {
       tabs:[
         (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} >
@@ -129,21 +145,22 @@ class App extends React.Component {
             <h1>This tab cannot close</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab1'} title={'1stTab'} >
+        (<Tab key={'tab1'} title={'1stTab'} beforeTitle={icon} >
           <div>
             <h1>This is tab1</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} >
+        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} beforeTitle={fonticon} >
           <div>
             <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             </pre>
           </div>
         </Tab>),
-        (<Tab key={'tab3'} title={'Dynamic tab'} >
+        (<Tab key={'tab3'} title={'Dynamic tab'} afterTitle={badge}>
           <DynamicTabContent/>
         </Tab>)
-      ]
+      ],
+      badgeCount: 0
     };
   }
 

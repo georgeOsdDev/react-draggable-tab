@@ -24,7 +24,9 @@ describe('Test of Tabs', () => {
     expect(component.props.tabsClassNames.tab).to.be.equal('');
     expect(component.props.tabsClassNames.tabBefore).to.be.equal('');
     expect(component.props.tabsClassNames.tabAfter).to.be.equal('');
+    expect(component.props.tabsClassNames.tabBeforeTitle).to.be.equal('');
     expect(component.props.tabsClassNames.tabTitle).to.be.equal('');
+    expect(component.props.tabsClassNames.tabAfterTitle).to.be.equal('');
     expect(component.props.tabsClassNames.tabCloseIcon).to.be.equal('');
     expect(component.props.tabsClassNames.tabActive).to.be.equal('');
 
@@ -93,6 +95,69 @@ describe('Test of Tabs', () => {
     });
   });
 
+  describe('add optional element before/after Title', () => {
+
+    const el1 =(<i className='icon icon1' />);
+    const el2 =(<i className='icon icon2' />);
+    const el3 =(<i className='icon icon3' />);
+    const el4 =(<i className='icon icon4' />);
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} beforeTitle={el1}>
+        <h1>tab1Content</h1>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} afterTitle={el2}>
+        <h1>tab2Content</h1>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} beforeTitle={el3} afterTitle={el4}>
+        <h1>tab3Content</h1>
+      </Tab>)
+    ];
+    let children;
+
+    beforeEach(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          selectedTab="tab1"
+          tabs={tabs} />);
+      children = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+    });
+
+    it('will insert custome element before title', () => {
+      let t1BeforeTitle = TestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabBeforeTitle');
+      let t1BeforeTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t1BeforeTitle, 'i');
+      expect(t1BeforeTitleIcon).to.be.length(1);
+      expect(React.findDOMNode(t1BeforeTitleIcon[0]).className.indexOf('icon1') > 0).to.be.equal(true)
+
+      let t1AfterTitle = TestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabAfterTitle');
+      let t1AfterTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t1AfterTitle, 'i');
+      expect(t1AfterTitleIcon).to.be.length(0);
+    });
+
+    it('will insert custome element affter title', () => {
+      let t2BeforeTitle = TestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabBeforeTitle');
+      let t2BeforeTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t2BeforeTitle, 'i');
+      expect(t2BeforeTitleIcon).to.be.length(0);
+
+      let t2AfterTitle = TestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabAfterTitle');
+      let t2AfterTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t2AfterTitle, 'i');
+      expect(t2AfterTitleIcon).to.be.length(1);
+      expect(React.findDOMNode(t2AfterTitleIcon[0]).className.indexOf('icon2') > 0).to.be.equal(true)
+    });
+
+    it('will insert custome element before/affter title', () => {
+      let t3BeforeTitle = TestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabBeforeTitle');
+      let t3BeforeTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t3BeforeTitle, 'i');
+      expect(t3BeforeTitleIcon).to.be.length(1);
+      expect(React.findDOMNode(t3BeforeTitleIcon[0]).className.indexOf('icon3') > 0).to.be.equal(true)
+
+      let t3AfterTitle = TestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabAfterTitle');
+      let t3AfterTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t3AfterTitle, 'i');
+      expect(t3AfterTitleIcon).to.be.length(1);
+      expect(React.findDOMNode(t3AfterTitleIcon[0]).className.indexOf('icon4') > 0).to.be.equal(true)
+    });
+  })
+
   describe('add custom className to all tabs ', function(){
 
     const tabsClassNames = {
@@ -100,6 +165,8 @@ describe('Test of Tabs', () => {
       tabBarAfter: 'myTabBarAfter',
       tab:      'myTab',
       tabTitle: 'myTabTitle',
+      tabBeforeTitle: 'myTabBeforeTitle',
+      tabAfterTitle: 'myTabAfterTitle',
       tabCloseIcon: 'myTabCloseIcon',
       tabBefore: 'myTabBefore',
       tabAfter: 'myTabAfter',
@@ -141,6 +208,12 @@ describe('Test of Tabs', () => {
 
       let rdTabTitle = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabTitle');
       expect(React.findDOMNode(rdTabTitle).className).contain('myTabTitle');
+
+      let rdTabBeforeTitle = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBeforeTitle');
+      expect(React.findDOMNode(rdTabBeforeTitle).className).contain('myTabBeforeTitle');
+
+      let rdTabAfterTitle = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabAfterTitle');
+      expect(React.findDOMNode(rdTabAfterTitle).className).contain('myTabAfterTitle');
 
       let rdTabActive = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
       expect(React.findDOMNode(rdTabActive).className).contain('myTabActive');
@@ -237,6 +310,8 @@ describe('Test of Tabs', () => {
       tabBarAfter: 'myTabBarAfter',
       tab:      'myTab',
       tabTitle: 'myTabTitle',
+      tabBeforeTitle: 'myTabBeforeTitle',
+      tabAfterTitle: 'myTabAfterTitle',
       tabCloseIcon: 'myTabCloseIcon',
       tabBefore: 'myTabBefore',
       tabAfter: 'myTabAfter',
@@ -246,6 +321,8 @@ describe('Test of Tabs', () => {
     const tabClassNames = {
       tab:      'mySpecialTab',
       tabTitle: 'mySpecialTabTitle',
+      tabBeforeTitle: 'mySpecialTabBeforeTitle',
+      tabAfterTitle: 'mySpecialTabAfterTitle',
       tabCloseIcon: 'mySpecialTabCloseIcon',
       tabBefore: 'mySpecialTabBefore',
       tabAfter: 'mySpecialTabAfter',
@@ -253,7 +330,7 @@ describe('Test of Tabs', () => {
     };
 
     const tabs = [
-      (<Tab key={'tab1'} title={'tab1'} tabClassNames={tabClassNames}>
+      (<Tab key={'tab1'} title={'tab1'} tabClassNames={tabClassNames} >
         <div>
           <h1>tab1Content</h1>
         </div>
@@ -295,6 +372,14 @@ describe('Test of Tabs', () => {
       let rdTabTitle = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
       expect(React.findDOMNode(rdTabTitle[0]).className).contain('mySpecialTabTitle');
       expect(React.findDOMNode(rdTabTitle[1]).className).not.contain('mySpecialTabTitle');
+
+      let rdTabBeforeTitle = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBeforeTitle');
+      expect(React.findDOMNode(rdTabBeforeTitle[0]).className).contain('mySpecialTabBeforeTitle');
+      expect(React.findDOMNode(rdTabBeforeTitle[1]).className).not.contain('mySpecialTabBeforeTitle');
+
+      let rdTabAfterTitle = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfterTitle');
+      expect(React.findDOMNode(rdTabAfterTitle[0]).className).contain('mySpecialTabAfterTitle');
+      expect(React.findDOMNode(rdTabAfterTitle[1]).className).not.contain('mySpecialTabAfterTitle');
 
       let rdTabActive = TestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
       expect(React.findDOMNode(rdTabActive).className).contain('mySpecialTabActive');
