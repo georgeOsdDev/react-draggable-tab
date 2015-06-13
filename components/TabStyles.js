@@ -9,6 +9,12 @@ let StyleSheet = require('react-style');
 const TabStyles = StyleSheet.create({
 
   wrapper: {
+    height: '100%',
+    width: '100%',
+    position: 'relative'
+  },
+
+  relative: {
     position: 'relative'
   },
 
@@ -25,13 +31,16 @@ const TabStyles = StyleSheet.create({
     userSelect: 'none',
     margin: 0,
     listStyle: 'none',
-    outline: '0px'
+    outline: '0px',
+    overflowX: 'scroll',
+    minWidth: '95%',
+    maxWidth: '95%'
   },
 
   tabBarAfter: {
     content: '',
     position: 'absolute',
-    bottom: '0',
+    bottom: '-5px',
     height: '5px',
     left: '0',
     right: '0',
@@ -48,7 +57,6 @@ const TabStyles = StyleSheet.create({
     fontSize: '11px',
     position: 'relative',
     marginLeft: '5px',
-    paddingTop: '.5em',
     paddingLeft: '15px',
     paddingRight: '24px',
     WebkutBoxFlex: 1,
@@ -102,7 +110,6 @@ const TabStyles = StyleSheet.create({
     flex: 2,
     zIndex: 1,
     color: '#ffffff',
-    paddingTop: '5px',
     fontSize: '13px',
     backgroundImage: 'linear-gradient(#343434, #222222)'
   },
@@ -111,11 +118,11 @@ const TabStyles = StyleSheet.create({
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
-    top: '5px',
+    marginTop: '8px',
     float: 'left',
     textAlign: 'center',
     postion: 'relative',
-    width: '70%',
+    width: '90%',
     color: 'rgb(170, 170, 170)'
   },
 
@@ -128,19 +135,20 @@ const TabStyles = StyleSheet.create({
   },
 
   tabTitleActive: {
-    paddingRight: '10px',
     lineHeight: '1.5em',
-    color: 'rgb(255, 255, 255)'
+    color: 'rgb(255, 255, 255)',
+    marginTop:'6px'
+
   },
 
   tabCloseIcon:{
     cursor: 'pointer',
     font: '14px/100% arial, sans-serif',
+    width: '10%',
     right: '5px',
+    marginTop: '8px',
     textDecoration: 'none',
     textShadow: '0 1px 0 #fff',
-    top: '5px',
-
     float: 'right',
     fontSize: '1.5em',
     lineHeight: '1em',
@@ -162,7 +170,22 @@ const TabStyles = StyleSheet.create({
     width: '25px',
     height: '26px',
     marginLeft: '20px'
+  },
+
+  beforeTitle: {
+    position:'absolute',
+    top: '8px',
+    left: '-8px',
+    zIndex: 2
+  },
+
+  afterTitle: {
+    position:'absolute',
+    top: '8px',
+    right: '16px',
+    zIndex: 2
   }
+
 
 });
 

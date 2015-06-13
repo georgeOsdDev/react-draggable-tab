@@ -1,7 +1,7 @@
 # React-draggable-tab [![Build Status](https://travis-ci.org/georgeOsdDev/react-draggable-tab.svg?branch=develop)](https://travis-ci.org/georgeOsdDev/react-draggable-tab) [![npm version](https://badge.fury.io/js/react-draggable-tab.svg)](http://badge.fury.io/js/react-draggable-tab)
 
 
-[![Gyazo](http://i.gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6.gif)](http://gyazo.com/faea8029a68a9c1ea9bf4a588e5ac5a6)
+[![Gyazo](http://i.gyazo.com/42d408d288292f62fbb8d650897acbc4.gif)](http://gyazo.com/42d408d288292f62fbb8d650897acbc4)
 
 Atom like draggable tab react component.
 
@@ -27,34 +27,40 @@ npm install --save react-draggable-tab
   * `key`: *unique* key in `TabList`.
     `React.PropTypes.string.isRequired`
 
+  * `beforeTitle`: element to show in tab. eg icon.
+    `React.PropTypes.element`
+
   * `title`: string to show in tab.
     `React.PropTypes.string.isRequired`
+
+  * `afterTitle`: element to show in tab. eg: notification badge
+    `React.PropTypes.element`
 
   * `disableClose`: If `true`, closeButton will not be appeared in tab.
     `React.PropTypes.bool` (Default `false`)
 
+  * `beforeTitle`:
+
 ###### Style (for each tab)
 
   * `tabClassNames`: classNames which will be **added** to rendered elements.
-   * `tabBar`: base `ul` element of tab bar (defult: `rdTabBar`)
-   * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector (defult: `rdTabBarAfter`)
    * `tab`: base `li` element of tab (defult: `rdTab`)
    * `tabBefore`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
    * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
    * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
+   * `tabBeforeTitle`: `span` element of tab before title (defult: `tabBeforeTitle`)
+   * `tabAfterTitle`: `span` element of tab after title (defult: `tabAfterTitle`)
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
-   * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
+   * `tabActive`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
   * `tabStyles`: Inline styles which will be **overwritten** default and common-tabs inline styles.
-   * `tabBar`: base `ul` element of tab bar
-   * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector
    * `tab`: base `li` element of tab
    * `tabBefore`: before element of `li` which emulate `:Before` selector.
    * `tabAfter`: after element of `li` which emulate `:After` selector.
    * `tabTitle`: `span` element of tab title
-   * `tabActove`: selected tab's `li`
-   * `tabBeforeActove`: selected tab's `li` before
-   * `tabAfterActove`: selected tab's `li` after
+   * `tabActive`: selected tab's `li`
+   * `tabBeforeActive`: selected tab's `li` before
+   * `tabAfterActive`: selected tab's `li` after
    * `tabTitleActive`: selected tab's title
    * `tabCloseIcon`: base `span` element of close icon
    * `tabCloseIconOnHover`: base `span` element of close icon when hover
@@ -84,8 +90,10 @@ npm install --save react-draggable-tab
    * `tabBefore`: before element of `li` which emulate `:Before` selector (defult: `rdTabBefore`)
    * `tabAfter`: after element of `li` which emulate `:After` selector (defult: `rdTabAfter`)
    * `tabTitle`: `span` element of tab title (defult: `rdTabTitle`)
+   * `tabBeforeTitle`: `span` element of tab before title (defult: `rdTabBeforeTitle`)
+   * `tabBeforeTitle`: `span` element of tab after title (defult: `rdTabAfterTitle`)
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
-   * `tabActove`: selected tab's `li`, before, after (defult: `rdTabActive`)
+   * `tabActive`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
   * `tabsStyles`: Inline styles which will be **overwritten** default inline styles.
    * `tabBar`: base `ul` element of tab bar
@@ -94,9 +102,9 @@ npm install --save react-draggable-tab
    * `tabBefore`: before element of `li` which emulate `:Before` selector.
    * `tabAfter`: after element of `li` which emulate `:After` selector.
    * `tabTitle`: `span` element of tab title
-   * `tabActove`: selected tab's `li`
-   * `tabBeforeActove`: selected tab's `li` before
-   * `tabAfterActove`: selected tab's `li` after
+   * `tabActive`: selected tab's `li`
+   * `tabBeforeActive`: selected tab's `li` before
+   * `tabAfterActive`: selected tab's `li` after
    * `tabTitleActive`: selected tab's title
    * `tabCloseIcon`: base `span` element of close icon
    * `tabCloseIconOnHover`: base `span` element of close icon when hover
@@ -126,55 +134,38 @@ npm install --save react-draggable-tab
 class App extends React.Component {
   constructor(props) {
     super(props);
+    let icon = (<image src='icon.png' style={{height:'13px'}}/>);
+    let fonticon = (<icon className='icon-html5'/>);
+    let badge = (<DynamicTabBadge />);
+
     this.state = {
       tabs:[
-        (<Tab key={'tab0'} title={'fixedTab'} disableClose={true} >
+        (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} >
           <div>
             <h1>This tab cannot close</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab1'} title={'1stTab'} >
+        (<Tab key={'tab1'} title={'1stTab'} beforeTitle={icon} >
           <div>
             <h1>This is tab1</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} >
+        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} beforeTitle={fonticon} >
           <div>
             <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             </pre>
           </div>
         </Tab>),
-        this._getDynamicTab()
+        (<Tab key={'tab3'} title={'Dynamic tab'} afterTitle={badge}>
+          <DynamicTabContent/>
+        </Tab>)
       ],
-      textvalue: ''
+      badgeCount: 0
     };
   }
 
-  _getDynamicTab() {
-    return (
-    <Tab key='tab3' title={'3rdTab'} >
-      <div>
-        <h1>TAB3!!! This tab dynamically change</h1>
-        <textarea value={this.state ? this.state.textValue: ''} onChange={this._handleTextChange.bind(this)}></textarea>
-      </div>
-    </Tab>);
-  }
-
-  _handleTextChange(e) {
-    this.setState({textValue: e.target.value});
-  }
-
-  _replaceDynamicTab(tabs) {
-    return _.map(tabs, (tab) => {
-      if(tab.key === 'tab3') {
-        return this._getDynamicTab();
-      } else {
-        return tab;
-      }
-    });
-  }
-
   handleTabSelect(e, key, currentTabs) {
+    console.log('handleTabSelect key:', key);
     this.setState({selectedTab: key, tabs: currentTabs});
   }
 
@@ -191,7 +182,7 @@ class App extends React.Component {
   handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
     const key = 'newTab_' + Date.now();
-    let newTab = (<Tab key={key} title='untitle'>
+    let newTab = (<Tab key={key} title='untitled'>
                     <div>
                       <h1>New Empty Tab</h1>
                     </div>
@@ -199,26 +190,24 @@ class App extends React.Component {
     let newTabs = currentTabs.concat([newTab]);
 
     this.setState({
-      tabs: this._replaceDynamicTab(newTabs),
+      tabs: newTabs,
       selectedTab: key
     });
   }
 
   render() {
 
-    let tabs = this._replaceDynamicTab(this.state.tabs)
-
     return (
       <Tabs
-        tabClassNames={tabClassNames}
-        tabStyles={tabStyles}
+        tabsClassNames={tabsClassNames}
+        tabsStyles={tabsStyles}
         selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
         onTabSelected={this.handleTabSelect.bind(this)}
         onTabClosed={this.handleTabClose.bind(this)}
         onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
         onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-        tabs={tabs}>
-      </Tabs>
+        tabs={this.state.tabs}
+      />
     )
   }
 };
@@ -243,7 +232,7 @@ npm test
 * Dynamic tab content.
 
 `Tabs` do not care any change in `Tab` content.
-`tabs` needs update by your application side.
+content needs update by your application side.
 See `3rdTab` in example.
 
 

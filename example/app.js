@@ -5,10 +5,13 @@ import React from 'react/addons';
 import Tabs  from '../components/Tabs';
 import Tab   from '../components/Tab';
 
+import DynamicTabContent from './DynamicTabContent'
+import DynamicTabBadge from './DynamicTabBadge'
+
 //allow react dev tools work
 window.React = React;
 
-const tabClassNames = {
+const tabsClassNames = {
   tabBar: 'myTabBar',
   tabBarAfter: 'myTabBarAfter',
   tab:      'myTab',
@@ -18,7 +21,7 @@ const tabClassNames = {
   tabAfter: 'myTabAfter'
 }
 
-const tabStyles = {
+const tabsStyles = {
   tabBar: {},
   tab:{},
   tabTitle: {},
@@ -30,56 +33,39 @@ const tabStyles = {
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    let icon = (<image src='icon.png' style={{height:'13px'}}/>);
+    let fonticon = (<icon className='icon-html5'/>);
+    let badge = (<DynamicTabBadge />);
+
     this.state = {
       tabs:[
-        (<Tab key={'tab0'} title={'fixedTab'} disableClose={true} >
+        (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} >
           <div>
             <h1>This tab cannot close</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab1'} title={'1stTab'} >
+        (<Tab key={'tab1'} title={'1stTab'} beforeTitle={icon} >
           <div>
             <h1>This is tab1</h1>
           </div>
         </Tab>),
-        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} >
+        (<Tab key={'tab2'} title={'2ndTab Too long Toooooooooooooooooo long'} beforeTitle={fonticon} >
           <div>
             <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
             </pre>
           </div>
         </Tab>),
-        this._getDynamicTab()
+        (<Tab key={'tab3'} title={'Dynamic tab'} afterTitle={badge}>
+          <DynamicTabContent/>
+        </Tab>)
       ],
-      textvalue: ''
+      badgeCount: 0
     };
   }
 
-  _getDynamicTab() {
-    return (
-    <Tab key='tab3' title={'3rdTab'} >
-      <div>
-        <h1>TAB3!!! This tab dynamically change</h1>
-        <textarea value={this.state ? this.state.textValue: ''} onChange={this._handleTextChange.bind(this)}></textarea>
-      </div>
-    </Tab>);
-  }
-
-  _handleTextChange(e) {
-    this.setState({textValue: e.target.value});
-  }
-
-  _replaceDynamicTab(tabs) {
-    return _.map(tabs, (tab) => {
-      if(tab.key === 'tab3') {
-        return this._getDynamicTab();
-      } else {
-        return tab;
-      }
-    });
-  }
-
   handleTabSelect(e, key, currentTabs) {
-    console.log('tabSelected key:', key);
+    console.log('handleTabSelect key:', key);
     this.setState({selectedTab: key, tabs: currentTabs});
   }
 
@@ -96,7 +82,7 @@ class App extends React.Component {
   handleTabAddButtonClick(e, currentTabs) {
     // key must be unique
     const key = 'newTab_' + Date.now();
-    let newTab = (<Tab key={key} title='untitled'>
+    let newTab = (<Tab key={key} title='untitled' >
                     <div>
                       <h1>New Empty Tab</h1>
                     </div>
@@ -104,26 +90,32 @@ class App extends React.Component {
     let newTabs = currentTabs.concat([newTab]);
 
     this.setState({
-      tabs: this._replaceDynamicTab(newTabs),
+      tabs: newTabs,
       selectedTab: key
     });
   }
 
-  render() {
+  _handleBadgeInc() {
+    this.setState({badgeCount: this.state.badgeCount + 1});
+  }
 
-    let tabs = this._replaceDynamicTab(this.state.tabs);
+  _handleBadgeDec() {
+    this.setState({badgeCount: this.state.badgeCount + 1});
+  }
+
+  render() {
 
     return (
       <Tabs
-        tabClassNames={tabClassNames}
-        tabStyles={tabStyles}
+        tabsClassNames={tabsClassNames}
+        tabsStyles={tabsStyles}
         selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
         onTabSelected={this.handleTabSelect.bind(this)}
         onTabClosed={this.handleTabClose.bind(this)}
         onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
         onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-        tabs={tabs}>
-      </Tabs>
+        tabs={this.state.tabs}
+      />
     )
   }
 };
