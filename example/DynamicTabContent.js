@@ -2,6 +2,7 @@
 
 import _     from 'lodash';
 import React from 'react/addons';
+
 class DynamicTabContent extends React.Component {
   constructor(props) {
     super(props);
@@ -13,6 +14,7 @@ class DynamicTabContent extends React.Component {
   _handleTextChange(e) {
     this.setState({textValue: e.target.value});
   }
+
   render() {
 
     return (
