@@ -2,6 +2,8 @@
 
 ### Ver 0.2.2(Next release, Not released)
 
+  * #13 [Improve tabBarAfter style](https://github.com/georgeOsdDev/react-draggable-tab/issues/13)
+
 ### Ver 0.2.1
 
   * #5 [Enable to add badge / favicon like chrome](https://github.com/georgeOsdDev/react-draggable-tab/issues/5)

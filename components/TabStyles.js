@@ -34,17 +34,17 @@ const TabStyles = StyleSheet.create({
     outline: '0px',
     overflowX: 'scroll',
     minWidth: '95%',
-    maxWidth: '95%'
+    maxWidth: '99%'
   },
 
   tabBarAfter: {
     content: '',
     position: 'absolute',
-    bottom: '-5px',
+    top: '26px',
     height: '5px',
     left: '0',
     right: '0',
-    zIndex: 100,
+    zIndex: 2,
     backgroundColor: '#222222',
     borderBottom: '1px solid #111111',
     pointerEvents: 'none'
