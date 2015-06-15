@@ -1,6 +1,11 @@
 ## Change Log
 
-### Ver 0.2.2(Next release, Not released)
+### Ver 0.2.3(Next release, Not released)
+
+
+### Ver 0.2.2
+
+  * #13 [Improve tabBarAfter style](https://github.com/georgeOsdDev/react-draggable-tab/issues/13)
 
 ### Ver 0.2.1
 

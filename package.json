@@ -1,6 +1,6 @@
 {
   "name": "react-draggable-tab",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Draggable chrome like tab react component ",
   "main": "index.js",
   "scripts": {

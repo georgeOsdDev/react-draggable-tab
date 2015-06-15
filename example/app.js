@@ -106,16 +106,21 @@ class App extends React.Component {
   render() {
 
     return (
-      <Tabs
-        tabsClassNames={tabsClassNames}
-        tabsStyles={tabsStyles}
-        selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
-        onTabSelected={this.handleTabSelect.bind(this)}
-        onTabClosed={this.handleTabClose.bind(this)}
-        onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
-        onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-        tabs={this.state.tabs}
-      />
+      <div>
+        <Tabs
+          tabsClassNames={tabsClassNames}
+          tabsStyles={tabsStyles}
+          selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
+          onTabSelected={this.handleTabSelect.bind(this)}
+          onTabClosed={this.handleTabClose.bind(this)}
+          onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
+          onTabPositionChanged={this.handleTabPositionChange.bind(this)}
+          tabs={this.state.tabs}
+        />
+        <p style={{position: 'fixed', 'bottom': '10px'}}>
+          Source code can be found at <a href='https://github.com/georgeOsdDev/react-draggable-tab/tree/master/example'>GitHub</a>
+        </p>
+      </div>
     )
   }
 };
