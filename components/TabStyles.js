@@ -33,7 +33,7 @@ const TabStyles = StyleSheet.create({
     listStyle: 'none',
     outline: '0px',
     overflowY: 'hidden',
-    overflowX: 'scroll',
+    overflowX: 'hiden',
     minWidth: '95%',
     maxWidth: '99%'
   },
