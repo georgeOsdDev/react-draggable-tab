@@ -2,6 +2,11 @@
 
 import _     from 'lodash';
 import React from 'react/addons';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+injectTapEventPlugin();
+import {Dialog, TextField, Styles} from 'material-ui';
+const ThemeManager = new Styles.ThemeManager();
+
 import Tabs  from '../components/Tabs';
 import Tab   from '../components/Tab';
 
@@ -64,6 +69,13 @@ class App extends React.Component {
     };
   }
 
+  getChildContext() {
+    return {
+      muiTheme: ThemeManager.getCurrentTheme()
+    };
+  }
+
+
   handleTabSelect(e, key, currentTabs) {
     console.log('handleTabSelect key:', key);
     this.setState({selectedTab: key, tabs: currentTabs});
@@ -95,6 +107,37 @@ class App extends React.Component {
     });
   }
 
+  handleTabDoubleClick(e, key) {
+
+    let tab = _.find(this.state.tabs, (tab) => {
+      return tab.key === key;
+    });
+    this.setState({
+      editTabKey: key
+    }, () => {
+      this.refs.input.setValue(tab.props.title);
+      this.refs.dialog.show();
+    });
+  }
+
+  _onDialogSubmit() {
+    let title = this.refs.input.getValue();
+    let newTabs = _.map(this.state.tabs, (tab) => {
+      if(tab.key === this.state.editTabKey) {
+        return React.cloneElement(tab, {title: title});
+      } else {
+        return tab;
+      }
+    });
+    this.setState({tabs: newTabs}, () => {
+      this.refs.dialog.dismiss();
+    });
+  }
+
+  _onDialogCancel() {
+    this.refs.dialog.dismiss();
+  }
+
   _handleBadgeInc() {
     this.setState({badgeCount: this.state.badgeCount + 1});
   }
@@ -104,6 +147,12 @@ class App extends React.Component {
   }
 
   render() {
+
+    let standardActions = [
+      { text: 'Cancel', onClick: this._onDialogCancel.bind(this) },
+      { text: 'Submit', onClick: this._onDialogSubmit.bind(this), ref: 'submit' }
+    ];
+
 
     return (
       <div>
@@ -115,14 +164,28 @@ class App extends React.Component {
           onTabClosed={this.handleTabClose.bind(this)}
           onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
           onTabPositionChanged={this.handleTabPositionChange.bind(this)}
+          onTabDoubleClicked={this.handleTabDoubleClick.bind(this)}
           tabs={this.state.tabs}
         />
+        <Dialog
+          title="Change tab name"
+          ref="dialog"
+          actions={standardActions}
+          actionFocus="submit"
+          modal={true}>
+          <TextField
+          ref='input' style={{width: '90%'}}/>
+        </Dialog>
         <p style={{position: 'fixed', 'bottom': '10px'}}>
           Source code can be found at <a href='https://github.com/georgeOsdDev/react-draggable-tab/tree/master/example'>GitHub</a>
         </p>
       </div>
     )
   }
+};
+
+App.childContextTypes = {
+  muiTheme: React.PropTypes.object
 };
 
 React.render(<App/>, document.getElementById('tabs'));
