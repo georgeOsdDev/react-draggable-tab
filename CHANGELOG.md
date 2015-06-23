@@ -1,6 +1,8 @@
 ## Change Log
 
-### Ver 0.2.3(Next release, Not released)
+### Ver 0.2.4(Next release, Not released)
+
+### Ver 0.2.3
 
   * #16 [Add doubleClick handler on tab title](https://github.com/georgeOsdDev/react-draggable-tab/issues/16)
 
