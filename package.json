@@ -1,6 +1,6 @@
 {
   "name": "react-draggable-tab",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Draggable chrome like tab react component ",
   "main": "index.js",
   "scripts": {
@@ -45,7 +45,9 @@
     "karma-spec-reporter": "0.0.19",
     "mocha": "^2.2.5",
     "react-notification-badge": "^0.1.0",
-    "watchify": "^3.2.1"
+    "watchify": "^3.2.1",
+    "react-tap-event-plugin": "^0.1.7",
+    "material-ui": "^0.9.2"
   },
   "dependencies": {
     "immutable": "^3.7.3",

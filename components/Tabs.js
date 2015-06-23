@@ -229,6 +229,12 @@ class Tabs extends React.Component {
     }
   }
 
+  doubleClickHandlerWithKey(key){
+    return (e) => {
+      this.props.onTabDoubleClicked(e, key);
+    };
+  }
+
   render() {
 
     // override inline tabs styles
@@ -322,7 +328,7 @@ class Tabs extends React.Component {
               onMouseDown={this.handleMouseDown.bind(this, tab.key)}
               ref={tab.key}>
             <span style={TabStyles.beforeTitle} className={tabBeforeTitleClasses}>{tab.props.beforeTitle}</span>
-            <p style={tabTiteleStyle} className={tabTitleClasses}>{tabTitle}</p>
+            <p onDoubleClick={this.doubleClickHandlerWithKey(tab.key)} style={tabTiteleStyle} className={tabTitleClasses}>{tabTitle}</p>
             <span style={TabStyles.afterTitle} className={tabAfterTitleClasses}>{tab.props.afterTitle}</span>
             {closeButton}
             <span style={tabBeforeStyle} className={tabBeforeClasses}></span>
@@ -367,7 +373,8 @@ Tabs.defaultProps = {
   onTabSelected: () => {},
   onTabClosed: () => {},
   onTabAddButtonClicked: () => {},
-  onTabPositionChanged: () => {}
+  onTabPositionChanged: () => {},
+  onTabDoubleClicked: () => {}
 };
 
 Tabs.propTypes = {
@@ -404,7 +411,8 @@ Tabs.propTypes = {
   onTabSelected: React.PropTypes.func,
   onTabClosed: React.PropTypes.func,
   onTabAddButtonClicked: React.PropTypes.func,
-  onTabPositionChanged: React.PropTypes.func
+  onTabPositionChanged: React.PropTypes.func,
+  onTabDoubleClicked: React.PropTypes.func
 };
 
 export default Tabs;
