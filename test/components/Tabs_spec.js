@@ -585,6 +585,92 @@ describe('Test of Tabs', () => {
     });
   });
 
+  describe('when Tab clicked', function () {
+    let called = false;
+    let key = '';
+    let currentTabs = [];
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          onTabSelected={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
+          selectedTab="tab1"
+          tabs={tabs} />);
+
+      let rdTabTitles = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      TestUtils.Simulate.click(React.findDOMNode(rdTabTitles[2]));
+    });
+
+    it('should call onTabSelected prop', () => {
+      expect(called).to.be.equal(true);
+    });
+    it('should pass key and currentTabs to onTabSelected', () => {
+      expect(key).to.be.eql('tab3');
+
+      expect(currentTabs).to.be.length(3);
+      expect(currentTabs[0].key).to.be.equal('tab1');
+    });
+  });
+
+  describe('when Tab double clicked', function () {
+    let called = false;
+    let key = '';
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          onTabDoubleClicked={function(e, _key){called = true; key = _key; }}
+          selectedTab="tab1"
+          tabs={tabs} />);
+
+      let rdTabTitles = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      TestUtils.Simulate.doubleClick(React.findDOMNode(rdTabTitles[2]));
+    });
+
+    it('should call onTabDoubleClicked prop', () => {
+      expect(called).to.be.equal(true);
+    });
+    it('should pass key', () => {
+      expect(key).to.be.eql('tab3');
+    });
+  });
+
   describe('when unselected Tab closed', function () {
     let called1 = false;
     let called2 = false;
