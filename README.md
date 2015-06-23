@@ -128,6 +128,8 @@ npm install --save react-draggable-tab
     let newTabs = currentTabs.concat([newTab]);
     ```
 
+  * `onTabDoubleClicked(e, key)`: Called when `title` was double clicked.
+
 ## Usage example
 
 ```javascript
