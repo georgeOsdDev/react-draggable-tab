@@ -3,6 +3,7 @@
 import React from 'react/addons';
 import classNames from 'classnames';
 import TabStyles from './TabStyles';
+import StyleOverride from '../helpers/styleOverride';
 
 class CloseIcon extends React.Component {
   constructor(props) {
@@ -28,13 +29,18 @@ class CloseIcon extends React.Component {
     let iconStyle = [this.props.style];
     let className = this.props.className;
     if (this.state.hover) {
-      iconStyle.push(TabStyles.tabCloseIconOnHover, this.props.hoverStyle);
+      iconStyle = StyleOverride.merge(this.props.style,
+                    StyleOverride.merge(TabStyles.tabCloseIconOnHover, this.props.hoverStyle)
+                  );
       className = classNames(this.props.className, 'hover');
+    } else {
+      iconStyle = this.props.style;
+      className = this.props.className;
     }
 
     return (
       <span
-        styles={[iconStyle]}
+        style={iconStyle}
         className={className}
         onMouseOver={this.handleMouseOver.bind(this)}
         onMouseOut={this.handleMouseOut.bind(this)}
