@@ -1,6 +1,10 @@
 ## Change Log
 
-### Ver 0.3.0(Next release, Not released)
+### Ver 0.3.1(Next release, Not released)
+
+### Ver 0.3.0
+
+  This release contains breaking change.
 
   * #20 [Remove 'ed' from event handler name](https://github.com/georgeOsdDev/react-draggable-tab/issues/20) (Breaking change)
   * #21 [Unexpected behaviour with NODE_ENV=production](https://github.com/georgeOsdDev/react-draggable-tab/issues/21)
