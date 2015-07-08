@@ -34,10 +34,11 @@ describe('Test of Tabs', () => {
 
     expect(component.props.tabAddButton.type).to.be.equal('span');
 
-    expect(typeof component.props.onTabSelected).to.be.equal('function');
-    expect(typeof component.props.onTabClosed).to.be.equal('function');
-    expect(typeof component.props.onTabAddButtonClicked).to.be.equal('function');
-    expect(typeof component.props.onTabPositionChanged).to.be.equal('function');
+    expect(typeof component.props.onTabSelect).to.be.equal('function');
+    expect(typeof component.props.onTabClose).to.be.equal('function');
+    expect(typeof component.props.onTabAddButtonClick).to.be.equal('function');
+    expect(typeof component.props.onTabPositionChange).to.be.equal('function');
+    expect(typeof component.props.onTabDoubleClick).to.be.equal('function');
 
   });
 
@@ -97,10 +98,10 @@ describe('Test of Tabs', () => {
 
   describe('add optional element before/after Title', () => {
 
-    const el1 =(<i className='icon icon1' />);
-    const el2 =(<i className='icon icon2' />);
-    const el3 =(<i className='icon icon3' />);
-    const el4 =(<i className='icon icon4' />);
+    const el1 = (<i className='icon icon1' />);
+    const el2 = (<i className='icon icon2' />);
+    const el3 = (<i className='icon icon3' />);
+    const el4 = (<i className='icon icon4' />);
 
     const tabs = [
       (<Tab key={'tab1'} title={'tab1'} beforeTitle={el1}>
@@ -127,7 +128,7 @@ describe('Test of Tabs', () => {
       let t1BeforeTitle = TestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabBeforeTitle');
       let t1BeforeTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t1BeforeTitle, 'i');
       expect(t1BeforeTitleIcon).to.be.length(1);
-      expect(React.findDOMNode(t1BeforeTitleIcon[0]).className.indexOf('icon1') > 0).to.be.equal(true)
+      expect(React.findDOMNode(t1BeforeTitleIcon[0]).className.indexOf('icon1') > 0).to.be.equal(true);
 
       let t1AfterTitle = TestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabAfterTitle');
       let t1AfterTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t1AfterTitle, 'i');
@@ -142,21 +143,21 @@ describe('Test of Tabs', () => {
       let t2AfterTitle = TestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabAfterTitle');
       let t2AfterTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t2AfterTitle, 'i');
       expect(t2AfterTitleIcon).to.be.length(1);
-      expect(React.findDOMNode(t2AfterTitleIcon[0]).className.indexOf('icon2') > 0).to.be.equal(true)
+      expect(React.findDOMNode(t2AfterTitleIcon[0]).className.indexOf('icon2') > 0).to.be.equal(true);
     });
 
     it('will insert custome element before/affter title', () => {
       let t3BeforeTitle = TestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabBeforeTitle');
       let t3BeforeTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t3BeforeTitle, 'i');
       expect(t3BeforeTitleIcon).to.be.length(1);
-      expect(React.findDOMNode(t3BeforeTitleIcon[0]).className.indexOf('icon3') > 0).to.be.equal(true)
+      expect(React.findDOMNode(t3BeforeTitleIcon[0]).className.indexOf('icon3') > 0).to.be.equal(true);
 
       let t3AfterTitle = TestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabAfterTitle');
       let t3AfterTitleIcon = TestUtils.scryRenderedDOMComponentsWithTag(t3AfterTitle, 'i');
       expect(t3AfterTitleIcon).to.be.length(1);
-      expect(React.findDOMNode(t3AfterTitleIcon[0]).className.indexOf('icon4') > 0).to.be.equal(true)
+      expect(React.findDOMNode(t3AfterTitleIcon[0]).className.indexOf('icon4') > 0).to.be.equal(true);
     });
-  })
+  });
 
   describe('add custom className to all tabs ', function(){
 
@@ -501,7 +502,7 @@ describe('Test of Tabs', () => {
 
   });
 
-  describe('when TabAddButtonClicked clicked', function () {
+  describe('when TabAddButton clicked', function () {
     let called = false;
     let currentTabs = [];
 
@@ -521,7 +522,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          onTabAddButtonClicked={function(e, _currentTabs){called = true; currentTabs = _currentTabs;}}
+          onTabAddButtonClick={function(e, _currentTabs){called = true; currentTabs = _currentTabs; }}
           selectedTab="tab1"
           tabs={tabs} />);
 
@@ -529,10 +530,10 @@ describe('Test of Tabs', () => {
       TestUtils.Simulate.click(React.findDOMNode(button));
     });
 
-    it('should call onTabAddButtonClicked prop', () => {
+    it('should call onTabAddButtonClick prop', () => {
       expect(called).to.be.equal(true);
     });
-    it('should pass currentTabs to onTabAddButtonClicked', () => {
+    it('should pass currentTabs to onTabAddButtonClick', () => {
       expect(currentTabs).to.be.length(2);
       expect(currentTabs[0].key).to.be.equal('tab1');
     });
@@ -566,7 +567,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          onTabSelected={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
+          onTabSelect={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
           selectedTab="tab1"
           tabs={tabs} />);
 
@@ -574,10 +575,10 @@ describe('Test of Tabs', () => {
       TestUtils.Simulate.click(React.findDOMNode(rdTabTitles[2]));
     });
 
-    it('should call onTabSelected prop', () => {
+    it('should call onTabSelect prop', () => {
       expect(called).to.be.equal(true);
     });
-    it('should pass key and currentTabs to onTabSelected', () => {
+    it('should pass key and currentTabs to onTabSelect', () => {
       expect(key).to.be.eql('tab3');
 
       expect(currentTabs).to.be.length(3);
@@ -611,7 +612,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          onTabSelected={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
+          onTabSelect={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
           selectedTab="tab1"
           tabs={tabs} />);
 
@@ -619,10 +620,10 @@ describe('Test of Tabs', () => {
       TestUtils.Simulate.click(React.findDOMNode(rdTabTitles[2]));
     });
 
-    it('should call onTabSelected prop', () => {
+    it('should call onTabSelect prop', () => {
       expect(called).to.be.equal(true);
     });
-    it('should pass key and currentTabs to onTabSelected', () => {
+    it('should pass key and currentTabs to onTabSelect', () => {
       expect(key).to.be.eql('tab3');
 
       expect(currentTabs).to.be.length(3);
@@ -655,7 +656,7 @@ describe('Test of Tabs', () => {
     before(() => {
       component = TestUtils.renderIntoDocument(
         <Tabs
-          onTabDoubleClicked={function(e, _key){called = true; key = _key; }}
+          onTabDoubleClick={function(e, _key){called = true; key = _key; }}
           selectedTab="tab1"
           tabs={tabs} />);
 
@@ -663,7 +664,7 @@ describe('Test of Tabs', () => {
       TestUtils.Simulate.doubleClick(React.findDOMNode(rdTabTitles[2]));
     });
 
-    it('should call onTabDoubleClicked prop', () => {
+    it('should call onTabDoubleClick prop', () => {
       expect(called).to.be.equal(true);
     });
     it('should pass key', () => {
@@ -701,8 +702,8 @@ describe('Test of Tabs', () => {
       component = TestUtils.renderIntoDocument(
         <Tabs
           tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
-          onTabClosed={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
-          onTabSelected={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
+          onTabClose={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
+          onTabSelect={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
           selectedTab="tab3"
           tabs={tabs} />);
 
@@ -711,10 +712,10 @@ describe('Test of Tabs', () => {
       TestUtils.Simulate.click(React.findDOMNode(tab2CloseButton));
     });
 
-    it('should call onTabClosed prop', () => {
+    it('should call onTabClose prop', () => {
       expect(called1).to.be.equal(true);
     });
-    it('should pass key and currentTabs to onTabClosed', () => {
+    it('should pass key and currentTabs to onTabClose', () => {
       expect(key1).to.be.eql('tab2');
 
       expect(currentTabs1).to.be.length(2);
@@ -758,8 +759,8 @@ describe('Test of Tabs', () => {
       component = TestUtils.renderIntoDocument(
         <Tabs
           tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
-          onTabClosed={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
-          onTabSelected={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
+          onTabClose={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
+          onTabSelect={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
           selectedTab="tab2"
           tabs={tabs} />);
 
@@ -768,10 +769,10 @@ describe('Test of Tabs', () => {
         TestUtils.Simulate.click(React.findDOMNode(tab2CloseButton));
     });
 
-    it('should call onTabClosed prop', () => {
+    it('should call onTabClose prop', () => {
       expect(called1).to.be.equal(true);
     });
-    it('should pass key and currentTabs to onTabClosed', () => {
+    it('should pass key and currentTabs to onTabClose', () => {
       expect(key1).to.be.eql('tab2');
 
       expect(currentTabs1).to.be.length(2);
@@ -816,8 +817,8 @@ describe('Test of Tabs', () => {
       component = TestUtils.renderIntoDocument(
         <Tabs
           tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
-          onTabClosed={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
-          onTabSelected={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
+          onTabClose={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
+          onTabSelect={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
           selectedTab="tab3"
           tabs={tabs} />);
 
@@ -826,10 +827,10 @@ describe('Test of Tabs', () => {
       TestUtils.Simulate.click(React.findDOMNode(tab3CloseButton));
     });
 
-    it('should call onTabClosed prop', () => {
+    it('should call onTabClose prop', () => {
       expect(called1).to.be.equal(true);
     });
-    it('should pass key and currentTabs to onTabClosed', () => {
+    it('should pass key and currentTabs to onTabClose', () => {
       expect(key1).to.be.eql('tab3');
 
       expect(currentTabs1).to.be.length(2);
@@ -880,7 +881,7 @@ describe('Test of Tabs', () => {
       React.render(
         <Tabs
           tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
-          onTabPositionChanged={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
+          onTabPositionChange={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
           selectedTab="tab1"
           tabs={tabs} />, document.body);
     });

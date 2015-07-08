@@ -111,16 +111,16 @@ npm install --save react-draggable-tab
 
 ##### Events
 
-  * `onTabSelected(e, key, currentTabs)`: Called when tab of key was selected.
+  * `onTabSelect(e, key, currentTabs)`: Called when tab of key was selected.
     `currentTabs` is array of tabs elements sorted with current order.
 
-  * `onTabClosed(e, key, currentTabs)`: Called when tab of key was closed.
+  * `onTabClose(e, key, currentTabs)`: Called when tab of key was closed.
     `currentTabs` is array of tabs elements sorted with current order.
 
-  * `onTabPositionChanged(e, key, currentTabs)`: Called when tab of key was moved.
+  * `onTabPositionChange(e, key, currentTabs)`: Called when tab of key was moved.
     `currentTabs` is array of tabs elements sorted with current order.
 
-  * `onTabAddButtonClicked(e, currentTabs)`: Called when `tab add button` was clicked.
+  * `onTabAddButtonClick(e, currentTabs)`: Called when `tab add button` was clicked.
     `currentTabs` is array of tabs elements sorted with current order.
     Basically you will concat `currentTabs` with new empty tab.
 
@@ -128,7 +128,7 @@ npm install --save react-draggable-tab
     let newTabs = currentTabs.concat([newTab]);
     ```
 
-  * `onTabDoubleClicked(e, key)`: Called when `title` was double clicked.
+  * `onTabDoubleClick(e, key)`: Called when `title` was double clicked.
 
 ## Usage example
 
@@ -204,10 +204,10 @@ class App extends React.Component {
         tabsClassNames={tabsClassNames}
         tabsStyles={tabsStyles}
         selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
-        onTabSelected={this.handleTabSelect.bind(this)}
-        onTabClosed={this.handleTabClose.bind(this)}
-        onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
-        onTabPositionChanged={this.handleTabPositionChange.bind(this)}
+        onTabSelect={this.handleTabSelect.bind(this)}
+        onTabClose={this.handleTabClose.bind(this)}
+        onTabAddButtonClick={this.handleTabAddButtonClick.bind(this)}
+        onTabPositionChange={this.handleTabPositionChange.bind(this)}
         tabs={this.state.tabs}
       />
     )

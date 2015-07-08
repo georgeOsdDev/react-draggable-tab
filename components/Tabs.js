@@ -168,7 +168,7 @@ class Tabs extends React.Component {
     newState.selectedTab = key;
     this.setState(newState, () => {
       if(swapedTabs) {
-        this.props.onTabPositionChanged(e, key, this._getOpenTabs(nextTabs));
+        this.props.onTabPositionChange(e, key, this._getOpenTabs(nextTabs));
       }
     });
   }
@@ -180,7 +180,7 @@ class Tabs extends React.Component {
       e.stopPropagation();
     } else {
       this.setState({selectedTab: key}, () => {
-        this.props.onTabSelected(e, key, this._getCurrentOpenTabs());
+        this.props.onTabSelect(e, key, this._getCurrentOpenTabs());
       });
     }
   }
@@ -205,15 +205,15 @@ class Tabs extends React.Component {
       selectedTab: nextSelected
     }, ()=>{
       let currentOpenTabs = this._getCurrentOpenTabs();
-      this.props.onTabClosed(e, key, currentOpenTabs);
+      this.props.onTabClose(e, key, currentOpenTabs);
       if (shoudBeNotifyTabChange) {
-        this.props.onTabSelected(e, nextSelected, currentOpenTabs);
+        this.props.onTabSelect(e, nextSelected, currentOpenTabs);
       }
     });
   }
 
   handleAddButtonClick(e) {
-    this.props.onTabAddButtonClicked(e, this._getCurrentOpenTabs());
+    this.props.onTabAddButtonClick(e, this._getCurrentOpenTabs());
   }
 
   getCloseButton(tab, style, classes, hoverStyleBase) {
@@ -231,7 +231,7 @@ class Tabs extends React.Component {
 
   doubleClickHandlerWithKey(key){
     return (e) => {
-      this.props.onTabDoubleClicked(e, key);
+      this.props.onTabDoubleClick(e, key);
     };
   }
 
@@ -370,11 +370,11 @@ Tabs.defaultProps = {
   },
   tabsStyles: {},
   tabAddButton: (<span>{'+'}</span>),
-  onTabSelected: () => {},
-  onTabClosed: () => {},
-  onTabAddButtonClicked: () => {},
-  onTabPositionChanged: () => {},
-  onTabDoubleClicked: () => {}
+  onTabSelect: () => {},
+  onTabClose: () => {},
+  onTabAddButtonClick: () => {},
+  onTabPositionChange: () => {},
+  onTabDoubleClick: () => {}
 };
 
 Tabs.propTypes = {
@@ -408,11 +408,11 @@ Tabs.propTypes = {
     tabCloseIconOnHover: React.PropTypes.object
   }),
   tabAddButton: React.PropTypes.element,
-  onTabSelected: React.PropTypes.func,
-  onTabClosed: React.PropTypes.func,
-  onTabAddButtonClicked: React.PropTypes.func,
-  onTabPositionChanged: React.PropTypes.func,
-  onTabDoubleClicked: React.PropTypes.func
+  onTabSelect: React.PropTypes.func,
+  onTabClose: React.PropTypes.func,
+  onTabAddButtonClick: React.PropTypes.func,
+  onTabPositionChange: React.PropTypes.func,
+  onTabDoubleClick: React.PropTypes.func
 };
 
 export default Tabs;
