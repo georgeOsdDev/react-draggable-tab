@@ -1,6 +1,8 @@
 ## Change Log
 
-### Ver 0.2.4(Next release, Not released)
+### Ver 0.3.0(Next release, Not released)
+
+  * #21 [Unexpected behaviour with NODE_ENV=production](https://github.com/georgeOsdDev/react-draggable-tab/issues/21)
 
 ### Ver 0.2.3
 

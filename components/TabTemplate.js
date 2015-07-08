@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import StyleOverride from '../helpers/styleOverride';
 
 const styles = {
   root: {
@@ -17,13 +18,14 @@ const styles = {
 class TabTemplate extends React.Component {
 
   render(){
-    let css = [styles.root];
+    let style;
     if (!this.props.selected) {
-      css.push(styles.unselected);
+      style = StyleOverride.merge(styles.root, styles.unselected);
+    } else {
+      style = styles.root;
     }
-
     return (
-      <div styles={css}>
+      <div style={style}>
         {this.props.children}
       </div>
     );
