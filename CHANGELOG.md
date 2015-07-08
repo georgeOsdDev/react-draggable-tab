@@ -2,6 +2,7 @@
 
 ### Ver 0.3.0(Next release, Not released)
 
+  * #20 [Remove 'ed' from event handler name](https://github.com/georgeOsdDev/react-draggable-tab/issues/20) (Breaking change)
   * #21 [Unexpected behaviour with NODE_ENV=production](https://github.com/georgeOsdDev/react-draggable-tab/issues/21)
 
 ### Ver 0.2.3

@@ -1,17 +1,17 @@
 'use strict';
 
-import _     from 'lodash';
+import _ from 'lodash';
 import React from 'react/addons';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import {Dialog, TextField, Styles} from 'material-ui';
 const ThemeManager = new Styles.ThemeManager();
 
-import Tabs  from '../components/Tabs';
-import Tab   from '../components/Tab';
+import Tabs from '../components/Tabs';
+import Tab from '../components/Tab';
 
-import DynamicTabContent from './DynamicTabContent'
-import DynamicTabBadge from './DynamicTabBadge'
+import DynamicTabContent from './DynamicTabContent';
+import DynamicTabBadge from './DynamicTabBadge';
 
 //allow react dev tools work
 window.React = React;
@@ -24,7 +24,7 @@ const tabsClassNames = {
   tabCloseIcon: 'tabCloseIcon',
   tabBefore: 'myTabBefore',
   tabAfter: 'myTabAfter'
-}
+};
 
 const tabsStyles = {
   tabBar: {},
@@ -33,7 +33,7 @@ const tabsStyles = {
   tabCloseIcon: {},
   tabBefore: {},
   tabAfter: {}
-}
+};
 
 class App extends React.Component {
   constructor(props) {
@@ -109,8 +109,8 @@ class App extends React.Component {
 
   handleTabDoubleClick(e, key) {
 
-    let tab = _.find(this.state.tabs, (tab) => {
-      return tab.key === key;
+    let tab = _.find(this.state.tabs, (t) => {
+      return t.key === key;
     });
     this.setState({
       editTabKey: key
@@ -159,12 +159,12 @@ class App extends React.Component {
         <Tabs
           tabsClassNames={tabsClassNames}
           tabsStyles={tabsStyles}
-          selectedTab={this.state.selectedTab ? this.state.selectedTab : "tab2"}
-          onTabSelected={this.handleTabSelect.bind(this)}
-          onTabClosed={this.handleTabClose.bind(this)}
-          onTabAddButtonClicked={this.handleTabAddButtonClick.bind(this)}
-          onTabPositionChanged={this.handleTabPositionChange.bind(this)}
-          onTabDoubleClicked={this.handleTabDoubleClick.bind(this)}
+          selectedTab={this.state.selectedTab ? this.state.selectedTab : 'tab2'}
+          onTabSelect={this.handleTabSelect.bind(this)}
+          onTabClose={this.handleTabClose.bind(this)}
+          onTabAddButtonClick={this.handleTabAddButtonClick.bind(this)}
+          onTabPositionChange={this.handleTabPositionChange.bind(this)}
+          onTabDoubleClick={this.handleTabDoubleClick.bind(this)}
           tabs={this.state.tabs}
         />
         <Dialog
@@ -180,9 +180,9 @@ class App extends React.Component {
           Source code can be found at <a href='https://github.com/georgeOsdDev/react-draggable-tab/tree/master/example'>GitHub</a>
         </p>
       </div>
-    )
+    );
   }
-};
+}
 
 App.childContextTypes = {
   muiTheme: React.PropTypes.object
