@@ -1,6 +1,10 @@
 ## Change Log
 
-### Ver 0.3.1(Next release, Not released)
+### Ver 0.3.2(Next release, Not released)
+
+### Ver 0.3.1
+
+  * #26 [Enable to use element for tab title](https://github.com/georgeOsdDev/react-draggable-tab/issues/26)
 
 ### Ver 0.3.0
 

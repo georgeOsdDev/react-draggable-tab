@@ -30,8 +30,8 @@ npm install --save react-draggable-tab
   * `beforeTitle`: element to show in tab. eg icon.
     `React.PropTypes.element`
 
-  * `title`: string to show in tab.
-    `React.PropTypes.string.isRequired`
+  * `title`: string or element to show in tab.
+    `React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]).isRequired`
 
   * `afterTitle`: element to show in tab. eg: notification badge
     `React.PropTypes.element`
@@ -228,6 +228,10 @@ npm run start:example
 ```bash
 npm test
 ```
+
+## [Contributors](https://github.com/georgeOsdDev/react-draggable-tab/graphs/contributors)
+
+ * [@linhlc888](https://github.com/linhlc888)
 
 ## Known Issue
 
