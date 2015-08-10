@@ -35,4 +35,16 @@ describe('Test of Tab', () => {
     const p = TestUtils.findRenderedDOMComponentWithTag(component, 'p');
     expect(React.findDOMNode(p).textContent).to.be.equal('test tab');
   });
+
+  it('String can use as title', () => {
+    component = TestUtils.renderIntoDocument(<Tab title={'Hello'} ><p>test tab</p></Tab>);
+    const p = TestUtils.findRenderedDOMComponentWithTag(component, 'p');
+    expect(React.findDOMNode(p).textContent).to.be.equal('test tab');
+  });
+
+  it('Element can use as title', () => {
+    component = TestUtils.renderIntoDocument(<Tab title={<span>HELLO</span>} ><p>test tab</p></Tab>);
+    const p = TestUtils.findRenderedDOMComponentWithTag(component, 'p');
+    expect(React.findDOMNode(p).textContent).to.be.equal('test tab');
+  });
 });

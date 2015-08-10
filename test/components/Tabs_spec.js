@@ -96,6 +96,46 @@ describe('Test of Tabs', () => {
     });
   });
 
+  describe('render tab title as element', function(){
+
+    const tabs = [
+      (<Tab key={'tab1'} title={<span>tab1</span>} >
+        <h1>tab1Content</h1>
+      </Tab>),
+      (<Tab key={'tab2'} title={<strong>tab2</strong>} >
+        <h1>tab2Content</h1>
+      </Tab>),
+      (<Tab key={'tab3'} title={<label>tab3</label>} >
+        <h1>tab3Content</h1>
+      </Tab>)
+    ];
+
+    beforeEach(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          selectedTab="tab1"
+          tabs={tabs} />);
+    });
+
+    it('render tab title as list', function(){
+      let children = TestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      expect(children).to.be.length(3);
+
+      let t1 = TestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabTitle');
+      let t1Element = TestUtils.findRenderedDOMComponentWithTag(t1, 'span');
+      expect(React.findDOMNode(t1Element).textContent).to.be.equal('tab1');
+
+      let t2 = TestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabTitle');
+      let t2Element = TestUtils.findRenderedDOMComponentWithTag(t2, 'strong');
+      expect(React.findDOMNode(t2Element).textContent).to.be.equal('tab2');
+
+      let t3 = TestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabTitle');
+      let t3Element = TestUtils.findRenderedDOMComponentWithTag(t3, 'label');
+      expect(React.findDOMNode(t3Element).textContent).to.be.equal('tab3');
+    });
+
+  });
+
   describe('add optional element before/after Title', () => {
 
     const el1 = (<i className='icon icon1' />);
