@@ -32,7 +32,10 @@ Tab.defaultProps = {
 
 Tab.propTypes = {
   beforeTitle: React.PropTypes.element,
-  title: React.PropTypes.string.isRequired,
+  title: React.PropTypes.oneOfType([
+      React.PropTypes.string.isRequired,
+      React.PropTypes.element.isRequired
+    ]),
   afterTitle: React.PropTypes.element,
   disableClose: React.PropTypes.bool,
   tabClassNames: React.PropTypes.shape({
