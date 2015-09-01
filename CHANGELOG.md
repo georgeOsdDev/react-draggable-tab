@@ -1,6 +1,8 @@
 ## Change Log
 
-### Ver 0.3.2(Next release, Not released)
+### Ver 0.3.3(Next release, Not released)
+
+### Ver 0.3.2
 
   * #27 [Support keyboard shortcut](https://github.com/georgeOsdDev/react-draggable-tab/issues/27)
 
