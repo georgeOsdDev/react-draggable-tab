@@ -1,6 +1,7 @@
 'use strict';
 import React from 'react/addons';
 import chai from 'chai';
+import Mousetrap from 'mousetrap';
 let expect = chai.expect;
 import triggerEvent from '../triggerEvent.js';
 
@@ -33,6 +34,8 @@ describe('Test of Tabs', () => {
     expect(component.props.tabsStyles).to.be.empty;
 
     expect(component.props.tabAddButton.type).to.be.equal('span');
+
+    expect(component.props.shortCutKeys).to.be.empty;
 
     expect(typeof component.props.onTabSelect).to.be.equal('function');
     expect(typeof component.props.onTabClose).to.be.equal('function');
@@ -1106,5 +1109,208 @@ describe('Test of Tabs', () => {
       expect(currentTabs[3].key).to.be.equal('tab4');
     });
   });
+
+  describe('when close shortcut key binded', function () {
+    let called = false;
+    let key = '';
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          onTabClose={function(e, _key, _currentTabs){called = true; key = _key; }}
+          selectedTab="tab1"
+          tabs={tabs}
+          shortCutKeys={
+            {
+              'close': ['alt+command+w', 'alt+ctrl+w'],
+              'create': ['alt+command+t', 'alt+ctrl+t'],
+              'moveRight': ['alt+command+tab', 'alt+ctrl+tab'],
+              'moveLeft': ['shift+alt+command+tab', 'shift+alt+ctrl+tab']
+            }
+          } />);
+      Mousetrap.trigger('alt+command+w');
+    });
+
+    it('keyboard event should call onTabClose prop', () => {
+      expect(called).to.be.equal(true);
+      expect(key).to.be.eql('tab1');
+    });
+  });
+
+  describe('when crateTab shortcut key binded', function () {
+    let called = false;
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          onTabAddButtonClick={function(e, _key, _currentTabs){called = true; }}
+          selectedTab="tab1"
+          tabs={tabs}
+          shortCutKeys={
+            {
+              'close': ['alt+command+w', 'alt+ctrl+w'],
+              'create': ['alt+command+t', 'alt+ctrl+t'],
+              'moveRight': ['alt+command+tab', 'alt+ctrl+tab'],
+              'moveLeft': ['shift+alt+command+tab', 'shift+alt+ctrl+tab']
+            }
+          } />);
+      Mousetrap.trigger('alt+command+t');
+    });
+
+    it('keyboard event should call onTabAddButtonClick prop', () => {
+      expect(called).to.be.equal(true);
+    });
+  });
+
+  describe('when moveRight shortcut key binded', function () {
+    let called = false;
+    let key = '';
+    let currentTabs = [];
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          onTabSelect={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
+          selectedTab="tab1"
+          tabs={tabs}
+          shortCutKeys={
+            {
+              'close': ['alt+command+w', 'alt+ctrl+w'],
+              'create': ['alt+command+t', 'alt+ctrl+t'],
+              'moveRight': ['alt+command+tab', 'alt+ctrl+tab'],
+              'moveLeft': ['shift+alt+command+tab', 'shift+alt+ctrl+tab']
+            }
+          } />);
+      Mousetrap.trigger('alt+command+tab');
+    });
+
+    it('keyboard event should call tabSelect prop #1', () => {
+      expect(called).to.be.equal(true);
+      expect(key).to.be.equal('tab2');
+    });
+
+    it('keyboard event should call tabSelect prop #2', () => {
+      Mousetrap.trigger('alt+command+tab');
+      expect(key).to.be.equal('tab3');
+    });
+
+    it('keyboard event should call tabSelect prop #3, and move to first if current tab is last', () => {
+      Mousetrap.trigger('alt+command+tab');
+      expect(key).to.be.equal('tab1');
+    });
+
+  });
+
+  describe('when moveLeft shortcut key binded', function () {
+    let called = false;
+    let key = '';
+    let currentTabs = [];
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = TestUtils.renderIntoDocument(
+        <Tabs
+          onTabSelect={function(e, _key, _currentTabs){called = true; key = _key; currentTabs = _currentTabs; }}
+          selectedTab="tab3"
+          tabs={tabs}
+          shortCutKeys={
+            {
+              'close': ['alt+command+w', 'alt+ctrl+w'],
+              'create': ['alt+command+t', 'alt+ctrl+t'],
+              'moveRight': ['alt+command+tab', 'alt+ctrl+tab'],
+              'moveLeft': ['shift+alt+command+tab', 'shift+alt+ctrl+tab']
+            }
+          } />);
+      Mousetrap.trigger('shift+alt+command+tab');
+    });
+
+    it('keyboard event should call tabSelect prop #1', () => {
+      expect(called).to.be.equal(true);
+      expect(key).to.be.equal('tab2');
+    });
+
+    it('keyboard event should call tabSelect prop #2', () => {
+      Mousetrap.trigger('shift+alt+command+tab');
+      expect(key).to.be.equal('tab1');
+    });
+
+    it('keyboard event should call tabSelect prop #3, and move to last if current tab is first', () => {
+      Mousetrap.trigger('shift+alt+command+tab');
+      expect(key).to.be.equal('tab3');
+    });
+
+  });
+
 
 });

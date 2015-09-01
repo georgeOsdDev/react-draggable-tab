@@ -1,6 +1,6 @@
 {
   "name": "react-draggable-tab",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Draggable chrome like tab react component ",
   "main": "index.js",
   "scripts": {
@@ -55,7 +55,8 @@
     "react-draggable": "^0.8.0",
     "react-style": "^0.5.5",
     "classnames": "^2.1.2",
-    "lodash": "^3.9.3"
+    "lodash": "^3.9.3",
+    "mousetrap": "^1.5.3"
   },
   "browserify": {
     "transform": [
