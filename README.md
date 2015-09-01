@@ -81,6 +81,13 @@ npm install --save react-draggable-tab
   * `tabAddButton`: element for add button.
     `React.PropTypes.element`
 
+###### Shortcut key binding
+  * `shortCutKeys`: Short cut key bindings as [Mousetrap](https://craig.is/killing/mice) style.
+   * `close`: key binding to close current tab (`onTabClose` will be called)
+   * `create`: key binding to create tab (`onTabAddButtonClick` will be called)
+   * `moveRight`: key binding to move right (`onTabSelect` will be called)
+   * `moveLeft`: key binding to move left (`onTabSelect` will be called)
+
 ###### Style (All tabs will be apply these styles)
 
   * `tabsClassNames`: classNames which will be **added** to rendered elements.
@@ -209,6 +216,14 @@ class App extends React.Component {
         onTabAddButtonClick={this.handleTabAddButtonClick.bind(this)}
         onTabPositionChange={this.handleTabPositionChange.bind(this)}
         tabs={this.state.tabs}
+        shortCutKeys={
+          {
+            'close': ['alt+command+w', 'alt+ctrl+w'],
+            'create': ['alt+command+t', 'alt+ctrl+t'],
+            'moveRight': ['alt+command+tab', 'alt+ctrl+tab'],
+            'moveLeft': ['shift+alt+command+tab', 'shift+alt+ctrl+tab']
+          }
+        }
       />
     )
   }

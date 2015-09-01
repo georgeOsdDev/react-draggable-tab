@@ -5,6 +5,7 @@ import React from 'react/addons';
 import invariant from 'react/lib/invariant';
 import classNames from 'classnames';
 import Draggable from 'react-draggable';
+import Mousetrap from 'mousetrap';
 
 import TabStyles from './TabStyles';
 import TabTemplate from './TabTemplate';
@@ -116,14 +117,28 @@ class Tabs extends React.Component {
     this.startPositions = positions;
   }
 
+  _cancelEventSafety(e){
+    if (typeof e.preventDefault !== 'function') {
+      e.preventDefault = () => {};
+    }
+    if (typeof e.stopPropagation !== 'function') {
+      e.stopPropagation = () => {};
+    }
+    e.preventDefault();
+    e.stopPropagation();
+    return e;
+  }
+
   componentWillMount() {
   }
 
   componentDidMount() {
     this._saveStartPositions();
+    this.bindShortcuts();
   }
 
   componentWillUnmount() {
+    this.unbindShortcuts();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -141,6 +156,41 @@ class Tabs extends React.Component {
 
   componentDidUpdate() {
     this._saveStartPositions();
+  }
+
+  bindShortcuts(){
+    if (this.props.shortCutKeys) {
+      if (this.props.shortCutKeys.close) {
+        Mousetrap.bind(this.props.shortCutKeys.close, (e) => {
+          e = this._cancelEventSafety(e);
+          if (this.state.selectedTab) {
+            this.handleCloseButtonClick(this.state.selectedTab, e);
+          }
+        });
+      }
+      if (this.props.shortCutKeys.create) {
+        Mousetrap.bind(this.props.shortCutKeys.create, (e) => {
+          e = this._cancelEventSafety(e);
+          this.handleAddButtonClick(e);
+        });
+      }
+      if (this.props.shortCutKeys.moveRight) {
+        Mousetrap.bind(this.props.shortCutKeys.moveRight, (e) => {
+          e = this._cancelEventSafety(e);
+          this.moveRight(e);
+        });
+      }
+      if (this.props.shortCutKeys.moveLeft) {
+        Mousetrap.bind(this.props.shortCutKeys.moveLeft, (e) => {
+          e = this._cancelEventSafety(e);
+          this.moveLeft(e);
+        });
+      }
+    }
+  }
+
+  unbindShortcuts(){
+    Mousetrap.reset();
   }
 
   handleMouseDown(key, e, ui) {
@@ -176,8 +226,7 @@ class Tabs extends React.Component {
   handleTabClick(key, e) {
     let classes = e.target.className.split(' ');
     if (classes.indexOf('rdTabCloseIcon') > -1) {
-      e.preventDefault();
-      e.stopPropagation();
+      e = this._cancelEventSafety(e);
     } else {
       this.setState({selectedTab: key}, () => {
         this.props.onTabSelect(e, key, this._getCurrentOpenTabs());
@@ -186,8 +235,7 @@ class Tabs extends React.Component {
   }
 
   handleCloseButtonClick(key, e) {
-    e.preventDefault();
-    e.stopPropagation();
+    e = this._cancelEventSafety(e);
     let nextSelected;
 
     if (this.state.selectedTab === key) {
@@ -214,6 +262,30 @@ class Tabs extends React.Component {
 
   handleAddButtonClick(e) {
     this.props.onTabAddButtonClick(e, this._getCurrentOpenTabs());
+  }
+
+  moveRight(e) {
+    let nextSelected = this._getNextTabKey(this.state.selectedTab);
+    if (!nextSelected) {
+      nextSelected = this.props.tabs[0] ? this.props.tabs[0].key : '';
+    }
+    if (nextSelected !== this.state.selectedTab) {
+      this.setState({selectedTab: nextSelected}, () => {
+        this.props.onTabSelect(e, nextSelected, this._getCurrentOpenTabs());
+      });
+    }
+  }
+
+  moveLeft(e) {
+    let nextSelected = this._getPrevTabKey(this.state.selectedTab);
+    if (!nextSelected) {
+      nextSelected = _.last(this.props.tabs) ? _.last(this.props.tabs).key : '';
+    }
+    if (nextSelected !== this.state.selectedTab) {
+      this.setState({selectedTab: nextSelected}, () => {
+        this.props.onTabSelect(e, nextSelected, this._getCurrentOpenTabs());
+      });
+    }
   }
 
   getCloseButton(tab, style, classes, hoverStyleBase) {
@@ -369,6 +441,7 @@ Tabs.defaultProps = {
     tabActive: ''
   },
   tabsStyles: {},
+  shortCutKeys:{},
   tabAddButton: (<span>{'+'}</span>),
   onTabSelect: () => {},
   onTabClose: () => {},
@@ -407,12 +480,19 @@ Tabs.propTypes = {
     tabCloseIcon: React.PropTypes.object,
     tabCloseIconOnHover: React.PropTypes.object
   }),
+  shortCutKeys: React.PropTypes.shape({
+    close:React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.arrayOf(React.PropTypes.string)]),
+    create:React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.arrayOf(React.PropTypes.string)]),
+    moveRight:React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.arrayOf(React.PropTypes.string)]),
+    moveLeft:React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.arrayOf(React.PropTypes.string)])
+  }),
   tabAddButton: React.PropTypes.element,
   onTabSelect: React.PropTypes.func,
   onTabClose: React.PropTypes.func,
   onTabAddButtonClick: React.PropTypes.func,
   onTabPositionChange: React.PropTypes.func,
   onTabDoubleClick: React.PropTypes.func
+
 };
 
 export default Tabs;

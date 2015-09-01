@@ -2,6 +2,8 @@
 
 ### Ver 0.3.2(Next release, Not released)
 
+  * #27 [Support keyboard shortcut](https://github.com/georgeOsdDev/react-draggable-tab/issues/27)
+
 ### Ver 0.3.1
 
   * #26 [Enable to use element for tab title](https://github.com/georgeOsdDev/react-draggable-tab/issues/26)
