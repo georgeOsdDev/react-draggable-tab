@@ -974,6 +974,7 @@ describe('Test of Tabs', () => {
       target2 = document.getElementsByClassName('rdTab')[1];
 
       let clientY = target1.getBoundingClientRect().top + 5;
+      let droppedToX = target2.getBoundingClientRect().left + 10;
 
       triggerEvent(target1, 'mousedown', {
         clientX: target1.getBoundingClientRect().left + 5,
@@ -990,7 +991,7 @@ describe('Test of Tabs', () => {
       });
 
       triggerEvent(target1, 'mouseup', {
-        clientX: target2.getBoundingClientRect().left + 10,
+        clientX: droppedToX,
         clientY: clientY
       });
 
