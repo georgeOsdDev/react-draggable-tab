@@ -1,6 +1,10 @@
 ## Change Log
 
-### Ver 0.3.3(Next release, Not released)
+### Ver 0.3.4(Next release, Not released)
+
+### Ver 0.3.3
+
+  * #30 [Switch tab position while dragging](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
 
 ### Ver 0.3.2
 
