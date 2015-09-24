@@ -66,7 +66,8 @@ const TabStyles = StyleSheet.create({
     msFlex: 1,
     flex: 1,
     maxWidth: '175px',
-    minWidth: '40px'
+    minWidth: '40px',
+    transform: 'translate(0px, 0px)'
   },
 
   tabBefore: {

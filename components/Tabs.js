@@ -200,6 +200,20 @@ class Tabs extends React.Component {
   }
 
   handleDrag(key, e, ui) {
+    const deltaX = (e.pageX || e.clientX);
+    _.each(this.startPositions, (pos) => {
+      let tempMoved = pos.moved || 0;
+      let shoudBeSwap = key !== pos.key && pos.pos.left + tempMoved < deltaX && deltaX < pos.pos.right + tempMoved;
+      if (shoudBeSwap) {
+        let el = React.findDOMNode(this.refs[pos.key]);
+        let idx1 = this._getIndexOfTabByKey(key);
+        let idx2 = this._getIndexOfTabByKey(pos.key);
+        let minus = idx1 > idx2 ? 1 : -1;
+        let movePx = (minus * (pos.pos.right - pos.pos.left)) - tempMoved;
+        el.style.transform = 'translate('+ movePx + 'px, 0px)';
+        this.startPositions[idx2].moved = movePx;
+      }
+    });
   }
 
   handleDragStop(key, e, ui) {
@@ -211,6 +225,8 @@ class Tabs extends React.Component {
       if (shoudBeSwap) {
         swapedTabs = this._moveTabPosition(key, pos.key);
       }
+      let el = React.findDOMNode(this.refs[pos.key]);
+      el.style.transform = 'translate(0px, 0px)';
     });
     let nextTabs = swapedTabs || this.state.tabs;
 
