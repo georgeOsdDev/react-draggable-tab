@@ -2,9 +2,11 @@
 
 ### Ver 0.3.4(Next release, Not released)
 
+  * #32 [Add `keepSelectedTab` option](https://github.com/georgeOsdDev/react-draggable-tab/issues/32)
+
 ### Ver 0.3.3
 
-  * #30 [Switch tab position while dragging](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
+  * #30 [Switch tab position while dragging](https://github.com/georgeOsdDev/react-draggable-tab/issues/30)
 
 ### Ver 0.3.2
 

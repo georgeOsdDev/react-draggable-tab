@@ -174,6 +174,7 @@ class App extends React.Component {
               'moveLeft': ['shift+alt+command+tab', 'shift+alt+ctrl+tab']
             }
           }
+          keepSelectedTab={true}
         />
         <Dialog
           title="Change tab name"

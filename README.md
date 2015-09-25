@@ -39,8 +39,6 @@ npm install --save react-draggable-tab
   * `disableClose`: If `true`, closeButton will not be appeared in tab.
     `React.PropTypes.bool` (Default `false`)
 
-  * `beforeTitle`:
-
 ###### Style (for each tab)
 
   * `tabClassNames`: classNames which will be **added** to rendered elements.
@@ -80,6 +78,9 @@ npm install --save react-draggable-tab
 
   * `tabAddButton`: element for add button.
     `React.PropTypes.element`
+
+  * `keepSelectedTab`: Prevent tab select on drag/move behind tab.
+    `React.PropTypes.bool` default `false`.
 
 ###### Shortcut key binding
   * `shortCutKeys`: Short cut key bindings as [Mousetrap](https://craig.is/killing/mice) style.

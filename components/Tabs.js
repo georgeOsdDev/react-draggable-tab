@@ -240,6 +240,14 @@ class Tabs extends React.Component {
   }
 
   handleTabClick(key, e) {
+    let isBehindTab = key !== this.state.selectedTab;
+    let idx = this._getIndexOfTabByKey(key);
+    let isDragAfter = this.startPositions[idx].moved !== 0;
+    if (isBehindTab && isDragAfter && this.props.keepSelectedTab) {
+      e.preventDefault();
+      return;
+    }
+
     let classes = e.target.className.split(' ');
     if (classes.indexOf('rdTabCloseIcon') > -1) {
       e = this._cancelEventSafety(e);
@@ -463,7 +471,8 @@ Tabs.defaultProps = {
   onTabClose: () => {},
   onTabAddButtonClick: () => {},
   onTabPositionChange: () => {},
-  onTabDoubleClick: () => {}
+  onTabDoubleClick: () => {},
+  keepSelectedTab: false
 };
 
 Tabs.propTypes = {
@@ -507,8 +516,8 @@ Tabs.propTypes = {
   onTabClose: React.PropTypes.func,
   onTabAddButtonClick: React.PropTypes.func,
   onTabPositionChange: React.PropTypes.func,
-  onTabDoubleClick: React.PropTypes.func
-
+  onTabDoubleClick: React.PropTypes.func,
+  keepSelectedTab: React.PropTypes.bool
 };
 
 export default Tabs;
