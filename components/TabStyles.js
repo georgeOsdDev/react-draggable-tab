@@ -118,6 +118,7 @@ const TabStyles = StyleSheet.create({
   },
 
   tabTitle: {
+    cursor: 'default',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
