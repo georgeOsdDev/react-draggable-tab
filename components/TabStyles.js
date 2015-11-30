@@ -4,9 +4,7 @@
 */
 'use strict';
 
-let StyleSheet = require('react-style');
-
-const TabStyles = StyleSheet.create({
+const TabStyles = {
 
   wrapper: {
     height: '100%',
@@ -33,9 +31,10 @@ const TabStyles = StyleSheet.create({
     listStyle: 'none',
     outline: '0px',
     overflowY: 'hidden',
-    overflowX: 'hiden',
+    overflowX: 'hidden',
     minWidth: '95%',
-    maxWidth: '99%'
+    maxWidth: '99%',
+    paddingRight: '35px'
   },
 
   tabBarAfter: {
@@ -66,7 +65,7 @@ const TabStyles = StyleSheet.create({
     msFlex: 1,
     flex: 1,
     maxWidth: '175px',
-    minWidth: '40px',
+    minWidth: '0px',
     transform: 'translate(0px, 0px)'
   },
 
@@ -117,6 +116,7 @@ const TabStyles = StyleSheet.create({
   },
 
   tabTitle: {
+    cursor: 'default',
     overflow: 'hidden',
     whiteSpace: 'nowrap',
     textOverflow: 'ellipsis',
@@ -168,10 +168,11 @@ const TabStyles = StyleSheet.create({
     fontFamily: "'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif",
     fontSize: '20px',
     textShadow: 'rgb(255, 255, 255) 0px 1px 0px',
-    position: 'relative',
+    position: 'fixed',
     width: '25px',
     height: '26px',
-    marginLeft: '20px'
+    marginLeft: '20px',
+    zIndex: 2
   },
 
   beforeTitle: {
@@ -187,8 +188,6 @@ const TabStyles = StyleSheet.create({
     right: '16px',
     zIndex: 2
   }
-
-
-});
+};
 
 export default TabStyles;

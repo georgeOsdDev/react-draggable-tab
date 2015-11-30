@@ -1,8 +1,9 @@
 'use strict';
 
 import _ from 'lodash';
-import React from 'react/addons';
-import invariant from 'react/lib/invariant';
+import React from 'react';
+import ReactDom from 'react-dom';
+import invariant from 'invariant';
 import classNames from 'classnames';
 import Draggable from 'react-draggable';
 import Mousetrap from 'mousetrap';
@@ -106,7 +107,7 @@ class Tabs extends React.Component {
 
   _saveStartPositions() {
     let positions = _.map(this.state.tabs, (tab) => {
-      let el = React.findDOMNode(this.refs[tab.key]);
+      let el = ReactDom.findDOMNode(this.refs[tab.key]);
       let pos = el ? el.getBoundingClientRect() : {};
       return {
         key: tab.key,
@@ -205,7 +206,7 @@ class Tabs extends React.Component {
       let tempMoved = pos.moved || 0;
       let shoudBeSwap = key !== pos.key && pos.pos.left + tempMoved < deltaX && deltaX < pos.pos.right + tempMoved;
       if (shoudBeSwap) {
-        let el = React.findDOMNode(this.refs[pos.key]);
+        let el = ReactDom.findDOMNode(this.refs[pos.key]);
         let idx1 = this._getIndexOfTabByKey(key);
         let idx2 = this._getIndexOfTabByKey(pos.key);
         let minus = idx1 > idx2 ? 1 : -1;
@@ -225,7 +226,7 @@ class Tabs extends React.Component {
       if (shoudBeSwap) {
         swapedTabs = this._moveTabPosition(key, pos.key);
       }
-      let el = React.findDOMNode(this.refs[pos.key]);
+      let el = ReactDom.findDOMNode(this.refs[pos.key]);
       el.style.transform = 'translate(0px, 0px)';
     });
     let nextTabs = swapedTabs || this.state.tabs;
@@ -240,6 +241,14 @@ class Tabs extends React.Component {
   }
 
   handleTabClick(key, e) {
+    let isBehindTab = key !== this.state.selectedTab;
+    let idx = this._getIndexOfTabByKey(key);
+    let isDragAfter = this.startPositions[idx].moved !== 0;
+    if (isBehindTab && isDragAfter && this.props.keepSelectedTab) {
+      e.preventDefault();
+      return;
+    }
+
     let classes = e.target.className.split(' ');
     if (classes.indexOf('rdTabCloseIcon') > -1) {
       e = this._cancelEventSafety(e);
@@ -463,7 +472,8 @@ Tabs.defaultProps = {
   onTabClose: () => {},
   onTabAddButtonClick: () => {},
   onTabPositionChange: () => {},
-  onTabDoubleClick: () => {}
+  onTabDoubleClick: () => {},
+  keepSelectedTab: false
 };
 
 Tabs.propTypes = {
@@ -507,8 +517,8 @@ Tabs.propTypes = {
   onTabClose: React.PropTypes.func,
   onTabAddButtonClick: React.PropTypes.func,
   onTabPositionChange: React.PropTypes.func,
-  onTabDoubleClick: React.PropTypes.func
-
+  onTabDoubleClick: React.PropTypes.func,
+  keepSelectedTab: React.PropTypes.bool
 };
 
 export default Tabs;

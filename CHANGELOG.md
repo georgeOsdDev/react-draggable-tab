@@ -1,10 +1,16 @@
 ## Change Log
 
-### Ver 0.3.4(Next release, Not released)
+### Ver 0.4.0
+
+  This version updated react from ^0.13.3 to 0.14.X, react-draggable from ^0.8.0 to 1.1.X, and also other dependencies.
+  Several changes have been made for adopting reactv0.14.x.
+
+  * #35 [Update dependencies](https://github.com/georgeOsdDev/react-draggable-tab/issues/35)
+  * #32 [Add `keepSelectedTab` option](https://github.com/georgeOsdDev/react-draggable-tab/issues/32)
 
 ### Ver 0.3.3
 
-  * #30 [Switch tab position while dragging](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
+  * #30 [Switch tab position while dragging](https://github.com/georgeOsdDev/react-draggable-tab/issues/30)
 
 ### Ver 0.3.2
 

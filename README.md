@@ -14,6 +14,8 @@ Atom like draggable tab react component.
 ```bash
 npm install --save react-draggable-tab
 ```
+React v0.14 is supported from react-draggable-tab v0.4.0.
+For React v0.13.x, please use react-draggable-tab v0.3.3.
 
 ## API
 
@@ -38,8 +40,6 @@ npm install --save react-draggable-tab
 
   * `disableClose`: If `true`, closeButton will not be appeared in tab.
     `React.PropTypes.bool` (Default `false`)
-
-  * `beforeTitle`:
 
 ###### Style (for each tab)
 
@@ -80,6 +80,9 @@ npm install --save react-draggable-tab
 
   * `tabAddButton`: element for add button.
     `React.PropTypes.element`
+
+  * `keepSelectedTab`: Prevent tab select on drag/move behind tab.
+    `React.PropTypes.bool` default `false`.
 
 ###### Shortcut key binding
   * `shortCutKeys`: Short cut key bindings as [Mousetrap](https://craig.is/killing/mice) style.

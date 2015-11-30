@@ -1,6 +1,6 @@
 'use strict';
 
-import React from 'react/addons';
+import React from 'react';
 import classNames from 'classnames';
 import TabStyles from './TabStyles';
 import StyleOverride from '../helpers/styleOverride';
