@@ -1,11 +1,12 @@
 'use strict';
 
 import _ from 'lodash';
-import React from 'react/addons';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import {Dialog, TextField, Styles} from 'material-ui';
-const ThemeManager = new Styles.ThemeManager();
+let ThemeManager = Styles.ThemeManager;
 
 import Tabs from '../components/Tabs';
 import Tab from '../components/Tab';
@@ -69,11 +70,11 @@ class App extends React.Component {
     };
   }
 
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme()
-    };
-  }
+  // getChildContext() {
+  //   return {
+  //     muiTheme: ThemeManager.getMuiTheme()
+  //   };
+  // }
 
 
   handleTabSelect(e, key, currentTabs) {
@@ -115,7 +116,6 @@ class App extends React.Component {
     this.setState({
       editTabKey: key
     }, () => {
-      this.refs.input.setValue(tab.props.title);
       this.refs.dialog.show();
     });
   }
@@ -136,6 +136,13 @@ class App extends React.Component {
 
   _onDialogCancel() {
     this.refs.dialog.dismiss();
+  }
+
+  _onDialogShow() {
+    let tab = _.find(this.state.tabs, (t) => {
+      return t.key === this.state.editTabKey;
+    });
+    this.refs.input.setValue(tab.props.title);
   }
 
   _handleBadgeInc() {
@@ -181,9 +188,10 @@ class App extends React.Component {
           ref="dialog"
           actions={standardActions}
           actionFocus="submit"
-          modal={true}>
+          modal={true}
+          onShow={this._onDialogShow.bind(this)}>
           <TextField
-          ref='input' style={{width: '90%'}}/>
+            ref='input' style={{width: '90%'}}/>
         </Dialog>
         <p style={{position: 'fixed', 'bottom': '10px'}}>
           Source code can be found at <a href='https://github.com/georgeOsdDev/react-draggable-tab/tree/master/example'>GitHub</a>
@@ -194,7 +202,7 @@ class App extends React.Component {
 }
 
 App.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  // muiTheme: React.PropTypes.object
 };
 
-React.render(<App/>, document.getElementById('tabs'));
+ReactDOM.render(<App/>, document.getElementById('tabs'));

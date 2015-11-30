@@ -4,9 +4,7 @@
 */
 'use strict';
 
-let StyleSheet = require('react-style');
-
-const TabStyles = StyleSheet.create({
+const TabStyles = {
 
   wrapper: {
     height: '100%',
@@ -190,8 +188,6 @@ const TabStyles = StyleSheet.create({
     right: '16px',
     zIndex: 2
   }
-
-
-});
+};
 
 export default TabStyles;

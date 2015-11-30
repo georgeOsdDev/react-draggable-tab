@@ -34,7 +34,14 @@ module.exports = function(config) {
     browserify: {
       debug: true,
       transform: [
-        'babelify'
+        [
+          'babelify', {
+            'presets': [
+              'es2015',
+              'react'
+            ]
+          }
+        ]
       ]
     },
 
