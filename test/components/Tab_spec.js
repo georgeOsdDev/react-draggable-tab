@@ -1,9 +1,10 @@
 'use strict';
-import React from 'react/addons';
+import React from 'react';
+import ReactDom from 'react-dom';
+import ReactTestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 let expect = chai.expect;
 import Tab from '../../components/Tab';
-const {TestUtils} = React.addons;
 
 describe('Test of Tab', () => {
   let component;
@@ -12,7 +13,7 @@ describe('Test of Tab', () => {
   });
 
   it('should have default properties', function () {
-    component = TestUtils.renderIntoDocument(<Tab><p>test tab</p></Tab>);
+    component = ReactTestUtils.renderIntoDocument(<Tab><p>test tab</p></Tab>);
     expect(component.props.title).to.be.equal('untitled');
     expect(component.props.disableClose).to.be.equal(false);
 
@@ -31,20 +32,20 @@ describe('Test of Tab', () => {
   });
 
   it('Tab works like a scala case class, it just render it\'s children', () => {
-    component = TestUtils.renderIntoDocument(<Tab title={'Hello'} ><p>test tab</p></Tab>);
-    const p = TestUtils.findRenderedDOMComponentWithTag(component, 'p');
-    expect(React.findDOMNode(p).textContent).to.be.equal('test tab');
+    component = ReactTestUtils.renderIntoDocument(<Tab title={'Hello'} ><p>test tab</p></Tab>);
+    const p = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'p');
+    expect(ReactDom.findDOMNode(p).textContent).to.be.equal('test tab');
   });
 
   it('String can use as title', () => {
-    component = TestUtils.renderIntoDocument(<Tab title={'Hello'} ><p>test tab</p></Tab>);
-    const p = TestUtils.findRenderedDOMComponentWithTag(component, 'p');
-    expect(React.findDOMNode(p).textContent).to.be.equal('test tab');
+    component = ReactTestUtils.renderIntoDocument(<Tab title={'Hello'} ><p>test tab</p></Tab>);
+    const p = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'p');
+    expect(ReactDom.findDOMNode(p).textContent).to.be.equal('test tab');
   });
 
   it('Element can use as title', () => {
-    component = TestUtils.renderIntoDocument(<Tab title={<span>HELLO</span>} ><p>test tab</p></Tab>);
-    const p = TestUtils.findRenderedDOMComponentWithTag(component, 'p');
-    expect(React.findDOMNode(p).textContent).to.be.equal('test tab');
+    component = ReactTestUtils.renderIntoDocument(<Tab title={<span>HELLO</span>} ><p>test tab</p></Tab>);
+    const p = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'p');
+    expect(ReactDom.findDOMNode(p).textContent).to.be.equal('test tab');
   });
 });

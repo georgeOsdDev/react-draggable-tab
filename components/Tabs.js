@@ -1,8 +1,8 @@
 'use strict';
 
 import _ from 'lodash';
-import React from 'react/addons';
-import invariant from 'react/lib/invariant';
+import React from 'react';
+import invariant from 'invariant';
 import classNames from 'classnames';
 import Draggable from 'react-draggable';
 import Mousetrap from 'mousetrap';
