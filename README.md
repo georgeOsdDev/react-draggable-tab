@@ -14,6 +14,8 @@ Atom like draggable tab react component.
 ```bash
 npm install --save react-draggable-tab
 ```
+React v0.14 is supported from react-draggable-tab v0.4.0.
+For React v0.13.x, please use react-draggable-tab v0.3.3.
 
 ## API
 
