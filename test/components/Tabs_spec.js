@@ -87,24 +87,24 @@ describe('Test of Tabs', () => {
       expect(titles).to.be.length(3);
       expect(titles[0].textContent).to.be.equal('tab1');
       expect(titles[1].textContent).to.be.equal('tab2');
-      expect(titles[0].textContent).to.be.equal('tab3');
+      expect(titles[2].textContent).to.be.equal('tab3');
     });
 
     it('render first tab as selected', function(){
       let activeTab = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
-      let title = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(title).textContent).to.be.equal('tab1');
+      let title = activeTab.querySelector('p');
+      expect(title.textContent).to.be.equal('tab1');
     });
 
     it('render first tab\'s content', function(){
       let content = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'h1');
       expect(content).to.be.length(3);
-      expect(ReactDom.findDOMNode(content[0]).textContent).to.be.equal('tab1Content');
-      expect(ReactDom.findDOMNode(content[0]).parentNode.style.height).to.be.not.equal('0px');
-      expect(ReactDom.findDOMNode(content[1]).textContent).to.be.equal('tab2Content');
-      expect(ReactDom.findDOMNode(content[1]).parentNode.style.height).to.be.equal('0px');
-      expect(ReactDom.findDOMNode(content[2]).textContent).to.be.equal('tab3Content');
-      expect(ReactDom.findDOMNode(content[2]).parentNode.style.height).to.be.equal('0px');
+      expect(content[0].textContent).to.be.equal('tab1Content');
+      expect(content[0].parentNode.style.height).to.be.not.equal('0px');
+      expect(content[1].textContent).to.be.equal('tab2Content');
+      expect(content[1].parentNode.style.height).to.be.equal('0px');
+      expect(content[2].textContent).to.be.equal('tab3Content');
+      expect(content[2].parentNode.style.height).to.be.equal('0px');
     });
   });
 
@@ -130,20 +130,19 @@ describe('Test of Tabs', () => {
     });
 
     it('render tab title as list', function(){
-      let children = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-      expect(children).to.be.length(3);
+      let children = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'li');
+      expect(children).to.be.length(4);
 
-      let t1 = ReactTestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabTitle');
-      let t1Element = ReactTestUtils.findRenderedDOMComponentWithTag(t1, 'span');
-      expect(ReactDom.findDOMNode(t1Element).textContent).to.be.equal('tab1');
+      let t1 = children[0].querySelector('.rdTabTitle');
+      expect(t1.textContent).to.be.equal('tab1');
 
-      let t2 = ReactTestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabTitle');
-      let t2Element = ReactTestUtils.findRenderedDOMComponentWithTag(t2, 'strong');
-      expect(ReactDom.findDOMNode(t2Element).textContent).to.be.equal('tab2');
+      let t2 = children[1].querySelector('.rdTabTitle');
+      expect(t2.textContent).to.be.equal('tab2');
 
-      let t3 = ReactTestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabTitle');
-      let t3Element = ReactTestUtils.findRenderedDOMComponentWithTag(t3, 'label');
-      expect(ReactDom.findDOMNode(t3Element).textContent).to.be.equal('tab3');
+      let t3 = children[2].querySelector('.rdTabTitle');
+      expect(t3.textContent).to.be.equal('tab3');
+
+      expect(children[3].className).to.be.equal('rdTabAddButton');
     });
 
   });
@@ -177,37 +176,33 @@ describe('Test of Tabs', () => {
     });
 
     it('will insert custome element before title', () => {
-      let t1BeforeTitle = ReactTestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabBeforeTitle');
-      let t1BeforeTitleIcon = ReactTestUtils.scryRenderedDOMComponentsWithTag(t1BeforeTitle, 'i');
-      expect(t1BeforeTitleIcon).to.be.length(1);
-      expect(ReactDom.findDOMNode(t1BeforeTitleIcon[0]).className.indexOf('icon1') > 0).to.be.equal(true);
+      let t1BeforeTitle = children[0].querySelector('.rdTabBeforeTitle');
+      let t1BeforeTitleIcon = t1BeforeTitle.querySelector('i');
+      expect(t1BeforeTitleIcon.className.indexOf('icon1') > 0).to.be.equal(true);
 
-      let t1AfterTitle = ReactTestUtils.findRenderedDOMComponentWithClass(children[0], 'rdTabAfterTitle');
-      let t1AfterTitleIcon = ReactTestUtils.scryRenderedDOMComponentsWithTag(t1AfterTitle, 'i');
-      expect(t1AfterTitleIcon).to.be.length(0);
+      let t1AfterTitle = children[0].querySelector('.rdTabAfterTitle');
+      let t1AfterTitleIcon = t1AfterTitle.querySelector('i');
+      expect(t1AfterTitleIcon).to.be.eql(null);
     });
 
     it('will insert custome element affter title', () => {
-      let t2BeforeTitle = ReactTestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabBeforeTitle');
-      let t2BeforeTitleIcon = ReactTestUtils.scryRenderedDOMComponentsWithTag(t2BeforeTitle, 'i');
-      expect(t2BeforeTitleIcon).to.be.length(0);
+      let t2BeforeTitle = children[1].querySelector('.rdTabBeforeTitle');
+      let t2BeforeTitleIcon = t2BeforeTitle.querySelector('i');
+      expect(t2BeforeTitleIcon).to.be.eql(null);
 
-      let t2AfterTitle = ReactTestUtils.findRenderedDOMComponentWithClass(children[1], 'rdTabAfterTitle');
-      let t2AfterTitleIcon = ReactTestUtils.scryRenderedDOMComponentsWithTag(t2AfterTitle, 'i');
-      expect(t2AfterTitleIcon).to.be.length(1);
-      expect(ReactDom.findDOMNode(t2AfterTitleIcon[0]).className.indexOf('icon2') > 0).to.be.equal(true);
+      let t2AfterTitle = children[1].querySelector('.rdTabAfterTitle');
+      let t2AfterTitleIcon = t2AfterTitle.querySelector('i');
+      expect(t2AfterTitleIcon.className.indexOf('icon2') > 0).to.be.equal(true);
     });
 
     it('will insert custome element before/affter title', () => {
-      let t3BeforeTitle = ReactTestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabBeforeTitle');
-      let t3BeforeTitleIcon = ReactTestUtils.scryRenderedDOMComponentsWithTag(t3BeforeTitle, 'i');
-      expect(t3BeforeTitleIcon).to.be.length(1);
-      expect(ReactDom.findDOMNode(t3BeforeTitleIcon[0]).className.indexOf('icon3') > 0).to.be.equal(true);
+      let t3BeforeTitle = children[2].querySelector('.rdTabBeforeTitle');
+      let t3BeforeTitleIcon = t3BeforeTitle.querySelector('i');
+      expect(t3BeforeTitleIcon.className.indexOf('icon3') > 0).to.be.equal(true);
 
-      let t3AfterTitle = ReactTestUtils.findRenderedDOMComponentWithClass(children[2], 'rdTabAfterTitle');
-      let t3AfterTitleIcon = ReactTestUtils.scryRenderedDOMComponentsWithTag(t3AfterTitle, 'i');
-      expect(t3AfterTitleIcon).to.be.length(1);
-      expect(ReactDom.findDOMNode(t3AfterTitleIcon[0]).className.indexOf('icon4') > 0).to.be.equal(true);
+      let t3AfterTitle = children[2].querySelector('.rdTabAfterTitle');
+      let t3AfterTitleIcon = t3AfterTitle.querySelector('i');
+      expect(t3AfterTitleIcon.className.indexOf('icon4') > 0).to.be.equal(true);
     });
   });
 
@@ -245,34 +240,34 @@ describe('Test of Tabs', () => {
 
     it('render elements with custome class', function(){
       let rdTabBar = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
-      expect(ReactDom.findDOMNode(rdTabBar).className).contain('myTabBar');
+      expect(rdTabBar.className).contain('myTabBar');
 
       let rdTabBarAfter = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBarAfter');
-      expect(ReactDom.findDOMNode(rdTabBarAfter).className).contain('myTabBarAfter');
+      expect(rdTabBarAfter.className).contain('myTabBarAfter');
 
       let rdTab = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTab');
-      expect(ReactDom.findDOMNode(rdTab).className).contain('myTab');
+      expect(rdTab.className).contain('myTab');
 
       let rdTabBefore = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBefore).className).contain('myTabBefore');
+      expect(rdTabBefore.className).contain('myTabBefore');
 
       let rdTabAfter = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfter).className).contain('myTabAfter');
+      expect(rdTabAfter.className).contain('myTabAfter');
 
       let rdTabTitle = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitle).className).contain('myTabTitle');
+      expect(rdTabTitle.className).contain('myTabTitle');
 
       let rdTabBeforeTitle = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBeforeTitle');
-      expect(ReactDom.findDOMNode(rdTabBeforeTitle).className).contain('myTabBeforeTitle');
+      expect(rdTabBeforeTitle.className).contain('myTabBeforeTitle');
 
       let rdTabAfterTitle = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabAfterTitle');
-      expect(ReactDom.findDOMNode(rdTabAfterTitle).className).contain('myTabAfterTitle');
+      expect(rdTabAfterTitle.className).contain('myTabAfterTitle');
 
       let rdTabActive = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
-      expect(ReactDom.findDOMNode(rdTabActive).className).contain('myTabActive');
+      expect(rdTabActive.className).contain('myTabActive');
 
       let rdTabCloseIconb = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabCloseIcon');
-      expect(ReactDom.findDOMNode(rdTabCloseIconb).className).contain('myTabCloseIcon');
+      expect(rdTabCloseIconb.className).contain('myTabCloseIcon');
 
     });
 
@@ -318,39 +313,38 @@ describe('Test of Tabs', () => {
 
     it('render elements with custome inline-style', function(){
       let rdTabBar = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
-      expect(ReactDom.findDOMNode(rdTabBar).style.fontSize).to.be.eql('101px');
+      expect(rdTabBar.style.fontSize).to.be.eql('101px');
 
       let rdTabBarAfter = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBarAfter');
-      expect(ReactDom.findDOMNode(rdTabBarAfter).style.fontSize).to.be.eql('102px');
+      expect(rdTabBarAfter.style.fontSize).to.be.eql('102px');
 
       let rdTab = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-      expect(ReactDom.findDOMNode(rdTab[0]).style.fontSize).to.be.eql('103px');
+      expect(rdTab[0].style.fontSize).to.be.eql('103px');
 
       let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBefore[0]).style.fontSize).to.be.eql('104px');
+      expect(rdTabBefore[0].style.fontSize).to.be.eql('104px');
 
       let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfter[0]).style.fontSize).to.be.eql('105px');
+      expect(rdTabAfter[0].style.fontSize).to.be.eql('105px');
 
       let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitle[0]).style.fontSize).to.be.eql('106px');
+      expect(rdTabTitle[0].style.fontSize).to.be.eql('106px');
 
       let activeTab = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
 
-      let rdTabActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTab');
-      expect(ReactDom.findDOMNode(rdTabActive).style.fontSize).to.be.eql('107px');
+      expect(activeTab.style.fontSize).to.be.eql('107px');
 
-      let rdTabTitleActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitleActive).style.fontSize).to.be.eql('108px');
+      let rdTabTitleActive = activeTab.querySelector('.rdTabTitle');
+      expect(rdTabTitleActive.style.fontSize).to.be.eql('108px');
 
-      let rdTabBeforeActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBeforeActive).style.fontSize).to.be.eql('109px');
+      let rdTabBeforeActive = activeTab.querySelector('.rdTabBefore');
+      expect(rdTabBeforeActive.style.fontSize).to.be.eql('109px');
 
-      let rdTabAfterActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfterActive).style.fontSize).to.be.eql('110px');
+      let rdTabAfterActive = activeTab.querySelector('.rdTabAfter');
+      expect(rdTabAfterActive.style.fontSize).to.be.eql('110px');
 
-      let rdTabCloseIcon = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabCloseIcon');
-      expect(ReactDom.findDOMNode(rdTabCloseIcon).style.fontSize).to.be.eql('111px');
+      let rdTabCloseIcon = activeTab.querySelector('.rdTabCloseIcon');
+      expect(rdTabCloseIcon.style.fontSize).to.be.eql('111px');
 
     });
 
@@ -405,41 +399,41 @@ describe('Test of Tabs', () => {
 
     it('render elements with custome class', function(){
       let rdTabBar = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
-      expect(ReactDom.findDOMNode(rdTabBar).className).contain('myTabBar');
+      expect(rdTabBar.className).contain('myTabBar');
 
       let rdTabBarAfter = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBarAfter');
-      expect(ReactDom.findDOMNode(rdTabBarAfter).className).contain('myTabBarAfter');
+      expect(rdTabBarAfter.className).contain('myTabBarAfter');
 
       let rdTab = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-      expect(ReactDom.findDOMNode(rdTab[0]).className).contain('mySpecialTab');
-      expect(ReactDom.findDOMNode(rdTab[1]).className).not.contain('mySpecialTab');
+      expect(rdTab[0].className).contain('mySpecialTab');
+      expect(rdTab[1].className).not.contain('mySpecialTab');
 
       let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBefore[0]).className).contain('mySpecialTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBefore[1]).className).not.contain('mySpecialTabBefore');
+      expect(rdTabBefore[0].className).contain('mySpecialTabBefore');
+      expect(rdTabBefore[1].className).not.contain('mySpecialTabBefore');
 
       let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfter[0]).className).contain('mySpecialTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfter[1]).className).not.contain('mySpecialTabAfter');
+      expect(rdTabAfter[0].className).contain('mySpecialTabAfter');
+      expect(rdTabAfter[1].className).not.contain('mySpecialTabAfter');
 
       let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitle[0]).className).contain('mySpecialTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitle[1]).className).not.contain('mySpecialTabTitle');
+      expect(rdTabTitle[0].className).contain('mySpecialTabTitle');
+      expect(rdTabTitle[1].className).not.contain('mySpecialTabTitle');
 
       let rdTabBeforeTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBeforeTitle');
-      expect(ReactDom.findDOMNode(rdTabBeforeTitle[0]).className).contain('mySpecialTabBeforeTitle');
-      expect(ReactDom.findDOMNode(rdTabBeforeTitle[1]).className).not.contain('mySpecialTabBeforeTitle');
+      expect(rdTabBeforeTitle[0].className).contain('mySpecialTabBeforeTitle');
+      expect(rdTabBeforeTitle[1].className).not.contain('mySpecialTabBeforeTitle');
 
       let rdTabAfterTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfterTitle');
-      expect(ReactDom.findDOMNode(rdTabAfterTitle[0]).className).contain('mySpecialTabAfterTitle');
-      expect(ReactDom.findDOMNode(rdTabAfterTitle[1]).className).not.contain('mySpecialTabAfterTitle');
+      expect(rdTabAfterTitle[0].className).contain('mySpecialTabAfterTitle');
+      expect(rdTabAfterTitle[1].className).not.contain('mySpecialTabAfterTitle');
 
       let rdTabActive = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
-      expect(ReactDom.findDOMNode(rdTabActive).className).contain('mySpecialTabActive');
+      expect(rdTabActive.className).contain('mySpecialTabActive');
 
       let rdTabCloseIcon = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabCloseIcon');
-      expect(ReactDom.findDOMNode(rdTabCloseIcon[0]).className).contain('mySpecialTabCloseIcon');
-      expect(ReactDom.findDOMNode(rdTabCloseIcon[1]).className).not.contain('mySpecialTabCloseIcon');
+      expect(rdTabCloseIcon[0].className).contain('mySpecialTabCloseIcon');
+      expect(rdTabCloseIcon[1].className).not.contain('mySpecialTabCloseIcon');
 
     });
 
@@ -511,45 +505,44 @@ describe('Test of Tabs', () => {
 
     it('render elements with custome inline-style', function(){
       let rdTabBar = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
-      expect(ReactDom.findDOMNode(rdTabBar).style.fontSize).to.be.eql('101px');
+      expect(rdTabBar.style.fontSize).to.be.eql('101px');
 
       let rdTabBarAfter = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBarAfter');
-      expect(ReactDom.findDOMNode(rdTabBarAfter).style.fontSize).to.be.eql('102px');
+      expect(rdTabBarAfter.style.fontSize).to.be.eql('102px');
 
       let rdTab = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-      expect(ReactDom.findDOMNode(rdTab[0]).style.fontSize).to.be.eql('103px');
-      expect(ReactDom.findDOMNode(rdTab[2]).style.fontSize).to.be.eql('301px');
+      expect(rdTab[0].style.fontSize).to.be.eql('103px');
+      expect(rdTab[2].style.fontSize).to.be.eql('301px');
 
       let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBefore[0]).style.fontSize).to.be.eql('104px');
-      expect(ReactDom.findDOMNode(rdTabBefore[2]).style.fontSize).to.be.eql('302px');
+      expect(rdTabBefore[0].style.fontSize).to.be.eql('104px');
+      expect(rdTabBefore[2].style.fontSize).to.be.eql('302px');
 
       let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfter[0]).style.fontSize).to.be.eql('105px');
-      expect(ReactDom.findDOMNode(rdTabAfter[2]).style.fontSize).to.be.eql('303px');
+      expect(rdTabAfter[0].style.fontSize).to.be.eql('105px');
+      expect(rdTabAfter[2].style.fontSize).to.be.eql('303px');
 
       let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitle[0]).style.fontSize).to.be.eql('106px');
-      expect(ReactDom.findDOMNode(rdTabTitle[2]).style.fontSize).to.be.eql('304px');
+      expect(rdTabTitle[0].style.fontSize).to.be.eql('106px');
+      expect(rdTabTitle[2].style.fontSize).to.be.eql('304px');
 
       let activeTab = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
 
-      let rdTabActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTab');
-      expect(ReactDom.findDOMNode(rdTabActive).style.fontSize).to.be.eql('205px');
+      expect(activeTab.style.fontSize).to.be.eql('205px');
 
-      let rdTabTitleActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabTitle');
-      expect(ReactDom.findDOMNode(rdTabTitleActive).style.fontSize).to.be.eql('206px');
+      let rdTabTitleActive = activeTab.querySelector('.rdTabTitle');
+      expect(rdTabTitleActive.style.fontSize).to.be.eql('206px');
 
-      let rdTabBeforeActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabBefore');
-      expect(ReactDom.findDOMNode(rdTabBeforeActive).style.fontSize).to.be.eql('207px');
+      let rdTabBeforeActive = activeTab.querySelector('.rdTabBefore');
+      expect(rdTabBeforeActive.style.fontSize).to.be.eql('207px');
 
-      let rdTabAfterActive = ReactTestUtils.findRenderedDOMComponentWithClass(activeTab, 'rdTabAfter');
-      expect(ReactDom.findDOMNode(rdTabAfterActive).style.fontSize).to.be.eql('208px');
+      let rdTabAfterActive = activeTab.querySelector('.rdTabAfter');
+      expect(rdTabAfterActive.style.fontSize).to.be.eql('208px');
 
       let rdTabCloseIcon = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabCloseIcon');
-      expect(ReactDom.findDOMNode(rdTabCloseIcon[0]).style.fontSize).to.be.eql('111px');
-      expect(ReactDom.findDOMNode(rdTabCloseIcon[1]).style.fontSize).to.be.eql('209px');
-      expect(ReactDom.findDOMNode(rdTabCloseIcon[2]).style.fontSize).to.be.eql('305px');
+      expect(rdTabCloseIcon[0].style.fontSize).to.be.eql('111px');
+      expect(rdTabCloseIcon[1].style.fontSize).to.be.eql('209px');
+      expect(rdTabCloseIcon[2].style.fontSize).to.be.eql('305px');
     });
 
   });
@@ -579,7 +572,7 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
       const button = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabAddButton');
-      ReactTestUtils.Simulate.click(ReactDom.findDOMNode(button));
+      ReactTestUtils.Simulate.click(button);
     });
 
     it('should call onTabAddButtonClick prop', () => {
@@ -624,7 +617,7 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
       let rdTabTitles = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      ReactTestUtils.Simulate.click(ReactDom.findDOMNode(rdTabTitles[2]));
+      ReactTestUtils.Simulate.click(rdTabTitles[2]);
     });
 
     it('should call onTabSelect prop', () => {
@@ -669,7 +662,7 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
       let rdTabTitles = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      ReactTestUtils.Simulate.click(ReactDom.findDOMNode(rdTabTitles[2]));
+      ReactTestUtils.Simulate.click(rdTabTitles[2]);
     });
 
     it('should call onTabSelect prop', () => {
@@ -713,7 +706,7 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
       let rdTabTitles = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      ReactTestUtils.Simulate.doubleClick(ReactDom.findDOMNode(rdTabTitles[2]));
+      ReactTestUtils.Simulate.doubleClick(rdTabTitles[2]);
     });
 
     it('should call onTabDoubleClick prop', () => {
@@ -760,8 +753,8 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
       let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-      const tab2CloseButton = ReactTestUtils.findRenderedDOMComponentWithClass(rdTabs[1], 'myCloseButton');
-      ReactTestUtils.Simulate.click(ReactDom.findDOMNode(tab2CloseButton));
+      const tab2CloseButton = rdTabs[1].querySelector('.myCloseButton');
+      ReactTestUtils.Simulate.click(tab2CloseButton);
     });
 
     it('should call onTabClose prop', () => {
@@ -817,8 +810,8 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
         let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-        const tab2CloseButton = ReactTestUtils.findRenderedDOMComponentWithClass(rdTabs[1], 'myCloseButton');
-        ReactTestUtils.Simulate.click(ReactDom.findDOMNode(tab2CloseButton));
+        const tab2CloseButton = rdTabs[1].querySelector('.myCloseButton');
+        ReactTestUtils.Simulate.click(tab2CloseButton);
     });
 
     it('should call onTabClose prop', () => {
@@ -875,8 +868,8 @@ describe('Test of Tabs', () => {
           tabs={tabs} />);
 
       let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
-      const tab3CloseButton = ReactTestUtils.findRenderedDOMComponentWithClass(rdTabs[2], 'myCloseButton');
-      ReactTestUtils.Simulate.click(ReactDom.findDOMNode(tab3CloseButton));
+      const tab3CloseButton = rdTabs[2].querySelector('.myCloseButton');
+      ReactTestUtils.Simulate.click(tab3CloseButton);
     });
 
     it('should call onTabClose prop', () => {
@@ -939,7 +932,7 @@ describe('Test of Tabs', () => {
     });
 
     afterEach(() => {
-      React.unmountComponentAtNode(document.body);
+      ReactDom.unmountComponentAtNode(document.body);
       target1 = null;
       target2 = null;
       called = false;
