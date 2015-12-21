@@ -5,9 +5,9 @@ import React from 'react';
 import ReactDom from 'react-dom';
 import invariant from 'invariant';
 import classNames from 'classnames';
-import Draggable from 'react-draggable';
 import Mousetrap from 'mousetrap';
 
+import CustomDraggable from './CustomDraggable';
 import TabStyles from './TabStyles';
 import TabTemplate from './TabTemplate';
 import CloseIcon from './CloseIcon';
@@ -449,7 +449,7 @@ class Tabs extends React.Component {
       let closeButton = this.getCloseButton(tab, tabCloseIconStyle, tabCloseIconClasses, tabInlineStyles.tabCloseIconOnHover);
 
       return (
-        <Draggable
+        <CustomDraggable
           key={'draggable_tabs_' + tab.key }
           axis='x'
           cancel='.rdTabCloseIcon'
@@ -473,7 +473,7 @@ class Tabs extends React.Component {
             <span style={tabBeforeStyle} className={tabBeforeClasses}></span>
             <span style={tabAfterStyle} className={tabAfterClasses}></span>
           </li>
-        </Draggable>
+        </CustomDraggable>
       );
     });
 
