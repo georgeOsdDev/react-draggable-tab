@@ -31,6 +31,7 @@ describe('Test of Tabs', () => {
     expect(component.props.tabsClassNames.tabAfterTitle).to.be.equal('');
     expect(component.props.tabsClassNames.tabCloseIcon).to.be.equal('');
     expect(component.props.tabsClassNames.tabActive).to.be.equal('');
+    expect(component.props.tabsClassNames.tabHover).to.be.equal('');
 
     expect(component.props.tabsStyles).to.be.empty;
 
@@ -43,7 +44,8 @@ describe('Test of Tabs', () => {
     expect(typeof component.props.onTabAddButtonClick).to.be.equal('function');
     expect(typeof component.props.onTabPositionChange).to.be.equal('function');
     expect(typeof component.props.onTabDoubleClick).to.be.equal('function');
-
+    expect(typeof component.props.onTabMouseEnter).to.be.equal('function');
+    expect(typeof component.props.onTabMouseLeave).to.be.equal('function');
   });
 
 
@@ -287,7 +289,11 @@ describe('Test of Tabs', () => {
       tabTitleActive: {fontSize: '108px'},
       tabBeforeActive: {fontSize: '109px'},
       tabAfterActive: {fontSize: '110px'},
-      tabCloseIcon: {fontSize: '111px'}
+      tabCloseIcon: {fontSize: '111px'},
+      tabOnHover: {fontSize: '112px'},
+      tabTitleOnHover: {fontSize: '113px'},
+      tabBeforeOnHover: {fontSize: '114px'},
+      tabAfterOnHover: {fontSize: '115px'}
     };
 
     const tabs = [
@@ -1318,5 +1324,152 @@ describe('Test of Tabs', () => {
 
   });
 
+
+  describe('handle mouseEnter/mouseLeave', () => {
+    const tabsClassNames = {
+      tabHover: 'myTabHover'
+    };
+    const tab2ClassNames = {
+      tabHover: 'mySpecialTabHover'
+    };
+
+    const tabsStyles = {
+      tabOnHover: {fontSize: '101px'},
+      tabBeforeOnHover: {fontSize: '102px'},
+      tabAfterOnHover: {fontSize: '103px'},
+      tabTitleOnHover: {fontSize: '104px'}
+    };
+
+    const tab2Styles = {
+      tabOnHover: {fontSize: '201px'},
+      tabBeforeOnHover: {fontSize: '202px'},
+      tabAfterOnHover: {fontSize: '203px'},
+      tabTitleOnHover: {fontSize: '204px'}
+    };
+
+    let called1 = false;
+    let enteredKey;
+    let called2 = false;
+    let leavedKey;
+    let onMouseEnter = (e, key) => {
+      called1 = true;
+      enteredKey = key;
+    }
+    let onMouseLeave = (e, key) => {
+      called2 = true;
+      leavedKey = key;
+    }
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} tabClassNames={tab2ClassNames} tabStyles={tab2Styles}>
+        <div>
+          <h1>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    beforeEach(() => {
+      component = ReactTestUtils.renderIntoDocument(
+        <Tabs
+          tabsClassNames={tabsClassNames}
+          tabsStyles={tabsStyles}
+          selectedTab="tab3"
+          onTabMouseEnter={onMouseEnter}
+          onTabMouseLeave={onMouseLeave}
+          tabs={tabs} />);
+    });
+
+    it('should update style and className on mouseEnter', function () {
+      let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      ReactTestUtils.Simulate.mouseEnter(rdTabs[0]);
+      expect(ReactDom.findDOMNode(rdTabs[0]).classList.contains('rdTabHover')).to.be.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[0]).classList.contains('myTabHover')).to.be.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[0]).style.fontSize).to.be.equal('101px');
+
+      let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
+      expect(rdTabBefore[0].style.fontSize).to.be.eql('102px');
+
+      let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
+      expect(rdTabAfter[0].style.fontSize).to.be.eql('103px');
+
+      let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(rdTabTitle[0].style.fontSize).to.be.eql('104px');
+    });
+
+    it('should trigger props.onTabMouseEnter', function () {
+      expect(called1).to.be.eql(true);
+      expect(enteredKey).to.be.eql('tab1');
+      expect(called2).to.be.eql(false);
+    });
+
+    it('should update style and className on mouseLeave', function () {
+      let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      ReactTestUtils.Simulate.mouseLeave(rdTabs[0]);
+      expect(ReactDom.findDOMNode(rdTabs[0]).classList.contains('rdTabHover')).to.be.not.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[0]).classList.contains('myTabHover')).to.be.not.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[0]).style.fontSize).to.be.not.equal('101px');
+
+      let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
+      expect(rdTabBefore[0].style.fontSize).to.be.not.eql('102px');
+
+      let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
+      expect(rdTabAfter[0].style.fontSize).to.be.not.eql('103px');
+
+      let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(rdTabTitle[0].style.fontSize).to.be.not.eql('104px');
+    });
+
+    it('should trigger props.onTabMouseLeave', function () {
+      expect(called2).to.be.eql(true);
+      expect(leavedKey).to.be.eql('tab1');
+    });
+
+    it('should update style and className with tab customized value on mouseEnter', function () {
+      let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      ReactTestUtils.Simulate.mouseEnter(rdTabs[1]);
+      expect(ReactDom.findDOMNode(rdTabs[1]).classList.contains('rdTabHover')).to.be.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[1]).classList.contains('myTabHover')).to.be.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[1]).classList.contains('mySpecialTabHover')).to.be.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[1]).style.fontSize).to.be.equal('201px');
+
+      let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
+      expect(rdTabBefore[1].style.fontSize).to.be.eql('202px');
+
+      let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
+      expect(rdTabAfter[1].style.fontSize).to.be.eql('203px');
+
+      let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(rdTabTitle[1].style.fontSize).to.be.eql('204px');
+    });
+
+    it('should not update style and className on mouseEnter over active tab', function () {
+      let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+      ReactTestUtils.Simulate.mouseEnter(rdTabs[2]);
+      expect(ReactDom.findDOMNode(rdTabs[2]).classList.contains('rdTabHover')).to.be.not.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[2]).classList.contains('myTabHover')).to.be.not.equal(true);
+      expect(ReactDom.findDOMNode(rdTabs[2]).style.fontSize).to.be.not.equal('101px');
+
+      let rdTabBefore = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabBefore');
+      expect(rdTabBefore[2].style.fontSize).to.be.not.eql('102px');
+
+      let rdTabAfter = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabAfter');
+      expect(rdTabAfter[2].style.fontSize).to.be.not.eql('103px');
+
+      let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(rdTabTitle[2].style.fontSize).to.be.not.eql('104px');
+    });
+
+
+  });
 
 });

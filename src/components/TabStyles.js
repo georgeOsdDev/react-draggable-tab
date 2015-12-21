@@ -103,18 +103,6 @@ const TabStyles = {
     backgroundImage: 'linear-gradient(#454545, #333333)'
   },
 
-  tabActive: {
-    WebkutBoxFlex: 2,
-    WebkitFlex: 2,
-    MozFlex: 2,
-    msFlex: 2,
-    flex: 2,
-    zIndex: 1,
-    color: '#ffffff',
-    fontSize: '13px',
-    backgroundImage: 'linear-gradient(#343434, #222222)'
-  },
-
   tabTitle: {
     cursor: 'default',
     overflow: 'hidden',
@@ -126,6 +114,18 @@ const TabStyles = {
     postion: 'relative',
     width: '90%',
     color: 'rgb(170, 170, 170)'
+  },
+
+  tabActive: {
+    WebkutBoxFlex: 2,
+    WebkitFlex: 2,
+    MozFlex: 2,
+    msFlex: 2,
+    flex: 2,
+    zIndex: 1,
+    color: '#ffffff',
+    fontSize: '13px',
+    backgroundImage: 'linear-gradient(#343434, #222222)'
   },
 
   tabBeforeActive: {
@@ -140,13 +140,27 @@ const TabStyles = {
     lineHeight: '1.5em',
     color: 'rgb(255, 255, 255)',
     marginTop:'6px'
+  },
 
+  tabOnHover: {
+    backgroundImage: 'linear-gradient(#333333, #222222)',
+  },
+
+  tabBeforeOnHover: {
+    backgroundImage: 'linear-gradient(#333333, #222222)'
+  },
+
+  tabAfterOnHover: {
+    backgroundImage: 'linear-gradient(#333333, #222222)'
+  },
+
+  tabTitleOnHover: {
+    filter: 'alpha(opacity=20)'
   },
 
   tabCloseIcon:{
     cursor: 'pointer',
-    font: '14px/100% arial, sans-serif',
-    width: '10%',
+    font: '16px arial, sans-serif',
     right: '5px',
     marginTop: '8px',
     textDecoration: 'none',
@@ -155,12 +169,19 @@ const TabStyles = {
     fontSize: '1.5em',
     lineHeight: '1em',
     filter: 'alpha(opacity=20)',
-    opacity: '.2'
+    opacity: '.2',
+    width: '16px',
+    height: '16px',
+    textAlign: 'center',
+    WebkitBorderRadius: '8px',
+    MozBorderRadius: '8px',
+    borderRadius: '8px'
   },
 
   tabCloseIconOnHover:{
-    textShadow: '0 1px 0 #red',
-    color:'red'
+    filter: 'none',
+    backgroundColor: 'red',
+    color: 'white',
   },
 
   tabAddButton: {
