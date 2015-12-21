@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 let expect = chai.expect;
-import Tab from '../../components/Tab';
+import Tab from '../../src/components/Tab';
 
 describe('Test of Tab', () => {
   let component;
@@ -26,6 +26,7 @@ describe('Test of Tab', () => {
     expect(component.props.tabClassNames.tabAfterTitle).to.be.equal('');
     expect(component.props.tabClassNames.tabCloseIcon).to.be.equal('');
     expect(component.props.tabClassNames.tabActive).to.be.equal('');
+    expect(component.props.tabClassNames.tabHover).to.be.equal('');
 
     expect(component.props.tabStyles).to.be.empty;
 

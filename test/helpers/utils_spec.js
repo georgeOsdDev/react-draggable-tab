@@ -1,7 +1,7 @@
 'use strict';
 import chai from 'chai';
 let expect = chai.expect;
-import Utils from '../../helpers/utils';
+import Utils from '../../src/helpers/utils';
 
 describe('Test of utils', () => {
 

@@ -1,7 +1,7 @@
 'use strict';
 import chai  from 'chai';
 let expect = chai.expect;
-import StyleOverride from '../../helpers/styleOverride';
+import StyleOverride from '../../src/helpers/styleOverride';
 
 describe('Test of styleOverride', () => {
 
