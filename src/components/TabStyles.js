@@ -161,7 +161,6 @@ const TabStyles = {
   tabCloseIcon:{
     cursor: 'pointer',
     font: '16px arial, sans-serif',
-    width: '10%',
     right: '5px',
     marginTop: '8px',
     textDecoration: 'none',
