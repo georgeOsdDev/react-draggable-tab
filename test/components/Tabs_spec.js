@@ -7,8 +7,8 @@ import Mousetrap from 'mousetrap';
 let expect = chai.expect;
 import triggerEvent from '../triggerEvent.js';
 
-import Tabs from '../../components/Tabs';
-import Tab from '../../components/Tab';
+import Tabs from '../../src/components/Tabs';
+import Tab from '../../src/components/Tab';
 
 describe('Test of Tabs', () => {
   let component;
