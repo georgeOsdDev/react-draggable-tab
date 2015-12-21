@@ -2,7 +2,9 @@
 
 ### Ver 0.4.1
 
-* #38 [Publish transpiled code](https://github.com/georgeOsdDev/react-draggable-tab/issues/38)
+  * #33 [Add hover effect on mouseOver like chrome](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
+  * #38 [Publish transpiled code](https://github.com/georgeOsdDev/react-draggable-tab/issues/38)
+  * #40 [Tab start moving from strange position](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
 
 ### Ver 0.4.0
 
