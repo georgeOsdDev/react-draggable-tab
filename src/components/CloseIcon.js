@@ -13,11 +13,11 @@ class CloseIcon extends React.Component {
     };
   }
 
-  handleMouseOver() {
+  handleMouseEnter() {
     this.setState({'hover': true});
   }
 
-  handleMouseOut() {
+  handleMouseLeave() {
     this.setState({'hover': false});
   }
 
@@ -26,7 +26,7 @@ class CloseIcon extends React.Component {
   }
 
   render() {
-    let iconStyle = [this.props.style];
+    let iconStyle = this.props.style;
     let className = this.props.className;
     if (this.state.hover) {
       iconStyle = StyleOverride.merge(this.props.style,
@@ -42,8 +42,8 @@ class CloseIcon extends React.Component {
       <span
         style={iconStyle}
         className={className}
-        onMouseOver={this.handleMouseOver.bind(this)}
-        onMouseOut={this.handleMouseOut.bind(this)}
+        onMouseEnter={this.handleMouseEnter.bind(this)}
+        onMouseLeave={this.handleMouseLeave.bind(this)}
         onClick={this.handleClick.bind(this)}>
         {this.props.children}
       </span>

@@ -25,7 +25,8 @@ Tab.defaultProps = {
     tabBeforeTitle: '',
     tabAfterTitle: '',
     tabCloseIcon: '',
-    tabActive: ''
+    tabActive: '',
+    tabHover: ''
   },
   tabStyles: {}
 };
@@ -46,7 +47,8 @@ Tab.propTypes = {
     tabTitle: React.PropTypes.string,
     tabAfterTitle: React.PropTypes.string,
     tabCloseIcon: React.PropTypes.string,
-    tabActive: React.PropTypes.string
+    tabActive: React.PropTypes.string,
+    tabHover:  React.PropTypes.string
   }),
   tabStyles: React.PropTypes.shape({
     tab: React.PropTypes.object,
@@ -57,6 +59,10 @@ Tab.propTypes = {
     tabTitleActive: React.PropTypes.object,
     tabBeforeActive: React.PropTypes.object,
     tabAfterActive: React.PropTypes.object,
+    tabOnHover: React.PropTypes.object,
+    tabTitleOnHover: React.PropTypes.object,
+    tabBeforeOnHover: React.PropTypes.object,
+    tabAfterOnHover: React.PropTypes.object,
     tabCloseIcon: React.PropTypes.object,
     tabCloseIconHover: React.PropTypes.object
   })
