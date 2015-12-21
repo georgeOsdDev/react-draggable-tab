@@ -1,5 +1,11 @@
 ## Change Log
 
+### Ver 0.4.1
+
+  * #33 [Add hover effect on mouseOver like chrome](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
+  * #38 [Publish transpiled code](https://github.com/georgeOsdDev/react-draggable-tab/issues/38)
+  * #40 [Tab start moving from strange position](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
+
 ### Ver 0.4.0
 
   This version updated react from ^0.13.3 to 0.14.X, react-draggable from ^0.8.0 to 1.1.X, and also other dependencies.

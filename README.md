@@ -52,6 +52,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
    * `tabAfterTitle`: `span` element of tab after title (defult: `tabAfterTitle`)
    * `tabCloseIcon`: base `span` element of close icon (defult: `rdCloseIcon`)
    * `tabActive`: selected tab's `li`, before, after (defult: `rdTabActive`)
+   * `tabHover`: selected tab's `li`, before, after (defult: `rdTabHover`)
 
   * `tabStyles`: Inline styles which will be **overwritten** default and common-tabs inline styles.
    * `tab`: base `li` element of tab
@@ -62,6 +63,10 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
    * `tabBeforeActive`: selected tab's `li` before
    * `tabAfterActive`: selected tab's `li` after
    * `tabTitleActive`: selected tab's title
+   * `tabOnHover`: hovered tab's `li`
+   * `tabBeforeOnHover`: hovered tab's `li` before
+   * `tabAfterOnHover`: hovered tab's `li` after
+   * `tabTitleOnHover`: hovered tab's title
    * `tabCloseIcon`: base `span` element of close icon
    * `tabCloseIconOnHover`: base `span` element of close icon when hover
 

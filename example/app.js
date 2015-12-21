@@ -7,9 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import {Dialog, TextField, Styles} from 'material-ui';
 let ThemeManager = Styles.ThemeManager;
-
-import Tabs from '../components/Tabs';
-import Tab from '../components/Tab';
+import {Tabs, Tab} from '../lib/index.js';
 
 import DynamicTabContent from './DynamicTabContent';
 import DynamicTabBadge from './DynamicTabBadge';
@@ -120,6 +118,14 @@ class App extends React.Component {
     });
   }
 
+  handleTabMouseEnter(e, key) {
+    console.log('tab mouseEnter key:', key);
+  }
+
+  handleTabMouseLeave(e, key) {
+    console.log('tab mouseLeave key:', key);
+  }
+
   _onDialogSubmit() {
     let title = this.refs.input.getValue();
     let newTabs = _.map(this.state.tabs, (tab) => {
@@ -172,6 +178,8 @@ class App extends React.Component {
           onTabAddButtonClick={this.handleTabAddButtonClick.bind(this)}
           onTabPositionChange={this.handleTabPositionChange.bind(this)}
           onTabDoubleClick={this.handleTabDoubleClick.bind(this)}
+          onTabMouseEnter={this.handleTabMouseEnter.bind(this)}
+          onTabMouseLeave={this.handleTabMouseLeave.bind(this)}
           tabs={this.state.tabs}
           shortCutKeys={
             {

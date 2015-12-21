@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 let expect = chai.expect;
-import CloseIcon from '../../components/CloseIcon';
+import CloseIcon from '../../src/components/CloseIcon';
 
 describe('Test of CloseIcon', () => {
   const style = {color:'red'};
@@ -43,23 +43,23 @@ describe('Test of CloseIcon', () => {
     expect(called).to.be.equal(true);
   });
 
-  describe('handle mouseOver/mouseOut', () => {
+  describe('handle mouseEnter/mouseLeave', () => {
     beforeEach(() => {
       component = ReactTestUtils.renderIntoDocument(
         <CloseIcon style={style} className={className} hoverStyle={hoverStyle}>&times;</CloseIcon>
       );
     });
 
-    it('should update style and className on mouseOver', function () {
+    it('should update style and className on mouseEnter', function () {
       const span = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'span');
-      ReactTestUtils.SimulateNative.mouseOver(span);
+      ReactTestUtils.Simulate.mouseEnter(span);
       expect(ReactDom.findDOMNode(span).classList.contains('hover')).to.be.equal(true);
       expect(ReactDom.findDOMNode(span).style.color).to.be.equal('yellow');
     });
 
-    it('should update style and className on mouseOut', function () {
+    it('should update style and className on mouseLeave', function () {
       const span = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'span');
-      ReactTestUtils.SimulateNative.mouseOut(span);
+      ReactTestUtils.Simulate.mouseLeave(span);
       expect(ReactDom.findDOMNode(span).classList.contains('hover')).to.be.equal(false);
       expect(ReactDom.findDOMNode(span).style.color).to.be.equal('red');
     });
