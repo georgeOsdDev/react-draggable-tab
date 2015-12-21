@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 let expect = chai.expect;
-import CloseIcon from '../../components/CloseIcon';
+import CloseIcon from '../../src/components/CloseIcon';
 
 describe('Test of CloseIcon', () => {
   const style = {color:'red'};

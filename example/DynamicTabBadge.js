@@ -2,9 +2,7 @@
 
 import _     from 'lodash';
 import React from 'react';
-import NotificationBadge from 'react-notification-badge';
-import {Effect} from 'react-notification-badge';
-
+import NotificationBadge, {Effect} from 'react-notification-badge';
 
 class DynamicTabContent extends React.Component {
   constructor(props) {

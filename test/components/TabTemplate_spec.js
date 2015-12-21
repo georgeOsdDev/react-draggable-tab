@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
 import chai from 'chai';
 let expect = chai.expect;
-import TabTemplate from '../../components/TabTemplate';
+import TabTemplate from '../../src/components/TabTemplate';
 
 describe('Test of TabTemplate', () => {
   let component;

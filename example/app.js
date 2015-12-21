@@ -7,9 +7,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
 import {Dialog, TextField, Styles} from 'material-ui';
 let ThemeManager = Styles.ThemeManager;
-
-import Tabs from '../components/Tabs';
-import Tab from '../components/Tab';
+import {Tabs, Tab} from '../lib/index.js';
 
 import DynamicTabContent from './DynamicTabContent';
 import DynamicTabBadge from './DynamicTabBadge';
