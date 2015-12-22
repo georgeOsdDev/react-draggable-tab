@@ -7,7 +7,7 @@
 
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
@@ -44,7 +44,10 @@
 <h2>
 <a id="installation" class="anchor" href="#installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Installation</h2>
 
-<div class="highlight highlight-bash"><pre>npm install --save react-draggable-tab</pre></div>
+<div class="highlight highlight-source-shell"><pre>npm install --save react-draggable-tab</pre></div>
+
+<p>React v0.14 is supported from react-draggable-tab v0.4.0.
+For React v0.13.x, please use react-draggable-tab v0.3.3.</p>
 
 <h2>
 <a id="api" class="anchor" href="#api" aria-hidden="true"><span class="octicon octicon-link"></span></a>API</h2>
@@ -70,7 +73,6 @@
 <code>React.PropTypes.element</code></p></li>
 <li><p><code>disableClose</code>: If <code>true</code>, closeButton will not be appeared in tab.
 <code>React.PropTypes.bool</code> (Default <code>false</code>)</p></li>
-<li><p><code>beforeTitle</code>:</p></li>
 </ul>
 
 <h6>
@@ -97,6 +99,8 @@
 <code>tabCloseIcon</code>: base <code>span</code> element of close icon (defult: <code>rdCloseIcon</code>)</li>
 <li>
 <code>tabActive</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabActive</code>)</li>
+<li>
+<code>tabHover</code>: selected tab's <code>li</code>, before, after (defult: <code>rdTabHover</code>)</li>
 </ul>
 </li>
 <li>
@@ -121,6 +125,15 @@
 <li>
 <code>tabTitleActive</code>: selected tab's title</li>
 <li>
+<code>tabOnHover</code>: hovered tab's <code>li</code>
+</li>
+<li>
+<code>tabBeforeOnHover</code>: hovered tab's <code>li</code> before</li>
+<li>
+<code>tabAfterOnHover</code>: hovered tab's <code>li</code> after</li>
+<li>
+<code>tabTitleOnHover</code>: hovered tab's title</li>
+<li>
 <code>tabCloseIcon</code>: base <code>span</code> element of close icon</li>
 <li>
 <code>tabCloseIconOnHover</code>: base <code>span</code> element of close icon when hover</li>
@@ -144,6 +157,8 @@
 <code>React.PropTypes.string</code> default to first tab.</p></li>
 <li><p><code>tabAddButton</code>: element for add button.
 <code>React.PropTypes.element</code></p></li>
+<li><p><code>keepSelectedTab</code>: Prevent tab select on drag/move behind tab.
+<code>React.PropTypes.bool</code> default <code>false</code>.</p></li>
 </ul>
 
 <h6>
@@ -244,7 +259,7 @@
 <code>currentTabs</code> is array of tabs elements sorted with current order.
 Basically you will concat <code>currentTabs</code> with new empty tab.</p>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">let</span> newTabs <span class="pl-k">=</span> currentTabs.<span class="pl-c1">concat</span>([newTab]);</pre></div>
+<div class="highlight highlight-source-js"><pre><span class="pl-k">let</span> newTabs <span class="pl-k">=</span> <span class="pl-smi">currentTabs</span>.<span class="pl-c1">concat</span>([newTab]);</pre></div>
 </li>
 <li><p><code>onTabDoubleClick(e, key)</code>: Called when <code>title</code> was double clicked.</p></li>
 </ul>
@@ -252,65 +267,65 @@ Basically you will concat <code>currentTabs</code> with new empty tab.</p>
 <h2>
 <a id="usage-example" class="anchor" href="#usage-example" aria-hidden="true"><span class="octicon octicon-link"></span></a>Usage example</h2>
 
-<div class="highlight highlight-javascript"><pre><span class="pl-k">class</span> <span class="pl-en">App</span> <span class="pl-k">extends</span> <span class="pl-en">React.Component</span> {
+<div class="highlight highlight-source-js"><pre><span class="pl-k">class</span> <span class="pl-en">App</span> <span class="pl-k">extends</span> <span class="pl-en">React</span>.<span class="pl-smi">Component</span> {
   <span class="pl-en">constructor</span>(<span class="pl-smi">props</span>) {
     <span class="pl-v">super</span>(props);
-    <span class="pl-k">let</span> icon <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>image src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>icon.png<span class="pl-pds">'</span></span> style<span class="pl-k">=</span>{{height<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>13px<span class="pl-pds">'</span></span>}}/<span class="pl-k">&gt;</span>);
-    <span class="pl-k">let</span> fonticon <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>icon className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>icon-html5<span class="pl-pds">'</span></span>/<span class="pl-k">&gt;</span>);
-    <span class="pl-k">let</span> badge <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>DynamicTabBadge /<span class="pl-k">&gt;</span>);
+    <span class="pl-k">let</span> icon <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>image src<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>icon.png<span class="pl-pds">'</span></span> style<span class="pl-k">=</span>{{height<span class="pl-k">:</span><span class="pl-s"><span class="pl-pds">'</span>13px<span class="pl-pds">'</span></span>}}<span class="pl-k">/</span><span class="pl-k">&gt;</span>);
+    <span class="pl-k">let</span> fonticon <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>icon className<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>icon-html5<span class="pl-pds">'</span></span><span class="pl-k">/</span><span class="pl-k">&gt;</span>);
+    <span class="pl-k">let</span> badge <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>DynamicTabBadge <span class="pl-k">/</span><span class="pl-k">&gt;</span>);
 
-    <span class="pl-v">this</span>.<span class="pl-c1">state</span> <span class="pl-k">=</span> {
+    <span class="pl-v">this</span>.<span class="pl-smi">state</span> <span class="pl-k">=</span> {
       tabs<span class="pl-k">:</span>[
         (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab0<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>unclosable tab<span class="pl-pds">'</span></span>} disableClose<span class="pl-k">=</span>{<span class="pl-c1">true</span>} <span class="pl-k">&gt;</span>
           <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This tab cannot close<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
+            <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This tab cannot close<span class="pl-k">&lt;</span><span class="pl-k">/</span>h1<span class="pl-k">&gt;</span>
+          <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>Tab<span class="pl-k">&gt;</span>),
         (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab1<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>1stTab<span class="pl-pds">'</span></span>} beforeTitle<span class="pl-k">=</span>{icon} <span class="pl-k">&gt;</span>
           <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-            <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This is tab1<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
+            <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This is tab1<span class="pl-k">&lt;</span><span class="pl-k">/</span>h1<span class="pl-k">&gt;</span>
+          <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>Tab<span class="pl-k">&gt;</span>),
         (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab2<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>2ndTab Too long Toooooooooooooooooo long<span class="pl-pds">'</span></span>} beforeTitle<span class="pl-k">=</span>{fonticon} <span class="pl-k">&gt;</span>
           <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
             <span class="pl-k">&lt;</span>pre<span class="pl-k">&gt;</span>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
-            <span class="pl-k">&lt;</span>/pre<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>),
+            <span class="pl-k">&lt;</span><span class="pl-k">/</span>pre<span class="pl-k">&gt;</span>
+          <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>Tab<span class="pl-k">&gt;</span>),
         (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab3<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>Dynamic tab<span class="pl-pds">'</span></span>} afterTitle<span class="pl-k">=</span>{badge}<span class="pl-k">&gt;</span>
-          <span class="pl-k">&lt;</span>DynamicTabContent/<span class="pl-k">&gt;</span>
-        <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>)
+          <span class="pl-k">&lt;</span>DynamicTabContent<span class="pl-k">/</span><span class="pl-k">&gt;</span>
+        <span class="pl-k">&lt;</span><span class="pl-k">/</span>Tab<span class="pl-k">&gt;</span>)
       ],
       badgeCount<span class="pl-k">:</span> <span class="pl-c1">0</span>
     };
   }
 
   <span class="pl-en">handleTabSelect</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>handleTabSelect key:<span class="pl-pds">'</span></span>, key);
-    <span class="pl-v">this</span>.<span class="pl-c1">setState</span>({selectedTab<span class="pl-k">:</span> key, tabs<span class="pl-k">:</span> currentTabs});
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>handleTabSelect key:<span class="pl-pds">'</span></span>, key);
+    <span class="pl-v">this</span>.<span class="pl-en">setState</span>({selectedTab<span class="pl-k">:</span> key, tabs<span class="pl-k">:</span> currentTabs});
   }
 
   <span class="pl-en">handleTabClose</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabClosed key:<span class="pl-pds">'</span></span>, key);
-    <span class="pl-v">this</span>.<span class="pl-c1">setState</span>({tabs<span class="pl-k">:</span> currentTabs});
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabClosed key:<span class="pl-pds">'</span></span>, key);
+    <span class="pl-v">this</span>.<span class="pl-en">setState</span>({tabs<span class="pl-k">:</span> currentTabs});
   }
 
   <span class="pl-en">handleTabPositionChange</span>(<span class="pl-smi">e</span>, <span class="pl-smi">key</span>, <span class="pl-smi">currentTabs</span>) {
-    <span class="pl-en">console</span><span class="pl-c1">.log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabPositionChanged key:<span class="pl-pds">'</span></span>, key);
-    <span class="pl-v">this</span>.<span class="pl-c1">setState</span>({tabs<span class="pl-k">:</span> currentTabs});
+    <span class="pl-en">console</span>.<span class="pl-c1">log</span>(<span class="pl-s"><span class="pl-pds">'</span>tabPositionChanged key:<span class="pl-pds">'</span></span>, key);
+    <span class="pl-v">this</span>.<span class="pl-en">setState</span>({tabs<span class="pl-k">:</span> currentTabs});
   }
 
   <span class="pl-en">handleTabAddButtonClick</span>(<span class="pl-smi">e</span>, <span class="pl-smi">currentTabs</span>) {
     <span class="pl-c">// key must be unique</span>
-    <span class="pl-k">const</span> <span class="pl-c1">key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>newTab_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">Date</span>.<span class="pl-c1">now</span>();
+    <span class="pl-k">const</span> <span class="pl-c1">key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>newTab_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">Date</span>.<span class="pl-en">now</span>();
     <span class="pl-k">let</span> newTab <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{key} title<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>untitled<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span>
                     <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
-                      <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>New Empty Tab<span class="pl-k">&lt;</span>/h1<span class="pl-k">&gt;</span>
-                    <span class="pl-k">&lt;</span>/div<span class="pl-k">&gt;</span>
-                  <span class="pl-k">&lt;</span>/Tab<span class="pl-k">&gt;</span>);
-    <span class="pl-k">let</span> newTabs <span class="pl-k">=</span> currentTabs.<span class="pl-c1">concat</span>([newTab]);
+                      <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>New Empty Tab<span class="pl-k">&lt;</span><span class="pl-k">/</span>h1<span class="pl-k">&gt;</span>
+                    <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
+                  <span class="pl-k">&lt;</span><span class="pl-k">/</span>Tab<span class="pl-k">&gt;</span>);
+    <span class="pl-k">let</span> newTabs <span class="pl-k">=</span> <span class="pl-smi">currentTabs</span>.<span class="pl-c1">concat</span>([newTab]);
 
-    <span class="pl-v">this</span>.<span class="pl-c1">setState</span>({
+    <span class="pl-v">this</span>.<span class="pl-en">setState</span>({
       tabs<span class="pl-k">:</span> newTabs,
       selectedTab<span class="pl-k">:</span> key
     });
@@ -322,12 +337,12 @@ Basically you will concat <code>currentTabs</code> with new empty tab.</p>
       <span class="pl-k">&lt;</span>Tabs
         tabsClassNames<span class="pl-k">=</span>{tabsClassNames}
         tabsStyles<span class="pl-k">=</span>{tabsStyles}
-        selectedTab<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">selectedTab</span> <span class="pl-k">?</span> <span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">selectedTab</span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>tab2<span class="pl-pds">"</span></span>}
-        onTabSelect<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-c1">handleTabSelect</span>.<span class="pl-c1">bind</span>(<span class="pl-v">this</span>)}
-        onTabClose<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-c1">handleTabClose</span>.<span class="pl-c1">bind</span>(<span class="pl-v">this</span>)}
-        onTabAddButtonClick<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-c1">handleTabAddButtonClick</span>.<span class="pl-c1">bind</span>(<span class="pl-v">this</span>)}
-        onTabPositionChange<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-c1">handleTabPositionChange</span>.<span class="pl-c1">bind</span>(<span class="pl-v">this</span>)}
-        tabs<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-c1">state</span>.<span class="pl-c1">tabs</span>}
+        selectedTab<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">selectedTab</span> <span class="pl-k">?</span> <span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">selectedTab</span> <span class="pl-k">:</span> <span class="pl-s"><span class="pl-pds">"</span>tab2<span class="pl-pds">"</span></span>}
+        onTabSelect<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleTabSelect</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>)}
+        onTabClose<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleTabClose</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>)}
+        onTabAddButtonClick<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleTabAddButtonClick</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>)}
+        onTabPositionChange<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">handleTabPositionChange</span>.<span class="pl-en">bind</span>(<span class="pl-v">this</span>)}
+        tabs<span class="pl-k">=</span>{<span class="pl-v">this</span>.<span class="pl-smi">state</span>.<span class="pl-smi">tabs</span>}
         shortCutKeys<span class="pl-k">=</span>{
           {
             <span class="pl-s"><span class="pl-pds">'</span>close<span class="pl-pds">'</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>alt+command+w<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>alt+ctrl+w<span class="pl-pds">'</span></span>],
@@ -336,20 +351,20 @@ Basically you will concat <code>currentTabs</code> with new empty tab.</p>
             <span class="pl-s"><span class="pl-pds">'</span>moveLeft<span class="pl-pds">'</span></span><span class="pl-k">:</span> [<span class="pl-s"><span class="pl-pds">'</span>shift+alt+command+tab<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>shift+alt+ctrl+tab<span class="pl-pds">'</span></span>]
           }
         }
-      /<span class="pl-k">&gt;</span>
+      <span class="pl-k">/</span><span class="pl-k">&gt;</span>
     )
   }
 };</pre></div>
 
 <p>See also <a href="https://github.com/georgeOsdDev/react-draggable-tab/tree/develop/example">example</a></p>
 
-<div class="highlight highlight-bash"><pre>npm install
+<div class="highlight highlight-source-shell"><pre>npm install
 npm run start:example</pre></div>
 
 <h2>
 <a id="tests" class="anchor" href="#tests" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tests</h2>
 
-<div class="highlight highlight-bash"><pre>npm <span class="pl-c1">test</span></pre></div>
+<div class="highlight highlight-source-shell"><pre>npm <span class="pl-c1">test</span></pre></div>
 
 <h2>
 <a id="contributors" class="anchor" href="#contributors" aria-hidden="true"><span class="octicon octicon-link"></span></a><a href="https://github.com/georgeOsdDev/react-draggable-tab/graphs/contributors">Contributors</a>
@@ -379,7 +394,7 @@ See <a href="https://github.com/facebook/react/issues/2020">https://github.com/f
 
 <p>In application, class <code>rdTabBar</code> or your custom class of <code>TabBar</code> needs <code>display: -webkit-flex</code> in CSS like below.</p>
 
-<div class="highlight highlight-css"><pre><span class="pl-e">.myTabBar</span> {
+<div class="highlight highlight-source-css"><pre><span class="pl-e">.myTabBar</span> {
   <span class="pl-c1"><span class="pl-c1">display</span></span>: -webkit-flex;
 }
 </pre></div>
