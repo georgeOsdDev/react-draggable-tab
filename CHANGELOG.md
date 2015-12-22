@@ -1,5 +1,9 @@
 ## Change Log
 
+### Ver 0.4.2
+
+  * #45 [Unexpected diff between src and lib](https://github.com/georgeOsdDev/react-draggable-tab/issues/45)
+
 ### Ver 0.4.1
 
   * #33 [Add hover effect on mouseOver like chrome](https://github.com/georgeOsdDev/react-draggable-tab/issues/33)
