@@ -145,6 +145,10 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
 
   * `onTabDoubleClick(e, key)`: Called when `title` was double clicked.
 
+  * `onTabMouseEnter(e, key)`: Called when mouse enter to `tab`.
+
+  * `onTabMouseLeave(e, key)`: Called when mouse leave from `tab`.
+
 ## Usage example
 
 ```javascript
