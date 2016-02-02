@@ -446,6 +446,10 @@ class Tabs extends React.Component {
       //    textOverflow: 'ellipsis'
       //  }
       let tabTitle = tab.props.title;
+      let extraAttribute = {};
+      if (typeof tabTitle === 'string'){
+        extraAttribute.title = tab.props.title;
+      }
       let closeButton = this.getCloseButton(tab, tabCloseIconStyle, tabCloseIconClasses, tabInlineStyles.tabCloseIconOnHover);
 
       return (
@@ -467,7 +471,12 @@ class Tabs extends React.Component {
               onMouseLeave={this.handleMouseLeave.bind(this, tab.key)}
               ref={tab.key}>
             <span style={TabStyles.beforeTitle} className={tabBeforeTitleClasses}>{tab.props.beforeTitle}</span>
-            <p onDoubleClick={this.doubleClickHandlerWithKey(tab.key)} style={tabTiteleStyle} className={tabTitleClasses}>{tabTitle}</p>
+            <p style={tabTiteleStyle}
+              className={tabTitleClasses}
+              onDoubleClick={this.doubleClickHandlerWithKey(tab.key)}
+              {...extraAttribute} >
+              {tabTitle}
+            </p>
             <span style={TabStyles.afterTitle} className={tabAfterTitleClasses}>{tab.props.afterTitle}</span>
             {closeButton}
             <span style={tabBeforeStyle} className={tabBeforeClasses}></span>
