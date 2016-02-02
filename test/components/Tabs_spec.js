@@ -92,6 +92,14 @@ describe('Test of Tabs', () => {
       expect(titles[2].textContent).to.be.equal('tab3');
     });
 
+    it('render tab title as title attribute', function(){
+      let titles = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      expect(titles).to.be.length(3);
+      expect(titles[0].title).to.be.equal('tab1');
+      expect(titles[1].title).to.be.equal('tab2');
+      expect(titles[2].title).to.be.equal('tab3');
+    });
+
     it('render first tab as selected', function(){
       let activeTab = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabActive');
       let title = activeTab.querySelector('p');
@@ -147,6 +155,19 @@ describe('Test of Tabs', () => {
       expect(children[3].className).to.be.equal('rdTabAddButton');
     });
 
+    it('will not render tab title as title attribute', function(){
+      let children = ReactTestUtils.scryRenderedDOMComponentsWithTag(component, 'li');
+      expect(children).to.be.length(4);
+
+      let t1 = children[0].querySelector('.rdTabTitle');
+      expect(t1.title).to.be.equal('');
+
+      let t2 = children[1].querySelector('.rdTabTitle');
+      expect(t2.title).to.be.equal('');
+
+      let t3 = children[2].querySelector('.rdTabTitle');
+      expect(t3.title).to.be.equal('');
+    });
   });
 
   describe('add optional element before/after Title', () => {

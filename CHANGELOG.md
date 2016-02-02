@@ -1,5 +1,9 @@
 ## Change Log
 
+### Ver 0.4.3 (Next release)
+
+  * #48 [When tab title is truncated onhover does not show whole title](https://github.com/georgeOsdDev/react-draggable-tab/issues/48)
+
 ### Ver 0.4.2
 
   * #45 [Unexpected diff between src and lib](https://github.com/georgeOsdDev/react-draggable-tab/issues/45)
