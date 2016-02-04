@@ -28,7 +28,8 @@ Tab.defaultProps = {
     tabActive: '',
     tabHover: ''
   },
-  tabStyles: {}
+  tabStyles: {},
+  containerStyle: {}
 };
 
 Tab.propTypes = {
@@ -65,7 +66,8 @@ Tab.propTypes = {
     tabAfterOnHover: React.PropTypes.object,
     tabCloseIcon: React.PropTypes.object,
     tabCloseIconHover: React.PropTypes.object
-  })
+  }),
+  containerStyle: React.PropTypes.object
 };
 
 export default Tab;

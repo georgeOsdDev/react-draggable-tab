@@ -70,6 +70,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
    * `tabCloseIcon`: base `span` element of close icon
    * `tabCloseIconOnHover`: base `span` element of close icon when hover
 
+  * `containerStyle`: style object which will be apply to container of rendered tab.
 
 ### `Tabs`
 
