@@ -9,7 +9,7 @@ import Mousetrap from 'mousetrap';
 
 import CustomDraggable from './CustomDraggable';
 import TabStyles from './TabStyles';
-import TabTemplate from './TabTemplate';
+import TabContainer from './TabContainer';
 import CloseIcon from './CloseIcon';
 
 import StyleOverride from '../helpers/styleOverride';
@@ -426,7 +426,7 @@ class Tabs extends React.Component {
         tabAfterStyle = StyleOverride.merge(StyleOverride.merge(tabInlineStyles.tabAfter, tabInlineStyles.tabAfterActive), tab.props.tabStyles.tabAfterActive);
         tabTiteleStyle = StyleOverride.merge(StyleOverride.merge(tabInlineStyles.tabTitle, tabInlineStyles.tabTitleActive), tab.props.tabStyles.tabTitleActive);
         tabClasses = classNames(tabClassNames.tab, 'rdTabActive', this.props.tabsClassNames.tabActive, tab.props.tabClassNames.tabActive);
-        content.push(<TabTemplate key={'tabTemplate#' + tab.key} selected={true}>{tab}</TabTemplate>);
+        content.push(<TabContainer key={'tabContainer#' + tab.key} selected={true} style={tab.props.containerStyle}>{tab}</TabContainer>);
       } else {
         if (this.state.hoveredTab === tab.key) {
           tabStyle = StyleOverride.merge(StyleOverride.merge(tabStyle, tabInlineStyles.tabOnHover), tab.props.tabStyles.tabOnHover);
@@ -435,7 +435,7 @@ class Tabs extends React.Component {
           tabTiteleStyle = StyleOverride.merge(StyleOverride.merge(tabTiteleStyle, tabInlineStyles.tabTitleOnHover), tab.props.tabStyles.tabTitleOnHover);
           tabClasses = classNames(tabClasses, 'rdTabHover', this.props.tabsClassNames.tabHover, tab.props.tabClassNames.tabHover);
         }
-        content.push(<TabTemplate key={'tabTemplate#' + tab.key} selected={false}>{tab}</TabTemplate>);
+        content.push(<TabContainer key={'tabContainer#' + tab.key} selected={false} style={tab.props.containerStyle}>{tab}</TabContainer>);
       }
 
 
@@ -446,6 +446,10 @@ class Tabs extends React.Component {
       //    textOverflow: 'ellipsis'
       //  }
       let tabTitle = tab.props.title;
+      let extraAttribute = {};
+      if (typeof tabTitle === 'string'){
+        extraAttribute.title = tab.props.title;
+      }
       let closeButton = this.getCloseButton(tab, tabCloseIconStyle, tabCloseIconClasses, tabInlineStyles.tabCloseIconOnHover);
 
       return (
@@ -467,7 +471,12 @@ class Tabs extends React.Component {
               onMouseLeave={this.handleMouseLeave.bind(this, tab.key)}
               ref={tab.key}>
             <span style={TabStyles.beforeTitle} className={tabBeforeTitleClasses}>{tab.props.beforeTitle}</span>
-            <p onDoubleClick={this.doubleClickHandlerWithKey(tab.key)} style={tabTiteleStyle} className={tabTitleClasses}>{tabTitle}</p>
+            <p style={tabTiteleStyle}
+              className={tabTitleClasses}
+              onDoubleClick={this.doubleClickHandlerWithKey(tab.key)}
+              {...extraAttribute} >
+              {tabTitle}
+            </p>
             <span style={TabStyles.afterTitle} className={tabAfterTitleClasses}>{tab.props.afterTitle}</span>
             {closeButton}
             <span style={tabBeforeStyle} className={tabBeforeClasses}></span>

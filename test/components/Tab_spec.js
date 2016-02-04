@@ -29,6 +29,7 @@ describe('Test of Tab', () => {
     expect(component.props.tabClassNames.tabHover).to.be.equal('');
 
     expect(component.props.tabStyles).to.be.empty;
+    expect(component.props.containerStyle).to.be.empty;
 
   });
 

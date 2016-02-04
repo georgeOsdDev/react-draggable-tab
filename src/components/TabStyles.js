@@ -56,7 +56,7 @@ const TabStyles = {
     height: '26px',
     fontSize: '11px',
     position: 'relative',
-    marginLeft: '5px',
+    marginLeft: '30px',
     paddingLeft: '15px',
     paddingRight: '24px',
     WebkutBoxFlex: 1,
@@ -83,7 +83,8 @@ const TabStyles = {
     MozTransform: 'skewX(-30deg)',
     msTransform: 'skewX(-30deg)',
     transform: 'skewX(-30deg)',
-    backgroundImage: 'linear-gradient(#454545, #333333)'
+    backgroundImage: 'linear-gradient(#454545, #333333)',
+    borderRadius: '7.5px 0 0 0'
   },
 
   tabAfter: {
@@ -100,7 +101,8 @@ const TabStyles = {
     MozTransform: 'skewX(30deg)',
     msTransform: 'skewX(30deg)',
     transform: 'skewX(30deg)',
-    backgroundImage: 'linear-gradient(#454545, #333333)'
+    backgroundImage: 'linear-gradient(#454545, #333333)',
+    borderRadius: '0 7.5px 0 0'
   },
 
   tabTitle: {
@@ -159,14 +161,13 @@ const TabStyles = {
   },
 
   tabCloseIcon:{
+    position: 'absolute',
     cursor: 'pointer',
     font: '16px arial, sans-serif',
-    right: '5px',
+    right: '-2px',
     marginTop: '8px',
     textDecoration: 'none',
     textShadow: '0 1px 0 #fff',
-    float: 'right',
-    fontSize: '1.5em',
     lineHeight: '1em',
     filter: 'alpha(opacity=20)',
     opacity: '.2',
@@ -175,7 +176,8 @@ const TabStyles = {
     textAlign: 'center',
     WebkitBorderRadius: '8px',
     MozBorderRadius: '8px',
-    borderRadius: '8px'
+    borderRadius: '8px',
+    zIndex: 999
   },
 
   tabCloseIconOnHover:{

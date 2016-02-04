@@ -70,6 +70,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
    * `tabCloseIcon`: base `span` element of close icon
    * `tabCloseIconOnHover`: base `span` element of close icon when hover
 
+  * `containerStyle`: style object which will be apply to container of rendered tab.
 
 ### `Tabs`
 
@@ -144,6 +145,10 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
     ```
 
   * `onTabDoubleClick(e, key)`: Called when `title` was double clicked.
+
+  * `onTabMouseEnter(e, key)`: Called when mouse enter to `tab`.
+
+  * `onTabMouseLeave(e, key)`: Called when mouse leave from `tab`.
 
 ## Usage example
 
