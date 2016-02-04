@@ -62,6 +62,11 @@ class App extends React.Component {
         </Tab>),
         (<Tab key={'tab3'} title={'Dynamic tab'} afterTitle={badge}>
           <DynamicTabContent/>
+        </Tab>),
+        (<Tab key={'tab4'} title={'Custom container'} containerStyle={{backgroundColor: 'gray', width: '50%'}}>
+          <div>
+            <h1>This is tab4 with custom container style</h1>
+          </div>
         </Tab>)
       ],
       badgeCount: 0

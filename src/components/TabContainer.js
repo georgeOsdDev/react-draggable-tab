@@ -15,14 +15,12 @@ const styles = {
   }
 };
 
-class TabTemplate extends React.Component {
+class TabContainer extends React.Component {
 
   render(){
-    let style;
+    let style = StyleOverride.merge(styles.root, this.props.style);
     if (!this.props.selected) {
-      style = StyleOverride.merge(styles.root, styles.unselected);
-    } else {
-      style = styles.root;
+      style = StyleOverride.merge(style, styles.unselected);
     }
     return (
       <div style={style}>
@@ -32,12 +30,14 @@ class TabTemplate extends React.Component {
   }
 }
 
-TabTemplate.defaultProps = {
-  selected:false
+TabContainer.defaultProps = {
+  selected:false,
+  style: {}
 };
 
-TabTemplate.propTypes = {
-  selected: React.PropTypes.bool.isRequired
+TabContainer.propTypes = {
+  selected: React.PropTypes.bool.isRequired,
+  style: React.PropTypes.object
 };
 
-export default TabTemplate;
+export default TabContainer;
