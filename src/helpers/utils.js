@@ -1,5 +1,3 @@
-'use strict';
-
 let slideArray = (array, a, b) => {
   let retArr;
   let _array = array.slice(0);

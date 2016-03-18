@@ -1,5 +1,3 @@
-'use strict';
-
 import Draggable from 'react-draggable';
 
 class CustomDraggable extends Draggable {

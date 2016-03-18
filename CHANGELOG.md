@@ -1,6 +1,10 @@
 ## Change Log
 
-### Ver 0.4.4(Next Release)
+### Ver 0.5.0(Next Release)
+  * #53 [Context menu on right click](https://github.com/georgeOsdDev/react-draggable-tab/issues/53)
+    `onTabDoubleClick`, `onTabMouseEnter` and `onTabMouseEnter` are removed from `Tabs`.
+    All `onXXX` handler except `onClick` are now used on `Tab`.    
+  * Update dependencies libraries version (cf65dbc)
 
 ### Ver 0.4.3
 
@@ -20,7 +24,7 @@
 ### Ver 0.4.0
 
   This version updated react from ^0.13.3 to 0.14.X, react-draggable from ^0.8.0 to 1.1.X, and also other dependencies.
-  Several changes have been made for adopting reactv0.14.x.
+  Several changes have been made for adopting react v0.14.x.
 
   * #35 [Update dependencies](https://github.com/georgeOsdDev/react-draggable-tab/issues/35)
   * #32 [Add `keepSelectedTab` option](https://github.com/georgeOsdDev/react-draggable-tab/issues/32)
@@ -42,7 +46,7 @@
   This release contains breaking change.
 
   * #20 [Remove 'ed' from event handler name](https://github.com/georgeOsdDev/react-draggable-tab/issues/20) (Breaking change)
-  * #21 [Unexpected behaviour with NODE_ENV=production](https://github.com/georgeOsdDev/react-draggable-tab/issues/21)
+  * #21 [Unexpected behavior with NODE_ENV=production](https://github.com/georgeOsdDev/react-draggable-tab/issues/21)
 
 ### Ver 0.2.3
 
