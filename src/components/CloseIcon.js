@@ -1,5 +1,3 @@
-'use strict';
-
 import React from 'react';
 import classNames from 'classnames';
 import TabStyles from './TabStyles';
