@@ -72,6 +72,11 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
 
   * `containerStyle`: style object which will be apply to container of rendered tab.
 
+##### Events
+
+  All other props like `onXX` handler set to `Tab` will be passed to rendered element except `onClick`
+  You can use any `onXX` for [Supported events](https://facebook.github.io/react/docs/events.html#supported-events) for tab element.
+
 ### `Tabs`
 
 `Tabs` is container for tab. it will render tabBar and content of selected element.
@@ -144,11 +149,11 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
     let newTabs = currentTabs.concat([newTab]);
     ```
 
-  * `onTabDoubleClick(e, key)`: Called when `title` was double clicked.
+  ~~* `onTabDoubleClick(e, key)`: Called when `title` was double clicked.~~ Removed from v0.5.0
 
-  * `onTabMouseEnter(e, key)`: Called when mouse enter to `tab`.
+  ~~* `onTabMouseEnter(e, key)`: Called when mouse enter to `tab`.~~ Removed from v0.5.0
 
-  * `onTabMouseLeave(e, key)`: Called when mouse leave from `tab`.
+  ~~* `onTabMouseLeave(e, key)`: Called when mouse leave from `tab`.~~ Removed from v0.5.0
 
 ## Usage example
 
