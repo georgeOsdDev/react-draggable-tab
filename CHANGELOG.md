@@ -1,10 +1,12 @@
 ## Change Log
 
-### Ver 0.5.0(Next Release)
+### Ver 0.6.0
+
+### Ver 0.5.0
   * #53 [Context menu on right click](https://github.com/georgeOsdDev/react-draggable-tab/issues/53)
     `onTabDoubleClick`, `onTabMouseEnter` and `onTabMouseEnter` are removed from `Tabs`.
     All `onXXX` handler except `onClick` are now used on `Tab`.    
-  * Update dependencies libraries version (cf65dbc)
+  * Update dependencies libraries version [cf65dbc](https://github.com/georgeOsdDev/react-draggable-tab/commit/cf65dbc8f756561536f53f5e3960bf86afebdc73)
 
 ### Ver 0.4.3
 
