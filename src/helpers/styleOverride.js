@@ -1,6 +1,4 @@
-'use strict';
-
-import Immutable from "immutable";
+import Immutable from 'immutable';
 
 let merge = (original, override) => {
   return Immutable.Map(original).merge(override).toObject();

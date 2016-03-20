@@ -2,8 +2,6 @@
   https://github.com/atom/tabs
   https://github.com/atom/atom-dark-ui
 */
-'use strict';
-
 const TabStyles = {
 
   wrapper: {

@@ -1,4 +1,3 @@
-'use strict';
 import React from 'react';
 import ReactDom from 'react-dom';
 import ReactTestUtils from 'react-addons-test-utils';
@@ -43,9 +42,6 @@ describe('Test of Tabs', () => {
     expect(typeof component.props.onTabClose).to.be.equal('function');
     expect(typeof component.props.onTabAddButtonClick).to.be.equal('function');
     expect(typeof component.props.onTabPositionChange).to.be.equal('function');
-    expect(typeof component.props.onTabDoubleClick).to.be.equal('function');
-    expect(typeof component.props.onTabMouseEnter).to.be.equal('function');
-    expect(typeof component.props.onTabMouseLeave).to.be.equal('function');
   });
 
 
@@ -612,7 +608,6 @@ describe('Test of Tabs', () => {
 
   });
 
-
   describe('when Tab clicked', function () {
     let called = false;
     let key = '';
@@ -700,47 +695,6 @@ describe('Test of Tabs', () => {
 
       expect(currentTabs).to.be.length(3);
       expect(currentTabs[0].key).to.be.equal('tab1');
-    });
-  });
-
-  describe('when Tab double clicked', function () {
-    let called = false;
-    let key = '';
-
-    const tabs = [
-      (<Tab key={'tab1'} title={'tab1'} >
-        <div>
-          <h1 className='tab1click'>tab1Content</h1>
-        </div>
-      </Tab>),
-      (<Tab key={'tab2'} title={'tab2'} >
-        <div>
-          <h1 className='tab2click'>tab2Content</h1>
-        </div>
-      </Tab>),
-      (<Tab key={'tab3'} title={'tab3'} >
-        <div>
-          <h1 className='tab3click'>tab3Content</h1>
-        </div>
-      </Tab>)
-    ];
-
-    before(() => {
-      component = ReactTestUtils.renderIntoDocument(
-        <Tabs
-          onTabDoubleClick={function(e, _key){called = true; key = _key; }}
-          selectedTab="tab1"
-          tabs={tabs} />);
-
-      let rdTabTitles = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
-      ReactTestUtils.Simulate.doubleClick(rdTabTitles[2]);
-    });
-
-    it('should call onTabDoubleClick prop', () => {
-      expect(called).to.be.equal(true);
-    });
-    it('should pass key', () => {
-      expect(key).to.be.eql('tab3');
     });
   });
 
@@ -1368,19 +1322,6 @@ describe('Test of Tabs', () => {
       tabTitleOnHover: {fontSize: '204px'}
     };
 
-    let called1 = false;
-    let enteredKey;
-    let called2 = false;
-    let leavedKey;
-    let onMouseEnter = (e, key) => {
-      called1 = true;
-      enteredKey = key;
-    }
-    let onMouseLeave = (e, key) => {
-      called2 = true;
-      leavedKey = key;
-    }
-
     const tabs = [
       (<Tab key={'tab1'} title={'tab1'} >
         <div>
@@ -1405,8 +1346,6 @@ describe('Test of Tabs', () => {
           tabsClassNames={tabsClassNames}
           tabsStyles={tabsStyles}
           selectedTab="tab3"
-          onTabMouseEnter={onMouseEnter}
-          onTabMouseLeave={onMouseLeave}
           tabs={tabs} />);
     });
 
@@ -1427,12 +1366,6 @@ describe('Test of Tabs', () => {
       expect(rdTabTitle[0].style.fontSize).to.be.eql('104px');
     });
 
-    it('should trigger props.onTabMouseEnter', function () {
-      expect(called1).to.be.eql(true);
-      expect(enteredKey).to.be.eql('tab1');
-      expect(called2).to.be.eql(false);
-    });
-
     it('should update style and className on mouseLeave', function () {
       let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
       ReactTestUtils.Simulate.mouseLeave(rdTabs[0]);
@@ -1448,11 +1381,6 @@ describe('Test of Tabs', () => {
 
       let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
       expect(rdTabTitle[0].style.fontSize).to.be.not.eql('104px');
-    });
-
-    it('should trigger props.onTabMouseLeave', function () {
-      expect(called2).to.be.eql(true);
-      expect(leavedKey).to.be.eql('tab1');
     });
 
     it('should update style and className with tab customized value on mouseEnter', function () {
@@ -1489,8 +1417,52 @@ describe('Test of Tabs', () => {
       let rdTabTitle = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
       expect(rdTabTitle[2].style.fontSize).to.be.not.eql('104px');
     });
-
-
   });
+
+  describe('Event listeners for each Tab', function () {
+    let called1 = false;
+    let called2 = false;
+    let called3 = false;
+    let called4 = false;
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} onDoubleClick={() => {called1 = true;}}>
+        <div>
+          <h1 className='tab1click'>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} onDoubleClick={() => {called2 = true;}} onContextMenu={() => {called3 = true;}}>
+        <div>
+          <h1 className='tab2click'>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} onContextMenu={() => {called4 = true;}}>
+        <div>
+          <h1 className='tab3click'>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+    let rdTabTitles;
+
+    before(() => {
+      component = ReactTestUtils.renderIntoDocument(
+        <Tabs
+          selectedTab="tab1"
+          tabs={tabs} />);
+      rdTabTitles = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTabTitle');
+      ReactTestUtils.Simulate.doubleClick(rdTabTitles[1]);
+      ReactTestUtils.Simulate.contextMenu(rdTabTitles[2]);
+    });
+
+    it('should call specified listener ', () => {
+
+      expect(called1).to.be.equal(false);
+      expect(called2).to.be.equal(true);
+      expect(called3).to.be.equal(false);
+      expect(called4).to.be.equal(true);
+    });
+  });
+
+
 
 });
