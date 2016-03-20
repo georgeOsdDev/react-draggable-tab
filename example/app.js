@@ -5,8 +5,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
-import {Dialog, FlatButton, TextField} from 'material-ui';
-import {Tabs, Tab} from '../src/index.js';
+import {Dialog, FlatButton, Menu, MenuItem, TextField} from 'material-ui';
+import {Tabs, Tab} from '../lib/index.js';
 
 import DynamicTabContent from './DynamicTabContent';
 import DynamicTabBadge from './DynamicTabBadge';
@@ -68,7 +68,9 @@ class App extends React.Component {
           </div>
         </Tab>)
       ],
-      badgeCount: 0
+      badgeCount: 0,
+      menuPosition: {},
+      showMenu: false
     };
   }
 
@@ -81,7 +83,7 @@ class App extends React.Component {
   makeListeners(key){
     return {
       onClick: (e) => { console.log('onClick', key, e);}, // never called
-      onContextMenu: (e) => { console.log('onContextMenu', key, e);},
+      onContextMenu: (e) => { console.log('onContextMenu', key, e); this.handleTabContextMenu(key, e)},
       onDoubleClick: (e) => { console.log('onDoubleClick', key, e); this.handleTabDoubleClick(key, e)},
       onMouseEnter: (e) => { console.log('onMouseEnter', key, e);},
       onMouseLeave: (e) => { console.log('onMouseLeave', key, e);}
@@ -123,6 +125,44 @@ class App extends React.Component {
     this.setState({
       editTabKey: key,
       dialogOpen: true
+    });
+  }
+
+  handleTabContextMenu(key, e) {
+    e.preventDefault();
+    this.setState({
+      showMenu: true,
+      contextTarget: key,
+      menuPosition: {
+        top:`${e.pageY}px`,
+        left:`${e.pageX}px`
+      }
+    });
+  }
+
+  cancelContextMenu(){
+    this.setState({
+      showMenu: false,
+      contextTarget: null
+    });
+  }
+
+  renameFromContextMenu(){
+    this.setState({
+      showMenu: false,
+      contextTarget: null,
+      editTabKey: this.state.contextTarget,
+      dialogOpen: true
+    });
+  }
+
+  closeFromContextMenu(){
+    let newTabs = _.filter(this.state.tabs, (t) => {return t.key !== this.state.contextTarget;});
+    this.setState({
+      showMenu: false,
+      contextTarget: null,
+      selectedTab: 'tab0',
+      tabs: newTabs
     });
   }
 
@@ -178,6 +218,13 @@ class App extends React.Component {
       />
     ];
 
+    let menuStyle = {
+      display: this.state.showMenu ? 'block': 'none',
+      position: 'absolute',
+      top: this.state.menuPosition.top,
+      left: this.state.menuPosition.left,
+      backgroundColor: '#F0F0F0'
+    }
 
     return (
       <div>
@@ -200,6 +247,13 @@ class App extends React.Component {
           }
           keepSelectedTab={true}
         />
+        <div style={menuStyle}>
+          <Menu>
+            {this.state.contextTarget === 'tab0' ? '' : <MenuItem primaryText="Close" onClick={this.closeFromContextMenu.bind(this)}/>}
+            <MenuItem primaryText="Rename" onClick={this.renameFromContextMenu.bind(this)}/>
+            <MenuItem primaryText="Cancel" onClick={this.cancelContextMenu.bind(this)}/>
+          </Menu>
+        </div>
         <Dialog
           title="Change tab name"
           ref="dialog"
