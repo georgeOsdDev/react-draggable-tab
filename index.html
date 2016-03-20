@@ -142,6 +142,12 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.</p>
 <li><p><code>containerStyle</code>: style object which will be apply to container of rendered tab.</p></li>
 </ul>
 
+<h5>
+<a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h5>
+
+<p>All other props like <code>onXX</code> handler set to <code>Tab</code> will be passed to rendered element except <code>onClick</code>
+  You can use any <code>onXX</code> for <a href="https://facebook.github.io/react/docs/events.html#supported-events">Supported events</a> for tab element.</p>
+
 <h3>
 <a id="tabs" class="anchor" href="#tabs" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a><code>Tabs</code>
 </h3>
@@ -246,7 +252,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.</p>
 </ul>
 
 <h5>
-<a id="events" class="anchor" href="#events" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h5>
+<a id="events-1" class="anchor" href="#events-1" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Events</h5>
 
 <ul>
 <li><p><code>onTabSelect(e, key, currentTabs)</code>: Called when tab of key was selected.
@@ -261,10 +267,13 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.</p>
 Basically you will concat <code>currentTabs</code> with new empty tab.</p>
 
 <div class="highlight highlight-source-js"><pre><span class="pl-k">let</span> newTabs <span class="pl-k">=</span> <span class="pl-smi">currentTabs</span>.<span class="pl-c1">concat</span>([newTab]);</pre></div>
+
+<p><del>* <code>onTabDoubleClick(e, key)</code>: Called when <code>title</code> was double clicked.</del> Removed from v0.5.0</p>
+
+<p><del>* <code>onTabMouseEnter(e, key)</code>: Called when mouse enter to <code>tab</code>.</del> Removed from v0.5.0</p>
+
+<p><del>* <code>onTabMouseLeave(e, key)</code>: Called when mouse leave from <code>tab</code>.</del> Removed from v0.5.0</p>
 </li>
-<li><p><code>onTabDoubleClick(e, key)</code>: Called when <code>title</code> was double clicked.</p></li>
-<li><p><code>onTabMouseEnter(e, key)</code>: Called when mouse enter to <code>tab</code>.</p></li>
-<li><p><code>onTabMouseLeave(e, key)</code>: Called when mouse leave from <code>tab</code>.</p></li>
 </ul>
 
 <h2>
@@ -320,7 +329,7 @@ Basically you will concat <code>currentTabs</code> with new empty tab.</p>
 
   <span class="pl-en">handleTabAddButtonClick</span>(<span class="pl-smi">e</span>, <span class="pl-smi">currentTabs</span>) {
     <span class="pl-c">// key must be unique</span>
-    <span class="pl-k">const</span> <span class="pl-c1">key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>newTab_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-smi">Date</span>.<span class="pl-en">now</span>();
+    <span class="pl-k">const</span> <span class="pl-c1">key</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>newTab_<span class="pl-pds">'</span></span> <span class="pl-k">+</span> <span class="pl-c1">Date</span>.<span class="pl-en">now</span>();
     <span class="pl-k">let</span> newTab <span class="pl-k">=</span> (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{key} title<span class="pl-k">=</span><span class="pl-s"><span class="pl-pds">'</span>untitled<span class="pl-pds">'</span></span><span class="pl-k">&gt;</span>
                     <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
                       <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>New Empty Tab<span class="pl-k">&lt;</span><span class="pl-k">/</span>h1<span class="pl-k">&gt;</span>
