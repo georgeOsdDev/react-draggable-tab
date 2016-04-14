@@ -105,6 +105,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
 ###### Style (All tabs will be apply these styles)
 
   * `tabsClassNames`: classNames which will be **added** to rendered elements.
+   * `tabWrapper`: root wrapper `div` element (defult: `rdTabWrapper`)
    * `tabBar`: base `ul` element of tab bar (defult: `rdTabBar`)
    * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector (defult: `rdTabBarAfter`)
    * `tab`: base `li` element of tab (defult: `rdTab`)
@@ -117,6 +118,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
    * `tabActive`: selected tab's `li`, before, after (defult: `rdTabActive`)
 
   * `tabsStyles`: Inline styles which will be **overwritten** default inline styles.
+   * `tabWrapper`: root wrapper `div` element
    * `tabBar`: base `ul` element of tab bar
    * `tabBarAfter`: after `span` element of tab bar which emulate `:After` selector
    * `tab`: base `li` element of tab

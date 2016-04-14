@@ -2,6 +2,9 @@
 
 ### Ver 0.6.0
 
+### Ver 0.5.1
+  *  #59 [Allow overriding TabStyles.wrapper using props](https://github.com/georgeOsdDev/react-draggable-tab/issues/59)
+
 ### Ver 0.5.0
   * #53 [Context menu on right click](https://github.com/georgeOsdDev/react-draggable-tab/issues/53)
     `onTabDoubleClick`, `onTabMouseEnter` and `onTabMouseEnter` are removed from `Tabs`.

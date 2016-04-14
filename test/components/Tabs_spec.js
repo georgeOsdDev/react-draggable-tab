@@ -20,6 +20,7 @@ describe('Test of Tabs', () => {
     component = ReactTestUtils.renderIntoDocument(<Tabs/>);
 
     expect(component.props.tabsClassNames).to.be.an('object');
+    expect(component.props.tabsClassNames.tabWrapper).to.be.equal('');
     expect(component.props.tabsClassNames.tabBar).to.be.equal('');
     expect(component.props.tabsClassNames.tabBarAfter).to.be.equal('');
     expect(component.props.tabsClassNames.tab).to.be.equal('');
@@ -228,6 +229,7 @@ describe('Test of Tabs', () => {
   describe('add custom className to all tabs ', function(){
 
     const tabsClassNames = {
+      tabWrapper: 'myWrapper',
       tabBar: 'myTabBar',
       tabBarAfter: 'myTabBarAfter',
       tab:      'myTab',
@@ -258,6 +260,10 @@ describe('Test of Tabs', () => {
     });
 
     it('render elements with custome class', function(){
+
+      let wrapper = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabWrapper');
+      expect(wrapper.className).contain('myWrapper');
+
       let rdTabBar = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
       expect(rdTabBar.className).contain('myTabBar');
 
@@ -296,6 +302,7 @@ describe('Test of Tabs', () => {
   describe('overwite inline style to all tabs', function(){
 
     const tabsStyles = {
+      tabWrapper: {fontSize: '100px'},
       tabBar: {fontSize: '101px'},
       tabBarAfter: {fontSize: '102px'},
       tab: {fontSize: '103px'},
@@ -335,6 +342,9 @@ describe('Test of Tabs', () => {
     });
 
     it('render elements with custome inline-style', function(){
+      let rdTabWrapper = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabWrapper');
+      expect(rdTabWrapper.style.fontSize).to.be.eql('100px');
+
       let rdTabBar = ReactTestUtils.findRenderedDOMComponentWithClass(component, 'rdTabBar');
       expect(rdTabBar.style.fontSize).to.be.eql('101px');
 
