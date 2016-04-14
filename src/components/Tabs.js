@@ -354,6 +354,7 @@ class Tabs extends React.Component {
     // override inline tabs styles
     let tabInlineStyles = {
     };
+    tabInlineStyles.tabWrapper = StyleOverride.merge(TabStyles.tabWrapper, this.props.tabsStyles.tabWrapper);
     tabInlineStyles.tabBar = StyleOverride.merge(TabStyles.tabBar, this.props.tabsStyles.tabBar);
     tabInlineStyles.tabBarAfter = StyleOverride.merge(TabStyles.tabBarAfter, this.props.tabsStyles.tabBarAfter);
     tabInlineStyles.tab = StyleOverride.merge(TabStyles.tab, this.props.tabsStyles.tab);
@@ -376,6 +377,7 @@ class Tabs extends React.Component {
     // append tabs classNames
     let _tabClassNames = {
     };
+    _tabClassNames.tabWrapper = classNames('rdTabWrapper', this.props.tabsClassNames.tabWrapper);
     _tabClassNames.tabBar = classNames('rdTabBar', this.props.tabsClassNames.tabBar);
     _tabClassNames.tabBarAfter = classNames('rdTabBarAfter', this.props.tabsClassNames.tabBarAfter);
     _tabClassNames.tab = classNames('rdTab', this.props.tabsClassNames.tab);
@@ -488,16 +490,14 @@ class Tabs extends React.Component {
     });
 
     return (
-      <div style={TabStyles.wrapper}>
-        <div style={TabStyles.relative}>
-          <ul tabIndex='-1' style={tabInlineStyles.tabBar} className={_tabClassNames.tabBar}>
-            {tabs}
-            <li className='rdTabAddButton' style={TabStyles.tabAddButton} onClick={this.handleAddButtonClick.bind(this)}>
-              {this.props.tabAddButton}
-            </li>
-          </ul>
-          <span style={tabInlineStyles.tabBarAfter} className={_tabClassNames.tabBarAfter}></span>
-        </div>
+      <div style={tabInlineStyles.tabWrapper} className={_tabClassNames.tabWrapper}>
+        <ul tabIndex='-1' style={tabInlineStyles.tabBar} className={_tabClassNames.tabBar}>
+          {tabs}
+          <li className='rdTabAddButton' style={TabStyles.tabAddButton} onClick={this.handleAddButtonClick.bind(this)}>
+            {this.props.tabAddButton}
+          </li>
+        </ul>
+        <span style={tabInlineStyles.tabBarAfter} className={_tabClassNames.tabBarAfter}></span>
         {content}
       </div>
     );
@@ -506,6 +506,7 @@ class Tabs extends React.Component {
 
 Tabs.defaultProps = {
   tabsClassNames: {
+    tabWrapper: '',
     tabBar: '',
     tabBarAfter: '',
     tab: '',
@@ -533,6 +534,7 @@ Tabs.propTypes = {
 
   selectedTab: React.PropTypes.string,
   tabsClassNames: React.PropTypes.shape({
+    tabWrapper:React.PropTypes.string,
     tabBar: React.PropTypes.string,
     tabBarAfter: React.PropTypes.string,
     tab: React.PropTypes.string,
@@ -546,6 +548,7 @@ Tabs.propTypes = {
     tabHover:  React.PropTypes.string
   }),
   tabsStyles: React.PropTypes.shape({
+    tabWrapper:React.PropTypes.object,
     tabBar: React.PropTypes.object,
     tabBarAfter: React.PropTypes.object,
     tab: React.PropTypes.object,

@@ -4,13 +4,9 @@
 */
 const TabStyles = {
 
-  wrapper: {
+  tabWrapper: {
     height: '100%',
     width: '100%',
-    position: 'relative'
-  },
-
-  relative: {
     position: 'relative'
   },
 

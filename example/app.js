@@ -15,6 +15,7 @@ import DynamicTabBadge from './DynamicTabBadge';
 window.React = React;
 
 const tabsClassNames = {
+  tabWrapper: 'myWrapper',
   tabBar: 'myTabBar',
   tabBarAfter: 'myTabBarAfter',
   tab:      'myTab',
@@ -25,6 +26,7 @@ const tabsClassNames = {
 };
 
 const tabsStyles = {
+  tabWrapper: {marginTop: '10px'},
   tabBar: {},
   tab:{},
   tabTitle: {},
