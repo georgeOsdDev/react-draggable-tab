@@ -7,7 +7,7 @@ const TabStyles = {
   tabWrapper: {
     height: '100%',
     width: '100%',
-    position: 'relative'
+    position: 'relative',
   },
 
   tabBar: {
@@ -28,7 +28,7 @@ const TabStyles = {
     overflowX: 'hidden',
     minWidth: '95%',
     maxWidth: '99%',
-    paddingRight: '35px'
+    paddingRight: '35px',
   },
 
   tabBarAfter: {
@@ -41,7 +41,7 @@ const TabStyles = {
     zIndex: 2,
     backgroundColor: '#222222',
     borderBottom: '1px solid #111111',
-    pointerEvents: 'none'
+    pointerEvents: 'none',
   },
 
   tab: {
@@ -60,7 +60,7 @@ const TabStyles = {
     flex: 1,
     maxWidth: '175px',
     minWidth: '0px',
-    transform: 'translate(0px, 0px)'
+    transform: 'translate(0px, 0px)',
   },
 
   tabBefore: {
@@ -78,7 +78,7 @@ const TabStyles = {
     msTransform: 'skewX(-30deg)',
     transform: 'skewX(-30deg)',
     backgroundImage: 'linear-gradient(#454545, #333333)',
-    borderRadius: '7.5px 0 0 0'
+    borderRadius: '7.5px 0 0 0',
   },
 
   tabAfter: {
@@ -96,7 +96,7 @@ const TabStyles = {
     msTransform: 'skewX(30deg)',
     transform: 'skewX(30deg)',
     backgroundImage: 'linear-gradient(#454545, #333333)',
-    borderRadius: '0 7.5px 0 0'
+    borderRadius: '0 7.5px 0 0',
   },
 
   tabTitle: {
@@ -109,7 +109,7 @@ const TabStyles = {
     textAlign: 'center',
     postion: 'relative',
     width: '90%',
-    color: 'rgb(170, 170, 170)'
+    color: 'rgb(170, 170, 170)',
   },
 
   tabActive: {
@@ -121,21 +121,21 @@ const TabStyles = {
     zIndex: 1,
     color: '#ffffff',
     fontSize: '13px',
-    backgroundImage: 'linear-gradient(#343434, #222222)'
+    backgroundImage: 'linear-gradient(#343434, #222222)',
   },
 
   tabBeforeActive: {
-    backgroundImage: 'linear-gradient(#343434, #222222)'
+    backgroundImage: 'linear-gradient(#343434, #222222)',
   },
 
   tabAfterActive: {
-    backgroundImage: 'linear-gradient(#343434, #222222)'
+    backgroundImage: 'linear-gradient(#343434, #222222)',
   },
 
   tabTitleActive: {
     lineHeight: '1.5em',
     color: 'rgb(255, 255, 255)',
-    marginTop:'6px'
+    marginTop: '6px',
   },
 
   tabOnHover: {
@@ -143,18 +143,18 @@ const TabStyles = {
   },
 
   tabBeforeOnHover: {
-    backgroundImage: 'linear-gradient(#333333, #222222)'
+    backgroundImage: 'linear-gradient(#333333, #222222)',
   },
 
   tabAfterOnHover: {
-    backgroundImage: 'linear-gradient(#333333, #222222)'
+    backgroundImage: 'linear-gradient(#333333, #222222)',
   },
 
   tabTitleOnHover: {
-    filter: 'alpha(opacity=20)'
+    filter: 'alpha(opacity=20)',
   },
 
-  tabCloseIcon:{
+  tabCloseIcon: {
     position: 'absolute',
     cursor: 'pointer',
     font: '16px arial, sans-serif',
@@ -171,10 +171,10 @@ const TabStyles = {
     WebkitBorderRadius: '8px',
     MozBorderRadius: '8px',
     borderRadius: '8px',
-    zIndex: 999
+    zIndex: 999,
   },
 
-  tabCloseIconOnHover:{
+  tabCloseIconOnHover: {
     filter: 'none',
     backgroundColor: 'red',
     color: 'white',
@@ -189,22 +189,22 @@ const TabStyles = {
     width: '25px',
     height: '26px',
     marginLeft: '20px',
-    zIndex: 2
+    zIndex: 2,
   },
 
   beforeTitle: {
-    position:'absolute',
+    position: 'absolute',
     top: '8px',
     left: '-8px',
-    zIndex: 2
+    zIndex: 2,
   },
 
   afterTitle: {
-    position:'absolute',
+    position: 'absolute',
     top: '8px',
     right: '16px',
-    zIndex: 2
-  }
+    zIndex: 2,
+  },
 };
 
 export default TabStyles;

@@ -1,14 +1,10 @@
 import Draggable from 'react-draggable';
 
 class CustomDraggable extends Draggable {
-  constructor(props) {
-    super(props);
-  }
-
   componentWillReceiveProps(nextProps) {
-    let newState =  {
+    const newState = {
       clientX: nextProps.start.x,
-      clientY: nextProps.start.y
+      clientY: nextProps.start.y,
     }
     this.setState(newState);
   }
