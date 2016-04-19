@@ -3,5 +3,5 @@ import Tabs from './components/Tabs';
 
 export {
   Tab,
-  Tabs
+  Tabs,
 };

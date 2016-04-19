@@ -7,16 +7,16 @@ class CloseIcon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: false
+      hover: false,
     };
   }
 
   handleMouseEnter() {
-    this.setState({'hover': true});
+    this.setState({ hover: true });
   }
 
   handleMouseLeave() {
-    this.setState({'hover': false});
+    this.setState({ hover: false });
   }
 
   handleClick(e) {
@@ -52,13 +52,13 @@ class CloseIcon extends React.Component {
 CloseIcon.defaultProps = {
   style: {},
   hoverStyle: {},
-  onClick: () => {}
+  onClick: () => {},
 };
 
 CloseIcon.propTypes = {
   style: React.PropTypes.object,
   hoverStyle: React.PropTypes.object,
-  onClick: React.PropTypes.func
+  onClick: React.PropTypes.func,
 };
 
 export default CloseIcon;

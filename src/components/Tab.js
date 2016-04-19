@@ -13,7 +13,9 @@ class Tab extends React.Component {
 }
 
 Tab.defaultProps = {
+  beforeTitle: <span />,
   title: 'untitled',
+  afterTitle: <span />,
   disableClose: false,
   tabClassNames: {
     tab: '',
@@ -24,17 +26,17 @@ Tab.defaultProps = {
     tabAfterTitle: '',
     tabCloseIcon: '',
     tabActive: '',
-    tabHover: ''
+    tabHover: '',
   },
   tabStyles: {},
-  containerStyle: {}
+  containerStyle: {},
 };
 
 Tab.propTypes = {
   beforeTitle: React.PropTypes.element,
   title: React.PropTypes.oneOfType([
     React.PropTypes.string,
-    React.PropTypes.element
+    React.PropTypes.element,
   ]).isRequired,
   afterTitle: React.PropTypes.element,
   disableClose: React.PropTypes.bool,
@@ -47,7 +49,7 @@ Tab.propTypes = {
     tabAfterTitle: React.PropTypes.string,
     tabCloseIcon: React.PropTypes.string,
     tabActive: React.PropTypes.string,
-    tabHover:  React.PropTypes.string
+    tabHover: React.PropTypes.string,
   }),
   tabStyles: React.PropTypes.shape({
     tab: React.PropTypes.object,
@@ -63,9 +65,9 @@ Tab.propTypes = {
     tabBeforeOnHover: React.PropTypes.object,
     tabAfterOnHover: React.PropTypes.object,
     tabCloseIcon: React.PropTypes.object,
-    tabCloseIconHover: React.PropTypes.object
+    tabCloseIconHover: React.PropTypes.object,
   }),
-  containerStyle: React.PropTypes.object
+  containerStyle: React.PropTypes.object,
 };
 
 export default Tab;
