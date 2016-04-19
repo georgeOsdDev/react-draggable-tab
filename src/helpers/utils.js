@@ -1,6 +1,6 @@
-let slideArray = (array, a, b) => {
+const slideArray = (array, a, b) => {
   let retArr;
-  let _array = array.slice(0);
+  const _array = array.slice(0);
 
   if (a < b) {
     retArr = _array.map((v, idx) => {
@@ -30,4 +30,6 @@ let slideArray = (array, a, b) => {
   return retArr;
 };
 
-export default {slideArray: slideArray};
+export default {
+  slideArray,
+};

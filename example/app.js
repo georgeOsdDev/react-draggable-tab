@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 injectTapEventPlugin();
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Dialog, FlatButton, Menu, MenuItem, TextField} from 'material-ui';
 import {Tabs, Tab} from '../lib/index.js';
 
@@ -74,6 +75,10 @@ class App extends React.Component {
       menuPosition: {},
       showMenu: false
     };
+  }
+
+  getChildContext() {
+    return { muiTheme: getMuiTheme()};
   }
 
   // getChildContext() {
@@ -275,7 +280,7 @@ class App extends React.Component {
 }
 
 App.childContextTypes = {
-  // muiTheme: React.PropTypes.object
+  muiTheme: React.PropTypes.object
 };
 
 ReactDOM.render(<App/>, document.getElementById('tabs'));

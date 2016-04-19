@@ -1,7 +1,7 @@
 import Immutable from 'immutable';
 
-let merge = (original, override) => {
-  return Immutable.Map(original).merge(override).toObject();
-};
+const merge = (original, override) => Immutable.Map(original).merge(override).toObject();
 
-export default {merge: merge};
+export default {
+  merge,
+};
