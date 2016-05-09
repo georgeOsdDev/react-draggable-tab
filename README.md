@@ -266,7 +266,8 @@ npm test
 
 ## [Contributors](https://github.com/georgeOsdDev/react-draggable-tab/graphs/contributors)
 
- * [@linhlc888](https://github.com/linhlc888)
+ * @linhlc888
+ * @uriklar
 
 ## Known Issue
 

@@ -1,5 +1,10 @@
 ## Change Log
 
+### Ver 0.6.1
+
+  * #66 [Removes console warning in React15](https://github.com/georgeOsdDev/react-draggable-tab/issues/66)
+    Thanks @uriklar
+
 ### Ver 0.6.0
 
   * #63 [React v15 support](https://github.com/georgeOsdDev/react-draggable-tab/issues/63)
