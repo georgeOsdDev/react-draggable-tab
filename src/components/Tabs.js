@@ -259,7 +259,7 @@ class Tabs extends React.Component {
       return;
     }
 
-    const classes = e.target.className.split(' ');
+    const classes = (e.target.getAttribute('class') || '').split(' ');
     if (classes.indexOf('rdTabCloseIcon') > -1) {
       this._cancelEventSafety(e);
     } else {
