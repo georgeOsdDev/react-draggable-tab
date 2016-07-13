@@ -33,14 +33,13 @@ describe('Test of TabContainer', () => {
     component = ReactTestUtils.renderIntoDocument(<TabContainer selected={false} style={{color: 'red'}}><p>not test tab</p></TabContainer>);
     const p = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'p');
     expect(ReactDom.findDOMNode(p).parentNode.style.height).to.be.equal('0px');
-    expect(ReactDom.findDOMNode(p).parentNode.style.color).to.be.equal('red');
+    expect(ReactDom.findDOMNode(p).parentNode.style.color).to.be.not.equal('red');
   });
 
-  it('It will have visible height with custom style when selected', () => {
-    component = ReactTestUtils.renderIntoDocument(<TabContainer selected={true} style={{color: 'red'}}><p>not test tab</p></TabContainer>);
+  it('It will have unvisible custom style when not selected', () => {
+    component = ReactTestUtils.renderIntoDocument(<TabContainer selected={false} hiddenStyle={{opacity: 0}}><p>not test tab</p></TabContainer>);
     const p = ReactTestUtils.findRenderedDOMComponentWithTag(component, 'p');
+    expect(ReactDom.findDOMNode(p).parentNode.style.opacity).to.be.equal('0');
     expect(ReactDom.findDOMNode(p).parentNode.style.height).to.be.not.equal('0px');
-    expect(ReactDom.findDOMNode(p).parentNode.style.color).to.be.equal('red');
   });
-
 });
