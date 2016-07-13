@@ -72,6 +72,9 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
 
   * `containerStyle`: style object which will be apply to container of rendered tab.
 
+  * `hiddenContainerStyle`: style object which will be apply to container of hidden tab.
+
+
 ##### Events
 
   All other props like `onXX` handler set to `Tab` will be passed to rendered element except `onClick`
