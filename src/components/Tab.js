@@ -68,6 +68,7 @@ Tab.propTypes = {
     tabCloseIconHover: React.PropTypes.object,
   }),
   containerStyle: React.PropTypes.object,
+  hiddenContainerStyle: React.PropTypes.object,
 };
 
 export default Tab;

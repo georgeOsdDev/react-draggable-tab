@@ -7,10 +7,6 @@ const styles = {
     position: 'relative',
     textAlign: 'initial',
   },
-  unselected: {
-    height: '0px',
-    overflow: 'hidden',
-  },
 };
 
 class TabContainer extends React.Component {
@@ -18,7 +14,7 @@ class TabContainer extends React.Component {
   render() {
     let style = StyleOverride.merge(styles.root, this.props.style);
     if (!this.props.selected) {
-      style = StyleOverride.merge(style, styles.unselected);
+      style = StyleOverride.merge(styles.root, this.props.hiddenStyle);
     }
     return (
       <div style={style}>
@@ -31,11 +27,16 @@ class TabContainer extends React.Component {
 TabContainer.defaultProps = {
   selected: false,
   style: {},
+  hiddenStyle: {
+    height: '0px',
+    overflow: 'hidden',
+  },
 };
 
 TabContainer.propTypes = {
   selected: React.PropTypes.bool.isRequired,
   style: React.PropTypes.object,
+  hiddenStyle: React.PropTypes.object,
 };
 
 export default TabContainer;

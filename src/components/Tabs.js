@@ -6,7 +6,6 @@ import classNames from 'classnames';
 import Mousetrap from 'mousetrap';
 
 import CustomDraggable from './CustomDraggable';
-import Tab from './Tab';
 import TabStyles from './TabStyles';
 import TabContainer from './TabContainer';
 import CloseIcon from './CloseIcon';
@@ -43,7 +42,7 @@ class Tabs extends React.Component {
   }
 
   _tabStateFromProps(props) {
-    let tabs = [];
+    const tabs = [];
     let idx = 0;
     React.Children.forEach(props.tabs, (tab) => {
       invariant(
@@ -124,7 +123,7 @@ class Tabs extends React.Component {
   }
 
   _cancelEventSafety(e) {
-    let ev = e;
+    const ev = e;
     if (typeof e.preventDefault !== 'function') {
       ev.preventDefault = () => {};
     }
@@ -149,7 +148,7 @@ class Tabs extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    let newState = this._tabStateFromProps(nextProps);
+    const newState = this._tabStateFromProps(nextProps);
     if (nextProps.selectedTab !== 'undefined') {
       newState.selectedTab = nextProps.selectedTab;
     }
@@ -259,7 +258,7 @@ class Tabs extends React.Component {
       return;
     }
 
-    const classes = e.target.className.split(' ');
+    const classes = (e.target.getAttribute('class') || '').split(' ');
     if (classes.indexOf('rdTabCloseIcon') > -1) {
       this._cancelEventSafety(e);
     } else {
@@ -368,7 +367,7 @@ class Tabs extends React.Component {
 
   render() {
     // override inline tabs styles
-    let tabInlineStyles = {
+    const tabInlineStyles = {
     };
     tabInlineStyles.tabWrapper = StyleOverride.merge(TabStyles.tabWrapper, this.props.tabsStyles.tabWrapper);
     tabInlineStyles.tabBar = StyleOverride.merge(TabStyles.tabBar, this.props.tabsStyles.tabBar);
@@ -391,7 +390,7 @@ class Tabs extends React.Component {
     tabInlineStyles.tabAfterOnHover = StyleOverride.merge(TabStyles.tabAfterOnHover, this.props.tabsStyles.tabAfterOnHover);
 
     // append tabs classNames
-    let _tabClassNames = {
+    const _tabClassNames = {
     };
     _tabClassNames.tabWrapper = classNames('rdTabWrapper', this.props.tabsClassNames.tabWrapper);
     _tabClassNames.tabBar = classNames('rdTabBar', this.props.tabsClassNames.tabBar);
@@ -418,6 +417,7 @@ class Tabs extends React.Component {
         tabClassNames,
         tabStyles,
         containerStyle,
+        hiddenContainerStyle,
         onClick,
         onMouseEnter,
         onMouseLeave,
@@ -454,7 +454,8 @@ class Tabs extends React.Component {
           tabTiteleStyle = StyleOverride.merge(StyleOverride.merge(tabTiteleStyle, tabInlineStyles.tabTitleOnHover), tabStyles.tabTitleOnHover);
           tabClasses = classNames(tabClasses, 'rdTabHover', this.props.tabsClassNames.tabHover, tabClassNames.tabHover);
         }
-        content.push(<TabContainer key={`tabContainer#${tab.key}`} selected={false} style={containerStyle}>{tab}</TabContainer>);
+        content.push(
+          <TabContainer key={`tabContainer#${tab.key}`} selected={false} style={containerStyle} hiddenStyle={hiddenContainerStyle}>{tab}</TabContainer>);
       }
 
       // title will be shorten with inline style
@@ -463,7 +464,7 @@ class Tabs extends React.Component {
       //    whiteSpace: 'nowrap',
       //    textOverflow: 'ellipsis'
       //  }
-      let extraAttribute = {};
+      const extraAttribute = {};
       if (typeof title === 'string') {
         extraAttribute.title = title;
       }
