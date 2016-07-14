@@ -1,5 +1,11 @@
 ## Change Log
 
+### Ver 0.7.0
+
+  * #67 [Fix TypeError when using SVGs as title](https://github.com/georgeOsdDev/react-draggable-tab/issues/67)
+  Thanks @HaNdTriX
+  * #68 [Improve tab rendering perfomance](https://github.com/georgeOsdDev/react-draggable-tab/issues/68)
+
 ### Ver 0.6.1
 
   * #66 [Removes console warning in React15](https://github.com/georgeOsdDev/react-draggable-tab/issues/66)

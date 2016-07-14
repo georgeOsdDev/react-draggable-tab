@@ -69,7 +69,19 @@ class App extends React.Component {
           <div>
             <h1>This is tab4 with custom container style</h1>
           </div>
-        </Tab>)
+        </Tab>),
+        (<Tab key={'tab5'} title={'Big content1 with left:-9999999px'} hiddenContainerStyle={{left: '-9999999px', top: '-9999999px'}} {...this.makeListeners('tab5')}>
+          <div>
+            <h1>Super big content</h1>
+              {Array(10000).fill().map(() => <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>)}
+          </div>
+        </Tab>),
+        (<Tab key={'tab6'} title={'after big content'} {...this.makeListeners('tab6')}>
+          <div>
+            <pre>Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+            </pre>
+          </div>
+        </Tab>),
       ],
       badgeCount: 0,
       menuPosition: {},
