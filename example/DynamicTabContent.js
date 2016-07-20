@@ -1,7 +1,7 @@
 'use strict';
 
 import _     from 'lodash';
-import React from 'react/addons';
+import React from 'react';
 
 class DynamicTabContent extends React.Component {
   constructor(props) {
