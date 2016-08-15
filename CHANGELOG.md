@@ -1,5 +1,9 @@
 ## Change Log
 
+### Ver 0.8.0
+
+  * #77 [Add shouldTabClose](https://github.com/georgeOsdDev/react-draggable-tab/issues/77)
+
 ### Ver 0.7.0
 
   * #67 [Fix TypeError when using SVGs as title](https://github.com/georgeOsdDev/react-draggable-tab/issues/67)

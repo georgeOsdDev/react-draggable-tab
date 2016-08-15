@@ -98,6 +98,8 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
   * `keepSelectedTab`: Prevent tab select on drag/move behind tab.
     `React.PropTypes.bool` default `false`.
 
+  * `shouldTabClose(e, key)`: will be called before tab close event, return false if you want to stop tab close process, default `true`;
+
 ###### Shortcut key binding
   * `shortCutKeys`: Short cut key bindings as [Mousetrap](https://craig.is/killing/mice) style.
    * `close`: key binding to close current tab (`onTabClose` will be called)

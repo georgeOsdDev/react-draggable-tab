@@ -221,6 +221,11 @@ class App extends React.Component {
     this.setState({badgeCount: this.state.badgeCount + 1});
   }
 
+  shouldTabClose(e, key){
+    console.log('should tab close', e, key);
+    return window.confirm('close?');
+  }
+
   render() {
 
     let standardActions = [
@@ -255,6 +260,7 @@ class App extends React.Component {
           onTabClose={this.handleTabClose.bind(this)}
           onTabAddButtonClick={this.handleTabAddButtonClick.bind(this)}
           onTabPositionChange={this.handleTabPositionChange.bind(this)}
+          shouldTabClose={this.shouldTabClose.bind(this)}
           tabs={this.state.tabs}
           shortCutKeys={
             {
