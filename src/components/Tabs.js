@@ -300,28 +300,33 @@ class Tabs extends React.Component {
 
   handleCloseButtonClick(key, e) {
     const ev = this._cancelEventSafety(e);
-    let nextSelected;
+    const doClose = () => {
+      let nextSelected;
 
-    if (this.state.selectedTab === key) {
-      nextSelected = this._getNextTabKey(key);
-      if (!nextSelected) {
-        nextSelected = this._getPrevTabKey(key);
+      if (this.state.selectedTab === key) {
+        nextSelected = this._getNextTabKey(key);
+        if (!nextSelected) {
+          nextSelected = this._getPrevTabKey(key);
+        }
+      } else {
+        nextSelected = this.state.selectedTab;
       }
-    } else {
-      nextSelected = this.state.selectedTab;
+
+      const shoudBeNotifyTabChange = this.state.selectedTab !== nextSelected;
+      this.setState({
+        closedTabs: this.state.closedTabs.concat([key]),
+        selectedTab: nextSelected,
+      }, () => {
+        const currentOpenTabs = this._getCurrentOpenTabs();
+        this.props.onTabClose(ev, key, currentOpenTabs);
+        if (shoudBeNotifyTabChange) {
+          this.props.onTabSelect(ev, nextSelected, currentOpenTabs);
+        }
+      });
+    };
+    if (this.props.shouldTabClose(ev, key)) {
+      doClose();
     }
-
-    const shoudBeNotifyTabChange = this.state.selectedTab !== nextSelected;
-    this.setState({
-      closedTabs: this.state.closedTabs.concat([key]),
-      selectedTab: nextSelected,
-    }, () => {
-      const currentOpenTabs = this._getCurrentOpenTabs();
-      this.props.onTabClose(ev, key, currentOpenTabs);
-      if (shoudBeNotifyTabChange) {
-        this.props.onTabSelect(ev, nextSelected, currentOpenTabs);
-      }
-    });
   }
 
   handleAddButtonClick(e) {
@@ -540,6 +545,7 @@ Tabs.defaultProps = {
   onTabClose: () => {},
   onTabAddButtonClick: () => {},
   onTabPositionChange: () => {},
+  shouldTabClose: () => true,
   keepSelectedTab: false,
 };
 
@@ -595,6 +601,7 @@ Tabs.propTypes = {
   onTabClose: React.PropTypes.func,
   onTabAddButtonClick: React.PropTypes.func,
   onTabPositionChange: React.PropTypes.func,
+  shouldTabClose: React.PropTypes.func,
   keepSelectedTab: React.PropTypes.bool,
 };
 
