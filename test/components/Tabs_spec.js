@@ -42,6 +42,7 @@ describe('Test of Tabs', () => {
     expect(typeof component.props.onTabSelect).to.be.equal('function');
     expect(typeof component.props.onTabClose).to.be.equal('function');
     expect(typeof component.props.onTabAddButtonClick).to.be.equal('function');
+    expect(typeof component.props.shouldTabClose).to.be.equal('function');
     expect(typeof component.props.onTabPositionChange).to.be.equal('function');
   });
 
@@ -878,6 +879,63 @@ describe('Test of Tabs', () => {
 
       expect(currentTabs2).to.be.length(2);
       expect(currentTabs2[0].key).to.be.equal('tab1');
+    });
+  });
+
+  describe('when shouldTabClose return false', function () {
+    let called1 = false;
+    let called2 = false;
+    let called3 = false;
+    let key1 = '';
+    let key2 = '';
+    let key3 = '';
+    let currentTabs1 = [];
+    let currentTabs2 = [];
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'} >
+        <div>
+          <h1>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'} >
+        <div>
+          <h1>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'} >
+        <div>
+          <h1>tab3Content</h1>
+        </div>
+      </Tab>)
+    ];
+
+    before(() => {
+      component = ReactTestUtils.renderIntoDocument(
+        <Tabs
+          tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
+          onTabClose={function(e, _key, _currentTabs){called1 = true; key1 = _key; currentTabs1 = _currentTabs; }}
+          onTabSelect={function(e, _key, _currentTabs){called2 = true; key2 = _key; currentTabs2 = _currentTabs; }}
+          shouldTabClose={function(e, _key){called3 = true; key3 = _key; return false; }}
+          selectedTab="tab2"
+          tabs={tabs} />);
+
+        let rdTabs = ReactTestUtils.scryRenderedDOMComponentsWithClass(component, 'rdTab');
+        const tab2CloseButton = rdTabs[1].querySelector('.myCloseButton');
+        ReactTestUtils.Simulate.click(tab2CloseButton);
+    });
+
+    it('should not call onTabClose prop', () => {
+      expect(called1).to.be.equal(false);
+    });
+    it('should call shouldTabClose prop', () => {
+      expect(called3).to.be.equal(true);
+    });
+    it('should pass key to shouldTabClose', () => {
+      expect(key3).to.be.eql('tab2');
+    });
+    it('should tabs stay ', () => {
+      expect(called2).to.be.equal(false);
     });
   });
 
