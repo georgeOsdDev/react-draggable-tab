@@ -68,7 +68,7 @@
     "mousetrap": "^1.6.0",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
-    "react-draggable": "2.1.2"
+    "react-draggable": "^2.2.1"
   },
   "peerDependencies": {
     "react": "^15.2.1",
