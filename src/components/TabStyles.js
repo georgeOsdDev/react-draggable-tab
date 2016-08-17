@@ -185,7 +185,7 @@ const TabStyles = {
     fontFamily: "'Lucida Grande', 'Segoe UI', Ubuntu, Cantarell, sans-serif",
     fontSize: '20px',
     textShadow: 'rgb(255, 255, 255) 0px 1px 0px',
-    position: 'fixed',
+    position: 'relative',
     width: '25px',
     height: '26px',
     marginLeft: '20px',
