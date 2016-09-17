@@ -478,6 +478,7 @@ class Tabs extends React.Component {
       return (
         <CustomDraggable
           key={`draggable_tabs_${tab.key}`}
+          disabled={this.props.disableDrag}
           axis="x"
           cancel=".rdTabCloseIcon"
           start={{ x: 0, y: 0 }}
@@ -547,6 +548,7 @@ Tabs.defaultProps = {
   onTabPositionChange: () => {},
   shouldTabClose: () => true,
   keepSelectedTab: false,
+  disableDrag: false,
 };
 
 Tabs.propTypes = {
@@ -603,6 +605,7 @@ Tabs.propTypes = {
   onTabPositionChange: React.PropTypes.func,
   shouldTabClose: React.PropTypes.func,
   keepSelectedTab: React.PropTypes.bool,
+  disableDrag: React.PropTypes.bool,
 };
 
 export default Tabs;
