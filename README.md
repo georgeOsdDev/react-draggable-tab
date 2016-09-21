@@ -92,6 +92,9 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
   * `selectedTab`: key for selectedTab.
     `React.PropTypes.string` default to first tab.
 
+  * 'disableDrag': disables the ability to drag the tabs.
+    'React.PropTypes.bool' default is false.
+
   * `tabAddButton`: element for add button.
     `React.PropTypes.element`
 

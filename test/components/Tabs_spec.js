@@ -32,6 +32,7 @@ describe('Test of Tabs', () => {
     expect(component.props.tabsClassNames.tabCloseIcon).to.be.equal('');
     expect(component.props.tabsClassNames.tabActive).to.be.equal('');
     expect(component.props.tabsClassNames.tabHover).to.be.equal('');
+    expect(component.props.disableDrag).to.be.equal(false);
 
     expect(component.props.tabsStyles).to.be.empty;
 
@@ -1162,6 +1163,86 @@ describe('Test of Tabs', () => {
       expect(currentTabs[1].key).to.be.equal('tab1');
       expect(currentTabs[2].key).to.be.equal('tab2');
       expect(currentTabs[3].key).to.be.equal('tab4');
+    });
+  })
+
+  describe('when disabled and attempts to drag', function () {
+    let called = false;
+
+    let target1;
+    let target2;
+
+    const tabs = [
+      (<Tab key={'tab1'} title={'tab1'}>
+        <div>
+          <h1>tab1Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab2'} title={'tab2'}>
+        <div>
+          <h1>tab2Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab3'} title={'tab3'}>
+        <div>
+          <h1>tab3Content</h1>
+        </div>
+      </Tab>),
+      (<Tab key={'tab4'} title={'tab4'}>
+        <div>
+          <h1>tab4Content</h1>
+        </div>
+      </Tab>)
+
+    ];
+
+    beforeEach(() => {
+      ReactDom.render(
+        <Tabs
+          tabsClassNames={{tabCloseIcon: 'myCloseButton'}}
+          onTabPositionChange={function (e, _key, _currentTabs) {
+            called = true;
+          }}
+          selectedTab="tab1"
+          tabs={tabs}
+        disableDrag={true}/>, document.body);
+    });
+
+    afterEach(() => {
+      ReactDom.unmountComponentAtNode(document.body);
+      target1 = null;
+      target2 = null;
+      called = false;
+    });
+
+    it('attemp to switch position when dragging is disabled', () => {
+
+      target1 = document.getElementsByClassName('rdTab')[0];
+      target2 = document.getElementsByClassName('rdTab')[1];
+
+      let clientY = target1.getBoundingClientRect().top + 5;
+      let droppedToX = target2.getBoundingClientRect().left + 10;
+
+      triggerEvent(target1, 'mousedown', {
+        clientX: target1.getBoundingClientRect().left + 5,
+        clientY: clientY,
+        offset: {
+          left: target1.getBoundingClientRect().left + 10,
+          top: target1.getBoundingClientRect().top + 10
+        }
+      });
+
+      triggerEvent(target1, 'mousemove', {
+        clientX: target2.getBoundingClientRect().left + 10,
+        clientY: clientY
+      });
+
+      triggerEvent(target1, 'mouseup', {
+        clientX: droppedToX,
+        clientY: clientY
+      });
+
+      expect(called).to.be.equal(false);
     });
   });
 
