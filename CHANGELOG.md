@@ -1,5 +1,12 @@
 ## Change Log
 
+### Ver 0.8.1
+
+  * #80 [Fix tabAddButton position](https://github.com/georgeOsdDev/react-draggable-tab/issues/80)
+  Thanks @warent
+  * #81 [Added prop to disable the dragging of tabs]()https://github.com/georgeOsdDev/react-draggable-tab/issues/81
+  Thanks @erangil2
+
 ### Ver 0.8.0
 
   * #77 [Add shouldTabClose](https://github.com/georgeOsdDev/react-draggable-tab/issues/77)
