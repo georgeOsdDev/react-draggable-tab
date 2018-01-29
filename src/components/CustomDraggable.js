@@ -5,7 +5,7 @@ class CustomDraggable extends Draggable {
     const newState = {
       clientX: nextProps.start.x,
       clientY: nextProps.start.y,
-    }
+    };
     this.setState(newState);
   }
 }

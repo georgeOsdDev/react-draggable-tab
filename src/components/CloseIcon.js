@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import TabStyles from './TabStyles';
 import StyleOverride from '../helpers/styleOverride';
@@ -25,15 +26,15 @@ class CloseIcon extends React.Component {
 
   render() {
     let iconStyle = this.props.style;
-    let className = this.props.className;
+    let { className } = this.props;
     if (this.state.hover) {
-      iconStyle = StyleOverride.merge(this.props.style,
-                    StyleOverride.merge(TabStyles.tabCloseIconOnHover, this.props.hoverStyle)
-                  );
+      iconStyle = StyleOverride.merge(
+        this.props.style,
+        StyleOverride.merge(TabStyles.tabCloseIconOnHover, this.props.hoverStyle),
+      );
       className = classNames(this.props.className, 'hover');
     } else {
       iconStyle = this.props.style;
-      className = this.props.className;
     }
 
     return (
@@ -52,13 +53,14 @@ class CloseIcon extends React.Component {
 CloseIcon.defaultProps = {
   style: {},
   hoverStyle: {},
-  onClick: () => {},
+  onClick: () => {
+  },
 };
 
 CloseIcon.propTypes = {
-  style: React.PropTypes.object,
-  hoverStyle: React.PropTypes.object,
-  onClick: React.PropTypes.func,
+  style: PropTypes.object,
+  hoverStyle: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default CloseIcon;
