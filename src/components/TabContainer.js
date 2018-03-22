@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import StyleOverride from '../helpers/styleOverride';
 
 const styles = {
@@ -10,7 +11,6 @@ const styles = {
 };
 
 class TabContainer extends React.Component {
-
   render() {
     let style = StyleOverride.merge(styles.root, this.props.style);
     if (!this.props.selected) {
@@ -34,9 +34,9 @@ TabContainer.defaultProps = {
 };
 
 TabContainer.propTypes = {
-  selected: React.PropTypes.bool.isRequired,
-  style: React.PropTypes.object,
-  hiddenStyle: React.PropTypes.object,
+  selected: PropTypes.bool.isRequired,
+  style: PropTypes.object,
+  hiddenStyle: PropTypes.object,
 };
 
 export default TabContainer;

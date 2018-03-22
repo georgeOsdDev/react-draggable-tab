@@ -27,19 +27,19 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
 #### Props
 
   * `key`: *unique* key in `TabList`.
-    `React.PropTypes.string.isRequired`
+    `PropTypes.string.isRequired`
 
   * `beforeTitle`: element to show in tab. eg icon.
-    `React.PropTypes.element`
+    `PropTypes.element`
 
   * `title`: string or element to show in tab.
-    `React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]).isRequired`
+    `PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired`
 
   * `afterTitle`: element to show in tab. eg: notification badge
-    `React.PropTypes.element`
+    `PropTypes.element`
 
-  * `disableClose`: If `true`, closeButton will not be appeared in tab.
-    `React.PropTypes.bool` (Default `false`)
+  * `uncloseable`: If `true`, closeButton will not be appeared in tab.
+    `PropTypes.bool` (Default `false`)
 
 ###### Style (for each tab)
 
@@ -87,19 +87,19 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
 #### Props
 
   * `tabs`: Array of `Tab` elements.
-    `React.PropTypes.arrayOf(React.PropTypes.element)`
+    `PropTypes.arrayOf(PropTypes.element)`
 
   * `selectedTab`: key for selectedTab.
-    `React.PropTypes.string` default to first tab.
+    `PropTypes.string` default to first tab.
 
   * `disableDrag`: disables the ability to drag the tabs.
     `React.PropTypes.bool` default is false.
 
   * `tabAddButton`: element for add button.
-    `React.PropTypes.element`
+    `PropTypes.element`
 
   * `keepSelectedTab`: Prevent tab select on drag/move behind tab.
-    `React.PropTypes.bool` default `false`.
+    `PropTypes.bool` default `false`.
 
   * `shouldTabClose(e, key)`: will be called before tab close event, return false if you want to stop tab close process, default `true`;
 

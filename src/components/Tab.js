@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 class Tab extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,7 @@ Tab.defaultProps = {
   beforeTitle: <span />,
   title: 'untitled',
   afterTitle: <span />,
-  disableClose: false,
+  uncloseable: false,
   tabClassNames: {
     tab: '',
     tabBefore: '',
@@ -33,42 +35,42 @@ Tab.defaultProps = {
 };
 
 Tab.propTypes = {
-  beforeTitle: React.PropTypes.element,
-  title: React.PropTypes.oneOfType([
-    React.PropTypes.string,
-    React.PropTypes.element,
+  beforeTitle: PropTypes.element,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.element,
   ]).isRequired,
-  afterTitle: React.PropTypes.element,
-  disableClose: React.PropTypes.bool,
-  tabClassNames: React.PropTypes.shape({
-    tab: React.PropTypes.string,
-    tabBefore: React.PropTypes.string,
-    tabAfter: React.PropTypes.string,
-    tabBeforeTitle: React.PropTypes.string,
-    tabTitle: React.PropTypes.string,
-    tabAfterTitle: React.PropTypes.string,
-    tabCloseIcon: React.PropTypes.string,
-    tabActive: React.PropTypes.string,
-    tabHover: React.PropTypes.string,
+  afterTitle: PropTypes.element,
+  uncloseable: PropTypes.bool,
+  tabClassNames: PropTypes.shape({
+    tab: PropTypes.string,
+    tabBefore: PropTypes.string,
+    tabAfter: PropTypes.string,
+    tabBeforeTitle: PropTypes.string,
+    tabTitle: PropTypes.string,
+    tabAfterTitle: PropTypes.string,
+    tabCloseIcon: PropTypes.string,
+    tabActive: PropTypes.string,
+    tabHover: PropTypes.string,
   }),
-  tabStyles: React.PropTypes.shape({
-    tab: React.PropTypes.object,
-    tabBefore: React.PropTypes.object,
-    tabAfter: React.PropTypes.object,
-    tabTitle: React.PropTypes.object,
-    tabActive: React.PropTypes.object,
-    tabTitleActive: React.PropTypes.object,
-    tabBeforeActive: React.PropTypes.object,
-    tabAfterActive: React.PropTypes.object,
-    tabOnHover: React.PropTypes.object,
-    tabTitleOnHover: React.PropTypes.object,
-    tabBeforeOnHover: React.PropTypes.object,
-    tabAfterOnHover: React.PropTypes.object,
-    tabCloseIcon: React.PropTypes.object,
-    tabCloseIconHover: React.PropTypes.object,
+  tabStyles: PropTypes.shape({
+    tab: PropTypes.object,
+    tabBefore: PropTypes.object,
+    tabAfter: PropTypes.object,
+    tabTitle: PropTypes.object,
+    tabActive: PropTypes.object,
+    tabTitleActive: PropTypes.object,
+    tabBeforeActive: PropTypes.object,
+    tabAfterActive: PropTypes.object,
+    tabOnHover: PropTypes.object,
+    tabTitleOnHover: PropTypes.object,
+    tabBeforeOnHover: PropTypes.object,
+    tabAfterOnHover: PropTypes.object,
+    tabCloseIcon: PropTypes.object,
+    tabCloseIconHover: PropTypes.object,
   }),
-  containerStyle: React.PropTypes.object,
-  hiddenContainerStyle: React.PropTypes.object,
+  containerStyle: PropTypes.object,
+  hiddenContainerStyle: PropTypes.object,
 };
 
 export default Tab;

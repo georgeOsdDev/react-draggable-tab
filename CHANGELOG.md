@@ -1,5 +1,23 @@
 ## Change Log
 
+### PR
+
+  This version contains a breaking change. The name of the Tab 'disableClose' property,
+  which shadowed a standard property name and resulted in a React warning, has been changed
+  to 'unclosable'.
+ 
+  **TESTS ARE BROKEN**. `react-addons-test-utils` has a hard dependency on React 15. For
+  React 16, Facebook has moved the utilities into `react-dom/test-utils` and
+  `react-test-renderer/shallow`, and they are quite a bit different.
+
+  * #73 [Invariant Violation: addComponentAsRefTo(...): ...](https://github.com/georgeOsdDev/react-draggable-tab/issues/73)
+  may be better. The React version has been updated, but react-draggable-tab is still using string refs, which is deprecated.
+  * #90 [React.PropTypes should be replaced by just PropTypes](https://github.com/georgeOsdDev/react-draggable-tab/issues/90)
+  * #92 [Update to React v16](https://github.com/georgeOsdDev/react-draggable-tab/issues/92)
+  Updated all libraries. Uses React 16.2.0.
+  * #93 [Resolve all eslint "airbnb" errors](https://github.com/georgeOsdDev/react-draggable-tab/issues/93)
+  (except in tests)
+
 ### Ver 0.8.1
 
   * #80 [Fix tabAddButton position](https://github.com/georgeOsdDev/react-draggable-tab/issues/80)

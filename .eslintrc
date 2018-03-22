@@ -1,5 +1,4 @@
 {
-  # TODO use airbnb
   "extends": "airbnb/base",
   "env": {
     "browser": true,
@@ -15,9 +14,9 @@
     "react"
   ],
   "rules": {
-    'max-len': [2, 160, 2, {
-      'ignoreUrls': true,
-      'ignoreComments': false
+    "max-len": [2, 160, 2, {
+      "ignoreUrls": true,
+      "ignoreComments": false
     }],
     "quotes": [1, "single", "avoid-escape"],
     "react/display-name": 0,
@@ -29,7 +28,6 @@
     "react/prop-types": [1, { "ignore": ["children", "className"] }],
     "react/react-in-jsx-scope": 1,
     "react/self-closing-comp": 1,
-    "react/wrap-multilines": 1,
-    "react/jsx-uses-vars": 1,
+    "react/jsx-uses-vars": 1
   }
 }
