@@ -1,7 +1,12 @@
 {
   "presets": [
-    "es2015",
-    "stage-2",
-    "react"
-  ]
+    "env",
+    "react",
+    "stage-0"
+  ],
+  "env": {
+    "production": {
+      "plugins": ["minify-dead-code-elimination"]
+    }
+  }
 }

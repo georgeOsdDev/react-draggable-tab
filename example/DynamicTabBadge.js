@@ -1,6 +1,5 @@
 'use strict';
 
-import _     from 'lodash';
 import React from 'react';
 import NotificationBadge, {Effect} from 'react-notification-badge';
 
@@ -27,6 +26,6 @@ class DynamicTabContent extends React.Component {
   render() {
     return (<NotificationBadge count={this.state.badgeCount} effect={Effect.SCALE}/>);
   }
-};
+}
 
 export default DynamicTabContent;
