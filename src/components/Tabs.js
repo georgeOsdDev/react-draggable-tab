@@ -139,7 +139,7 @@ class Tabs extends React.Component {
   }
 
   componentWillUnmount() {
-    this.unbindShortcuts();
+    this.constructor.unbindShortcuts();
   }
 
   componentWillReceiveProps(nextProps) {

@@ -8,12 +8,12 @@
     "watch:example": "watchify example/app.js -dv -o example/bundle.js -t [ babelify ]",
     "start:example:basex": "npm run clean && npm run build && (npm run watch:example & npm run browser)",
     "start:example:base": "npm run clean && npm run build && ",
-    "start:example": "NODE_ENV=development npm run start:example:base",
-    "start:example:prod": "NODE_ENV=production npm run start:example:base",
+    "start:example": "cross-env NODE_ENV=development npm run start:example:base",
+    "start:example:prod": "cross-env NODE_ENV=production npm run start:example:base",
     "test:local": "karma start",
     "test": "./node_modules/.bin/karma start --browsers Firefox --single-run",
     "clean": "rimraf lib",
-    "build": "NODE_ENV=production babel src --out-dir lib"
+    "build": "cross-env NODE_ENV=production babel src --out-dir lib"
   },
   "repository": {
     "type": "git",
@@ -45,6 +45,7 @@
     "browser-sync": "^2.23.5",
     "browserify": "^15.2.0",
     "chai": "^4.1.2",
+    "cross-env": "^5.1.4",
     "eslint": "^4.16.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-plugin-import": "^2.8.0",
