@@ -1,7 +1,8 @@
 'use strict';
 import React from 'react';
 import ReactDom from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
+import ShallowRenderer from 'react-test-renderer/shallow';
 import chai from 'chai';
 let expect = chai.expect;
 import CloseIcon from '../../src/components/CloseIcon';
@@ -25,7 +26,7 @@ describe('Test of CloseIcon', () => {
 
   it('should pass style and className to renderd child', function () {
     component = <CloseIcon style={style} className={className}>&times;</CloseIcon>;
-    let renderer = ReactTestUtils.createRenderer();
+    let renderer = new ShallowRenderer();
     renderer.render(component);
     let output = renderer.getRenderOutput();
 

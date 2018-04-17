@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDom from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import chai from 'chai';
 import Mousetrap from 'mousetrap';
 let expect = chai.expect;
@@ -63,23 +63,19 @@ describe('Test of Tabs', () => {
     ];
 
     beforeEach(() => {
-      let Wrapper = React.createClass({
-
-          getInitialState: function() {
-            return {foo: 1};
-          },
-
-          update: function() {
-            this.setState({foo: 2});
-          },
-
-          render: function() {
-            return <div><Tabs
-              selectedTab="tab1"
-              tabs={tabs} /></div>;
-          },
-
-        });
+      class Wrapper extends React.Component {
+        getInitialState() {
+          return {foo: 1};
+        }
+        update() {
+          this.setState({foo: 2});
+        }
+        render() {
+          return <div><Tabs
+            selectedTab="tab1"
+            tabs={tabs} /></div>;
+        }
+      }
       component = ReactTestUtils.renderIntoDocument(<Wrapper />);
     });
 
