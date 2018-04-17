@@ -1,11 +1,16 @@
 ## Change Log
 
-### PR
+### Ver 0.10.0
+
+  * #99 [Fix this.unbindShortcuts is not a function](https://github.com/georgeOsdDev/react-draggable-tab/issues/99)
+  * Fix falling unit tests
+
+### Ve4 0.9.0
 
   This version contains a breaking change. The name of the Tab 'disableClose' property,
   which shadowed a standard property name and resulted in a React warning, has been changed
   to 'unclosable'.
- 
+
   **TESTS ARE BROKEN**. `react-addons-test-utils` has a hard dependency on React 15. For
   React 16, Facebook has moved the utilities into `react-dom/test-utils` and
   `react-test-renderer/shallow`, and they are quite a bit different.
@@ -50,7 +55,7 @@
 ### Ver 0.5.0
   * #53 [Context menu on right click](https://github.com/georgeOsdDev/react-draggable-tab/issues/53)
     `onTabDoubleClick`, `onTabMouseEnter` and `onTabMouseEnter` are removed from `Tabs`.
-    All `onXXX` handler except `onClick` are now used on `Tab`.    
+    All `onXXX` handler except `onClick` are now used on `Tab`.
   * Update dependencies libraries version [cf65dbc](https://github.com/georgeOsdDev/react-draggable-tab/commit/cf65dbc8f756561536f53f5e3960bf86afebdc73)
 
 ### Ver 0.4.3

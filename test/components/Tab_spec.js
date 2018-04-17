@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
 import ReactDom from 'react-dom';
-import ReactTestUtils from 'react-addons-test-utils';
+import ReactTestUtils from 'react-dom/test-utils';
 import chai from 'chai';
 let expect = chai.expect;
 import Tab from '../../src/components/Tab';
@@ -15,7 +15,7 @@ describe('Test of Tab', () => {
   it('should have default properties', function () {
     component = ReactTestUtils.renderIntoDocument(<Tab><p>test tab</p></Tab>);
     expect(component.props.title).to.be.equal('untitled');
-    expect(component.props.disableClose).to.be.equal(false);
+    expect(component.props.uncloseable).to.be.equal(false);
 
     expect(component.props.tabClassNames).to.be.an('object');
     expect(component.props.tabClassNames.tab).to.be.equal('');

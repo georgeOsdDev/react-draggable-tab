@@ -101,6 +101,9 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.
   * `keepSelectedTab`: Prevent tab select on drag/move behind tab.
     `PropTypes.bool` default `false`.
 
+  * `unclosable`: Disable tab to close.
+    `PropTypes.bool` default `false`.
+
   * `shouldTabClose(e, key)`: will be called before tab close event, return false if you want to stop tab close process, default `true`;
 
 ###### Shortcut key binding
@@ -177,7 +180,7 @@ class App extends React.Component {
 
     this.state = {
       tabs:[
-        (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} >
+        (<Tab key={'tab0'} title={'unclosable tab'} unclosable={true} >
           <div>
             <h1>This tab cannot close</h1>
           </div>
