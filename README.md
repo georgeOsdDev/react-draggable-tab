@@ -275,10 +275,9 @@ npm run start:example
 npm test
 ```
 
-## [Contributors](https://github.com/georgeOsdDev/react-draggable-tab/graphs/contributors)
+## Contributors
 
- * @linhlc888
- * @uriklar
+ See [list](https://github.com/georgeOsdDev/react-draggable-tab/graphs/contributors)
 
 ## Known Issue
 
