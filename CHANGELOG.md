@@ -5,7 +5,7 @@
   * #99 [Fix this.unbindShortcuts is not a function](https://github.com/georgeOsdDev/react-draggable-tab/issues/99)
   * Fix falling unit tests
 
-### Ve4 0.9.0
+### Ver 0.9.0
 
   This version contains a breaking change. The name of the Tab 'disableClose' property,
   which shadowed a standard property name and resulted in a React warning, has been changed
