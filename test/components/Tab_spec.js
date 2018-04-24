@@ -15,7 +15,7 @@ describe('Test of Tab', () => {
   it('should have default properties', function () {
     component = ReactTestUtils.renderIntoDocument(<Tab><p>test tab</p></Tab>);
     expect(component.props.title).to.be.equal('untitled');
-    expect(component.props.uncloseable).to.be.equal(false);
+    expect(component.props.unclosable).to.be.equal(false);
 
     expect(component.props.tabClassNames).to.be.an('object');
     expect(component.props.tabClassNames.tab).to.be.equal('');
