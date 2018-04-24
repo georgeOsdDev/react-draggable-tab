@@ -71,7 +71,7 @@ For React v0.13.x, please use react-draggable-tab v0.3.3.</p>
 <code>React.PropTypes.oneOfType([React.PropTypes.string, React.PropTypes.element]).isRequired</code></p></li>
 <li><p><code>afterTitle</code>: element to show in tab. eg: notification badge
 <code>React.PropTypes.element</code></p></li>
-<li><p><code>disableClose</code>: If <code>true</code>, closeButton will not be appeared in tab.
+<li><p><code>unclosable</code>: If <code>true</code>, closeButton will not be appeared in tab.
 <code>React.PropTypes.bool</code> (Default <code>false</code>)</p></li>
 </ul>
 
@@ -288,7 +288,7 @@ Basically you will concat <code>currentTabs</code> with new empty tab.</p>
 
     <span class="pl-v">this</span>.<span class="pl-smi">state</span> <span class="pl-k">=</span> {
       tabs<span class="pl-k">:</span>[
-        (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab0<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>unclosable tab<span class="pl-pds">'</span></span>} disableClose<span class="pl-k">=</span>{<span class="pl-c1">true</span>} <span class="pl-k">&gt;</span>
+        (<span class="pl-k">&lt;</span>Tab key<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>tab0<span class="pl-pds">'</span></span>} title<span class="pl-k">=</span>{<span class="pl-s"><span class="pl-pds">'</span>unclosable tab<span class="pl-pds">'</span></span>} unclosable<span class="pl-k">=</span>{<span class="pl-c1">true</span>} <span class="pl-k">&gt;</span>
           <span class="pl-k">&lt;</span>div<span class="pl-k">&gt;</span>
             <span class="pl-k">&lt;</span>h1<span class="pl-k">&gt;</span>This tab cannot close<span class="pl-k">&lt;</span><span class="pl-k">/</span>h1<span class="pl-k">&gt;</span>
           <span class="pl-k">&lt;</span><span class="pl-k">/</span>div<span class="pl-k">&gt;</span>
@@ -417,6 +417,6 @@ See <a href="https://github.com/facebook/react/issues/2020">https://github.com/f
       </footer>
     </div>
     <script src="javascripts/scale.fix.js"></script>
-    
+
   </body>
 </html>
