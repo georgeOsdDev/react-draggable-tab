@@ -18,7 +18,7 @@ Tab.defaultProps = {
   beforeTitle: <span />,
   title: 'untitled',
   afterTitle: <span />,
-  uncloseable: false,
+  unclosable: false,
   tabClassNames: {
     tab: '',
     tabBefore: '',
@@ -41,7 +41,7 @@ Tab.propTypes = {
     PropTypes.element,
   ]).isRequired,
   afterTitle: PropTypes.element,
-  uncloseable: PropTypes.bool,
+  unclosable: PropTypes.bool,
   tabClassNames: PropTypes.shape({
     tab: PropTypes.string,
     tabBefore: PropTypes.string,

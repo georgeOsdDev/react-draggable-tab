@@ -45,7 +45,7 @@ class App extends React.Component {
 
     this.state = {
       tabs:[
-        (<Tab key={'tab0'} title={'unclosable tab'} uncloseable={true} {...this.makeListeners('tab0')}>
+        (<Tab key={'tab0'} title={'unclosable tab'} unclosable={true} {...this.makeListeners('tab0')}>
           <div>
             <h1>This tab cannot close</h1>
           </div>
