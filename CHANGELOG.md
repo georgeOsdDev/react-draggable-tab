@@ -1,5 +1,8 @@
 ## Change Log
 
+### Ver 0.10.1
+
+  * #101 [Received `false` for a non-boolean attribute `uncloseable`](https://github.com/georgeOsdDev/react-draggable-tab/issues/101)
 ### Ver 0.10.0
 
   * #99 [Fix this.unbindShortcuts is not a function](https://github.com/georgeOsdDev/react-draggable-tab/issues/99)

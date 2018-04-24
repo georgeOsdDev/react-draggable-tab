@@ -352,7 +352,7 @@ class Tabs extends React.Component {
   }
 
   getCloseButton(tab, style, classes, hoverStyleBase) {
-    if (tab.props.uncloseable) {
+    if (tab.props.unclosable) {
       return '';
     }
     const onHoverStyle = StyleOverride.merge(hoverStyleBase, tab.props.tabStyles.tabCloseIconOnHover);
@@ -415,6 +415,7 @@ class Tabs extends React.Component {
         hiddenContainerStyle,
         onMouseEnter,
         onMouseLeave,
+        unclosable,
         ...others
       } = tab.props;
 
@@ -486,11 +487,6 @@ class Tabs extends React.Component {
               onMouseEnter={this.handleMouseEnter.bind(this, tab.key, onMouseEnter)}
               onMouseLeave={this.handleMouseLeave.bind(this, tab.key, onMouseLeave)}
               ref={tab.key}
-              // TODO: This copies props to <li> which it does not understand.
-              // This isn't a major problem, but the 'uncloseable' prop is
-              // passed as a boolean. In Development mode react-dom will give a
-              // warning that non-boolean prop 'uncloseable' is being passed as
-              // a boolean to <li>.
               {...others}>
             <span style={TabStyles.beforeTitle} className={tabBeforeTitleClasses}>{beforeTitle}</span>
             <p style={tabTiteleStyle}
