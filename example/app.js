@@ -3,8 +3,7 @@
 import _ from 'lodash';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import injectTapEventPlugin from 'react-tap-event-plugin';
-injectTapEventPlugin();
+import PropTypes from 'prop-types';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {Dialog, FlatButton, Menu, MenuItem, TextField} from 'material-ui';
 import {Tabs, Tab} from '../lib/index.js';
@@ -40,13 +39,13 @@ class App extends React.Component {
   constructor(props) {
     super(props);
 
-    let icon = (<image src='icon.png' style={{height:'13px'}}/>);
-    let fonticon = (<icon className='icon-html5'/>);
+    let icon = (<img src='icon.png' style={{height:'13px'}}/>);
+    let fonticon = (<span className='icon-html5'/>);
     let badge = (<DynamicTabBadge />);
 
     this.state = {
       tabs:[
-        (<Tab key={'tab0'} title={'unclosable tab'} disableClose={true} {...this.makeListeners('tab0')}>
+        (<Tab key={'tab0'} title={'unclosable tab'} unclosable={true} {...this.makeListeners('tab0')}>
           <div>
             <h1>This tab cannot close</h1>
           </div>
@@ -73,7 +72,7 @@ class App extends React.Component {
         (<Tab key={'tab5'} title={'Big content1 with left:-9999999px'} hiddenContainerStyle={{left: '-9999999px', top: '-9999999px'}} {...this.makeListeners('tab5')}>
           <div>
             <h1>Super big content</h1>
-              {Array(10000).fill().map(() => <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>)}
+              {Array(10000).fill(0).map((_, i) => <p key={i}>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>)}
           </div>
         </Tab>),
         (<Tab key={'tab6'} title={'after big content'} {...this.makeListeners('tab6')}>
@@ -85,7 +84,8 @@ class App extends React.Component {
       ],
       badgeCount: 0,
       menuPosition: {},
-      showMenu: false
+      showMenu: false,
+      dialogOpen: false
     };
   }
 
@@ -104,8 +104,6 @@ class App extends React.Component {
       onClick: (e) => { console.log('onClick', key, e);}, // never called
       onContextMenu: (e) => { console.log('onContextMenu', key, e); this.handleTabContextMenu(key, e)},
       onDoubleClick: (e) => { console.log('onDoubleClick', key, e); this.handleTabDoubleClick(key, e)},
-      onMouseEnter: (e) => { console.log('onMouseEnter', key, e);},
-      onMouseLeave: (e) => { console.log('onMouseLeave', key, e);}
     }
   }
 
@@ -140,7 +138,7 @@ class App extends React.Component {
     });
   }
 
-  handleTabDoubleClick(key, e) {
+  handleTabDoubleClick(key) {
     this.setState({
       editTabKey: key,
       dialogOpen: true
@@ -186,14 +184,13 @@ class App extends React.Component {
   }
 
   _onDialogSubmit() {
-    let title = this.refs.input.getValue();
-    let newTabs = _.map(this.state.tabs, (tab) => {
-      if(tab.key === this.state.editTabKey) {
-        return React.cloneElement(tab, {title: title});
-      } else {
+    const replaceFunc = _.bind((tab) => {
+        if (tab.key === this.state.editTabKey) {
+          return React.cloneElement(tab, {title: this.refs.input.getValue()});
+        }
         return tab;
-      }
-    });
+      }, this),
+      newTabs = _.map(this.state.tabs, replaceFunc);
     this.setState({
       tabs: newTabs,
       dialogOpen: false
@@ -213,14 +210,6 @@ class App extends React.Component {
     this.refs.input.setValue(tab.props.title);
   }
 
-  _handleBadgeInc() {
-    this.setState({badgeCount: this.state.badgeCount + 1});
-  }
-
-  _handleBadgeDec() {
-    this.setState({badgeCount: this.state.badgeCount + 1});
-  }
-
   shouldTabClose(e, key){
     console.log('should tab close', e, key);
     return window.confirm('close?');
@@ -232,13 +221,13 @@ class App extends React.Component {
       <FlatButton
         label="Cancel"
         secondary={true}
-        onTouchTap={this._onDialogCancel.bind(this)}
+        onClick={this._onDialogCancel.bind(this)}
       />,
       <FlatButton
         label="Submit"
         primary={true}
         keyboardFocused={true}
-        onTouchTap={this._onDialogSubmit.bind(this)}
+        onClick={this._onDialogSubmit.bind(this)}
       />
     ];
 
@@ -248,7 +237,7 @@ class App extends React.Component {
       top: this.state.menuPosition.top,
       left: this.state.menuPosition.left,
       backgroundColor: '#F0F0F0'
-    }
+    };
 
     return (
       <div>
@@ -287,7 +276,7 @@ class App extends React.Component {
           open={this.state.dialogOpen}
           onShow={this._onDialogShow.bind(this)}>
           <TextField
-            ref='input' style={{width: '90%'}}/>
+            ref='input' id="rename-input" style={{width: '90%'}}/>
         </Dialog>
         <p style={{position: 'fixed', 'bottom': '10px'}}>
           Source code can be found at <a href='https://github.com/georgeOsdDev/react-draggable-tab/tree/master/example'>GitHub</a>
@@ -298,7 +287,7 @@ class App extends React.Component {
 }
 
 App.childContextTypes = {
-  muiTheme: React.PropTypes.object
+  muiTheme: PropTypes.object
 };
 
 ReactDOM.render(<App/>, document.getElementById('tabs'));
